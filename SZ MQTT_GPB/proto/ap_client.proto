@@ -1,0 +1,605 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ */
+option java_package = "com.ruckuswireless.scg.protobuf";
+
+message APClientInfo {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAC address of the client
+     * @since 3.5
+     */
+	required string clientMac = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description IP address of the client
+     * @since 3.5
+     */
+	optional string ipAddress = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description IPv6 address of the AP
+     * @since 3.5
+     */
+	optional string ipv6Address = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN interface ID
+     * @since 3.5
+     */
+	optional int32 wlanId = 4;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Last recorded RSSI/SNR
+     * @since 3.5
+     */
+	optional int32 rssi = 5;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Last recorded signal strength received.
+     * @since 3.5
+     */
+	optional int32 receiveSignalStrength = 6;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Last recorded noise floor
+     * @since 3.5
+     */
+	optional int32 noiseFloor = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client VLAN ID
+     * @since 3.5
+     */
+	optional int32 vlan = 8;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Data frames received
+     * @since 3.5
+     */
+	optional uint64 rxFrames = 9;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Data count received (in bytes)
+     * @since 3.5
+     */
+	optional uint64 rxBytes = 10;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Data frames transmitted
+     * @since 3.5
+     */
+	optional uint64 txFrames = 11;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Data count transmitted (in bytes)
+     * @since 3.5
+     */
+	optional uint64 txBytes	= 12;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Accumulated number of transmitted packets
+     * @since 3.5
+     */
+	optional uint64 txMgmtFrames = 13;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Accumulated number of received packets
+     * @since 3.5
+     */
+	optional uint64 rxMgmtFrames = 14;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Current throughput
+     * @since 3.5
+     */
+	optional uint32 throughputEst = 15;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total Tx data frames dropped or dropped by MQ. In AP internal design, it has a messages queue(MQ) to queue all packets that AP plans to forward to clients. The AP transmit packets to clients accoring the priority and scheduling. The MQ is Ruckus propritary internal design.
+     * @since 3.5
+     */
+	optional uint64 txDropDataFrames = 16;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total transaction management frames dropped (or dropped by MQ)
+     * @since 3.5
+     */
+	optional uint64 txDropMgmtFrames = 17;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Number of Rx frames with CRC errors
+     * @since 3.5
+     */
+	optional uint32 rxCRCErrFrames = 18;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Number of retried frames
+     * @since 3.5
+     */
+	optional uint32 txRetry = 19;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client OS type,  such as Windows 7/Vista, Android.
+     * @since 3.5
+     */
+	optional string osType = 20;
+    /**
+     * @property serialization
+     * @aggregation NULL
+     * @description Radio information
+     * @since 3.5
+     */
+	optional APClientRadio radio = 21;
+
+        message TCWithQuota {
+    	    /**
+     	     * @property snapshot
+     	     * @aggregation NULL
+     	     * @description Name of the traffic class. 
+     	     * @since 5.1
+     	     */
+                optional string tcName = 1;
+    	    /**
+     	     * @property snapshot
+     	     * @aggregation MAX
+     	     * @description Amount of quota assigned(x) in bytes, received during access accept. 
+     	     * @since 5.1
+     	     */
+                optional string tcMaxQuota = 2;
+    	    /**
+     	     * @property delta
+     	     * @aggregation SUM
+     	     * @description Bytes remaining for the client after consuming n bytes (x-n).
+     	     * @since 5.1
+     	     */
+                optional string tcRemainingQuota =3;
+        }
+    /**
+     * @property serialization
+     * @aggregation NULL
+     * @description Traffic class stats per client 
+     * @since 5.1
+     */
+        repeated TCWithQuota tcWithQuota = 22;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mac address for the client connected behind CPE.
+     * @since 5.1.2
+     */
+	optional string cpeMac = 23;
+
+     /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client is sticky/weak client.
+     * @since 5.2
+     */
+	optional uint32 stickyWeak = 24;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client device type,  such as Laptop, Smartphones, Tablets etc.
+     * @since 5.2
+     */
+	optional int32 deviceType = 25;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client OSVendor type,  such as Windows, Android, Apple etc.
+     * @since 5.2
+     */
+	optional int32 osVendorType = 26;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client's device model name,  such as Windows 7, Mac OS X etc.
+     * @since 5.2
+     */
+	optional string modelName = 27;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client hostname.
+     * @since 5.2
+     */
+	optional string hostname = 28;
+
+    /* jump to index 1000, for new requirement from SNMP and SCI */
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client wireless connection mode.
+     * @since 3.5
+     */
+	optional string ConnectMode = 1001;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client authorization username.
+     * @since 3.5
+     */
+	optional string Username = 1002;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client accounting session ID.
+     * @since 3.5
+     */
+	optional string SessionId = 1003;
+	/**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client accounting multiple session ID.
+     * @since 3.5
+     */
+	optional string MultipleSessionId = 1004;
+	/**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client authentication mode.
+     * @since 3.5
+     */
+	optional string AuthMode = 1005;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client disconnection timestamp.
+     * @since 3.5
+     */
+	optional uint64 DiscTimestamp = 1006;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client current receive data rate (not implementation).
+     * @since 3.5
+     */
+	optional uint32 RxByteRate = 1007;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client current transmission data rate (not implementation)
+     * @since 3.5
+     */
+	optional uint32 TxByteRate = 1008;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Client average receive data rate 
+     * @since 3.5
+     */
+	optional uint32 RxAvgByteRate = 1009;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Client average transmission data rate
+     * @since 3.5
+     */
+	optional uint32 TxAvgByteRate = 1010;
+    /**
+     * @property snapshot
+     * @aggregation Snapshot
+     * @description Client RX CRC error count.
+     * @since 3.5
+     */
+	optional uint32 RxError = 1011;
+    /**
+     * @property snapshot
+     * @aggregation Snapshot
+     * @description Client TX error count. (not implemenation)
+     * @since 3.5
+     */
+	optional uint32 TxError = 1012;
+    /**
+     * @property snapshot
+     * @aggregation Snapshot
+     * @description Client reassocation count. (not implementation)
+     * @since 3.5
+     */
+	optional uint32 ReassocCount = 1013;
+     /**
+     * @property snapshot
+     * @aggregation Snapshot
+     * @description Client current TX retry count.
+     * @since 3.5
+     */
+	optional uint32 TxRetryBytes = 1014; 
+	/**
+     * @property snapshot
+     * @aggregation Snapshot
+     * @description Client current RX drop count. (not implemenation)
+     * @since 3.5
+     */
+	optional uint32 RxDropPkts = 1015;
+}
+
+message APClientWlan {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SSID of the WLAN
+     * @since 3.5
+     */
+	required string ssid = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description BSSID of the WLAN
+     * @since 3.5
+     */
+	optional string bssid = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client VLAN ID
+     * @since 3.5
+     */
+	optional int32 vlan = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Unique WLAN ID assigned by the controller
+     * @since 3.5
+     */
+	optional int32 wsgWlanId = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN interface ID
+     * @since 3.5
+     */
+	optional int32 wlanId = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN Group identifier
+     * @since 3.5
+     */
+	optional string wlangroup_id = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN tenant identifier
+     * @since 3.5
+     */
+	optional string wlantenant_id = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WALN Group name
+     * @since 3.5
+     */
+	optional string wlangroup_name = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN tenant name
+     * @since 3.5
+     */
+	optional string wlantenant_name = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN name.
+     * @since 3.5.1
+     */
+	optional string wlanName = 10;
+}
+
+message APClientRadio {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio ID number used by the AP
+     * @since 3.5
+     */
+	required int32 radioId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio mode used by the AP's wireless interface
+     * @since 3.5
+     */
+	optional string mode = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio mode used by the AP
+     * @since 3.5
+     */
+	optional string radioMode = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Current radio channel used by the AP
+     * @since 3.5
+     */
+	optional int32 channel = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Channel width used by the AP's radio
+     * @since 3.5
+     */
+	optional uint32 channelWidth = 5;
+    /**
+     * @property
+     * @aggregation
+     * @description WLAN information for this client
+     * @since 3.5
+     */
+	optional APClientWlan wlan = 6;
+}
+
+message APClientStats {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 3.5 GPB version
+     */
+	required uint32 version = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAC address of the AP
+     * @since 3.5
+     */
+	optional string ap = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Date and time this report was generated
+     * @since 3.5
+     */
+	optional uint64 timestamp = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Counter for generating mesh statistics. The count increases by one whenever the AP generates mesh statistics. When the AP restarts, the counter also resets to zero (0).
+     * @since 3.5
+     */
+	optional uint64 seqNumber = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Unique zone ID (for example, b381206b-2e5d-43dc-b249-e36ffae9855c) assigned by the controller
+     * @since 3.5
+     */
+	optional string zone_id = 5;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description AP current client list
+     * @since 3.5
+     */
+	repeated APClientInfo clients = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP group UUID
+     * @since 3.5
+     */
+	optional string apgroup_id = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description cluster UUID
+     * @since 3.5
+     */
+	optional string cluster_id = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain UUID
+     * @since 3.5
+     */
+	optional string domain_id = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Aptennant UUID
+     * @since 3.5
+     */
+	optional string aptenant_id = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAP UUID
+     * @since 3.5
+     */
+	optional string map_id = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Aptennat name
+     * @since 3.5
+     */
+	optional string aptenant_name = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone name
+     * @since 3.5
+     */
+	optional string zone_name = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Apgorup name
+     * @since 3.5
+     */
+	optional string apgroup_name = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name
+     * @since 3.5
+     */
+	optional string domain_name = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp for this stats report generation
+     * @since 3.5
+     */
+	optional uint64 sampleTime = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Interval time for data aggregation
+     * @since 3.5
+     */
+	optional uint32 aggregationInterval = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP device name
+     * @since 3.5
+     */
+	optional string deviceName = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The serial number in AP borad data
+     * @since 5.1
+     */
+    optional string serialNumber = 19;
+}
+
+
+
+

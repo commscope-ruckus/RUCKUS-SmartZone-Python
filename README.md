@@ -1,2 +1,2 @@
 # SmartZone-Python
-Python scripts for common configuration tasks in SmartZone controllers, using REST API and MQTT/GPB
+Python scripts to perform common configuration tasks on SmartZone controllers using REST API, and monitoring tasks using MQTT/GPB

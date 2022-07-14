@@ -1,0 +1,52 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ */
+option java_package = "com.ruckuswireless.scg.protobuf";
+
+message APPeer {
+    optional string ip_learned = 1;
+    required string basemac = 2;
+    optional uint64 rx = 3; 
+    optional uint64 tx = 4;
+    optional uint64 timestamp = 5;
+    optional string stat = 6;
+    optional uint64 last_rx_from_now = 7;
+    optional uint32 rssi0 = 8;
+    optional uint32 rssi0x = 9;
+    optional uint32 rssi1 = 10;
+    optional uint32 rssi1x = 11;
+    optional uint32 chan0 = 12;
+    optional uint32 chan1 = 13;
+    optional uint32 lastupdate = 14;
+    optional string conn_lrv = 15;
+    optional string conn_ip = 16;
+    optional string conn_status = 17;
+    optional uint64 conn_lastupdate = 18;
+    optional string ipv6_learned = 19;
+}
+
+message APPeerReport {
+	required uint32 version = 1;
+	optional string apMac = 2;
+	optional uint64 timestamp = 3;
+	optional uint64	seqNumber = 4;
+	optional string	zone_id = 5;
+    repeated APPeer peerstat = 6;
+	optional string apgroup_id = 7;
+	optional string cluster_id = 8;
+	optional string domain_id = 9;
+	optional string aptenant_id = 10;
+	optional string map_id = 11;
+	optional string aptenant_name = 12;
+	optional string zone_name = 13;
+	optional string apgroup_name = 14;
+	optional string domain_name = 15;
+}
+
+

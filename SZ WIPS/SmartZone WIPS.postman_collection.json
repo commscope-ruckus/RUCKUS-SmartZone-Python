@@ -1,0 +1,535 @@
+{
+	"info": {
+		"_postman_id": "9b12c332-ad5e-4f06-974f-9ffe884965d0",
+		"name": "SmartZone WIPS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Rogue devices",
+			"item": [
+				{
+					"name": "Get service ticket",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"host\", \"10.0.0.207\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"serviceTicket\", jsonData.serviceTicket);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/serviceTicket",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"serviceTicket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get zones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"zoneID\", jsonData.list[1].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_0/rkszones?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_0",
+								"rkszones"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query zone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"timeZone\", jsonData.timezone);",
+									"//var timeZone = pm.collectionVariables.get(\"timeZone\");",
+									"//console.log(timeZone)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_0/rkszones/{{zoneID}}?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_0",
+								"rkszones",
+								"{{zoneID}}"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query rogue devices",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"filters\": [\n    {\n      \"type\": \"ZONE\",\n      \"value\": \"{{zoneID}}\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/query/roguesInfoList?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"query",
+								"roguesInfoList"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				},
+				{
+					"name": "Mark device as known",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rogueMacList\": [\n    \"08:36:C9:7B:16:54\",\n    \"08:9B:B9:09:DE:E6\",\n    \"08:9B:B9:09:DE:E4\",\n    \"08:9B:B9:09:DE:E5\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rogue/markKnown?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"rogue",
+								"markKnown"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				},
+				{
+					"name": "Mark device as malicious",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rogueMacList\": [\n    \"08:36:C9:7B:16:54\",\n    \"08:9B:B9:09:DE:E6\",\n    \"08:9B:B9:09:DE:E4\",\n    \"08:9B:B9:09:DE:E5\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rogue/markMalicious?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"rogue",
+								"markMalicious"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				},
+				{
+					"name": "Mark device as rogue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rogueMacList\": [\n    \"08:36:C9:7B:16:54\",\n    \"08:9B:B9:09:DE:E6\",\n    \"08:9B:B9:09:DE:E4\",\n    \"08:9B:B9:09:DE:E5\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rogue/markRogue?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"rogue",
+								"markRogue"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				},
+				{
+					"name": "Mark device as ignore",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rogueMacList\": [\n    \"08:36:C9:7B:16:54\",\n    \"08:9B:B9:09:DE:E6\",\n    \"08:9B:B9:09:DE:E4\",\n    \"08:9B:B9:09:DE:E5\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rogue/markIgnore?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"rogue",
+								"markIgnore"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				},
+				{
+					"name": "Unmark rogue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rogueMacList\": [\n        \"08:36:C9:7B:16:54\",\n        \"08:36:C9:83:8A:7C\",\n        \"08:9B:B9:09:DE:E4\",\n        \"08:9B:B9:09:DE:E6\",\n        \"08:9B:B9:09:DE:E8\",\n        \"08:9B:B9:2C:A3:E4\",\n        \"08:9B:B9:2C:A3:E5\",\n        \"08:9B:B9:2C:A3:E6\",\n        \"08:9B:B9:2C:A3:E8\",\n        \"08:9B:B9:2C:A3:EC\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rogue/unMark?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"rogue",
+								"unMark"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				},
+				{
+					"name": "Get rogue policy list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"roguePolicyID\", jsonData.list[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"filters\": [\n    {\n      \"type\": \"DOMAIN\",\n      \"value\": \"8b2081d5-9662-40d9-a3db-2a3cf4dde3f7\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/rogueApPolicies?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"rkszones",
+								"{{zoneID}}",
+								"rogueApPolicies"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				},
+				{
+					"name": "Query rogue policy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/rogueApPolicies/{{roguePolicyID}}?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"rkszones",
+								"{{zoneID}}",
+								"rogueApPolicies",
+								"{{roguePolicyID}}"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				},
+				{
+					"name": "Apply policy to zone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bangalore\",\n    \"description\": \"\",\n    \"rules\": [\n        {\n            \"type\": \"AdhocRule\",\n            \"name\": \"AdHoc_Not_Allowed\",\n            \"priority\": 1,\n            \"value\": \"ad-hoc\",\n            \"classification\": \"Malicious\"\n        },\n        {\n            \"type\": \"FloodAuthRule\",\n            \"name\": \"Protect_from_Auth_Flood\",\n            \"priority\": 2,\n            \"value\": \"flood-auth\",\n            \"classification\": \"Malicious\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/rogueApPolicies?serviceTicket={{serviceTicket}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8443",
+							"path": [
+								"wsg",
+								"api",
+								"public",
+								"v9_1",
+								"rkszones",
+								"{{zoneID}}",
+								"rogueApPolicies"
+							],
+							"query": [
+								{
+									"key": "serviceTicket",
+									"value": "{{serviceTicket}}"
+								}
+							]
+						},
+						"description": "Includes hostname, serial number and model number"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

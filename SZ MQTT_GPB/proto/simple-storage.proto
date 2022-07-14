@@ -1,0 +1,43 @@
+syntax = "proto2";
+import "google/protobuf/descriptor.proto";
+package com.ruckuswireless.scg.protobuf.storage;
+
+/*
+ * The messages defined in this file should keep unknown to outsider.
+ */
+
+enum Category {
+    // Config category will be persisted and index-ed.
+    CONFIG = 1;
+    // Status category will be index-ed but not persisted.
+    STATUS = 2;
+    // Device were a read-only index reflects all contents of enclosed Status or Config.
+    DEVICE = 3;
+    // Statistic will be index-ed and rotated according to SZ profile.
+    STATISTIC = 4;
+    // File
+    FILE = 5;
+    // Data will be persisted and not index-ed.
+    DATA = 6;
+    // For tree structured data.
+    GROUP = 7;
+    // Information category only indexed.
+    INFORMATION = 8;
+}
+
+extend google.protobuf.FileOptions {
+    optional int64 schemaVersion = 50000;
+}
+
+extend google.protobuf.MessageOptions {
+    optional Category category = 50000;
+    optional bool entity = 50001;
+}
+
+extend google.protobuf.FieldOptions {
+    optional bool id = 50000;
+    optional bool version = 50001;
+    optional string ingest = 50002;
+    optional bool fileContent = 50003;
+}
+

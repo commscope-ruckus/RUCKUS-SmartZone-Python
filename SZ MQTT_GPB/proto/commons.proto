@@ -1,0 +1,153 @@
+syntax = "proto2";
+package com.ruckuswireless.scg.protobuf.storage;
+
+/*
+ * Common used message across all users.
+ */
+
+// for common used messages
+message IdList {
+    repeated string id = 1;
+}
+
+// for query related messages
+message ListModel {
+    required int64 index = 1;
+    required int64 size = 2;
+    extensions 1000 to max;
+}
+
+message QueryCriteria {
+    repeated Filter filters = 1;
+    repeated Filter extraFilters = 2;
+    repeated Filter extraNotFilters = 3;
+    repeated Filter matchFilters = 4;
+    optional TimeRange extraTimeRange = 5;
+    optional FullTextSearch fullTextSearch = 6;
+    optional Sorter sorter = 7;
+    optional Page page = 8;
+    optional QueryScopeInfo queryScopeInfo = 9;
+}
+
+message Filter {
+    required string type = 1;
+    required string value = 2;
+}
+
+message TimeRange {
+    optional int64 start = 1;
+    optional int64 end = 2;
+    optional int64 interval = 3;
+    required string field = 4;
+}
+
+message FullTextSearch {
+    repeated string fields = 1;
+    required SearchType searchType = 2;
+    required string text = 3;
+    optional MatchType matchType = 4;
+}
+
+enum MatchType {
+    BEST_FIELDS = 1;
+    MOST_FIELDS = 2;
+    CROSS_FIELDS = 3;
+    PHRASE = 4;
+    PHRASE_PREFIX = 5;
+}
+
+enum SearchType {
+    AND = 1;
+    OR = 2;
+}
+
+message Sorter {
+    required Order order = 1;
+    required string field = 2;
+}
+
+enum Order {
+    ASC = 1;
+    DESC = 2;
+}
+
+message Page {
+    required int64 index = 1;
+    required int64 size = 2;
+}
+
+// RBAC related
+message QueryScopeInfo {
+    optional string targetResourceType = 1;
+    repeated ScopeAndPermissions scopeAndPermissions = 2;
+    repeated PermittedScopeAndResourceIds permittedScopeAndResourceIds = 3;
+}
+
+message PermittedScopeAndResourceIds {
+    required string groupType = 1;
+    repeated string resourceIds = 2;
+}
+
+message ScopeAndPermissions {
+    required ResourceScope resourceScope = 1;
+    repeated CategoryPermissions categoryPermissions = 2;
+}
+
+message ResourceScope {
+    optional string tenantId = 1;
+    optional string domainId = 2;
+    optional string zoneId = 3;
+}
+
+// resourceType: "WLAN_CATEGORY", operationType: "FULL_ACCESS"
+message CategoryPermissions {
+    required string resourceType = 1;
+    required string operationType = 2;
+}
+
+// Aggregation
+enum AggregationType {
+    AVG = 1;
+    CARDINALITY = 2;
+    COUNT = 3;
+    HISTOGRAM = 4;
+    MAX = 5;
+    MIN = 6;
+    SUM = 7;
+    TERM = 8;
+    DATE_HISTOGRAM = 9;
+}
+
+message AggregationRequest {
+    required QueryCriteria queryCriteria = 1;
+    required Aggregation aggregation = 2;
+}
+
+message Aggregation {
+    required string field = 1;
+    required AggregationType type = 2;
+    // for date histogram aggregation
+    optional int64 startTimestamp = 3;
+    optional int64 endTimestamp = 4;
+    optional int64 interval = 5;
+    // for terms aggregation
+    optional int32 size = 6;
+    repeated SubAggregation subAggregations = 7;
+}
+
+message SubAggregation {
+    required string field = 1;
+    required AggregationType type = 2;
+}
+
+message AggregationResult {
+    repeated AggregationBucket buckets = 1;
+}
+
+message AggregationBucket {
+    required string name = 1;
+    required bool hasValue = 2;
+    optional string literalValue = 3;
+    optional double numericValue = 4;
+    repeated AggregationBucket subBuckets = 5;
+}

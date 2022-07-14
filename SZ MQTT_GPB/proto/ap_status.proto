@@ -1,0 +1,2949 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ */
+option java_package = "com.ruckuswireless.scg.protobuf";
+
+message APStatusTunnel {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Application name
+	 * @since 3.5
+	 */
+	optional string gw = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Current tunnel index
+	 * @since 3.5
+	 */
+	optional int32 index = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Tunnel type
+	 * @since 3.5
+	 */
+	optional int32 type = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Current tunnel state (active or inactive)
+	 * @since 3.5
+	 */
+	optional int32 isActive = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Number of keepalive packets sent
+	 * @since 3.5
+	 */
+	optional uint64 cICMP = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Number of keepalive packets lost
+	 * @since 3.5
+	 */
+	optional uint64 cNonICMP = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Number of SoftGRE sessions terminated
+	 * @since 3.5
+	 */
+	optional uint64 cDisconnect = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total bytes received
+	 * @since 3.5
+	 */
+	optional uint64 rxBytes = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total packets received
+	 * @since 3.5
+	 */
+	optional uint64 rxPkts = 9;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description No space in linux buffers. The AP received a frame completely, and AP has to allocate a memory for this frame. Then pass to next handler who interested to this frame. The AP drop the frame if it has no enough memory. The counter plus one if this case happen.
+	 * @since 3.5
+	 */
+	optional uint64 rxDropPkts = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Number of bad packets received
+	 * @since 3.5
+	 */
+	optional uint64 rxErrPkts = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total bytes transmitted
+	 * @since 3.5
+	 */
+	optional uint64 txBytes = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total packets transmitted
+	 * @since 3.5
+	 */
+	optional uint64 txPkts = 13;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description No space available in linux. AP has to allocate a memory to store the packet that AP plans to transmit to client. The AP may drop it if AP has no enough memory. Then the counter plus one.
+	 * @since 3.5
+	 */
+	optional uint64 txDropPkts = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Packet transmit problems. The AP plans to transmiet packet to client. But somehow AP can't transmit to client successfully, and AP drops the packets at the end. Then the counter plus one.
+	 * @since 3.5
+	 */
+	optional uint64 txErrPkts = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total fragmented Tx packets
+	 * @since 3.5
+	 */
+	optional uint64 txFragPkts = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Tunnel uptime
+	 * @since 5.1.1
+	 */
+    	optional string uptime = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Number of tunnel reestablishment
+	 * @since 5.1.1
+	 */
+    	optional uint64 reEstablishment = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Keep alive retry count
+	 * @since 5.1.1
+	 */
+    	optional uint64 kaRetryCnt = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Number of keep alive sent
+	 * @since 5.1.1
+	 */
+    	optional uint64 kaSentCnt = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Number of keep alive lost
+	 * @since 5.1.1
+	 */
+    	optional uint64 kaLostCnt = 21;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Reason for last re-connection
+	 * @since 5.1.1
+	 */
+    	optional string reason = 22;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Suggestion for last connect fail
+	 * @since 5.1.1
+	 */
+    	optional string suggest = 23;
+}
+
+message APStatusIPSecStats {
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Session time
+	 * @since 3.5
+	 */
+	optional uint64 ipsecSessionTime = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Total packets transmitted
+	 * @since 3.5
+	 */
+	optional uint64 ipsecTxPkts = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Total packets received
+	 * @since 3.5
+	 */
+	optional uint64 ipsecRxPkts = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Total bytes transmitted
+	 * @since 3.5
+	 */
+	optional uint64 ipsecTxBytes = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Total bytes received
+	 * @since 3.5
+	 */
+	optional uint64 ipsecRxBytes = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Total Tx packets dropped
+	 * @since 3.5
+	 */
+	optional uint64 ipsecTxDropPkts = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Total Rx packets dropped
+	 * @since 3.5
+	 */
+	optional uint64 ipsecRxDropPkts = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Tx idle time
+	 * @since 3.5
+	 */
+	optional uint64 ipsecTxIdleTime = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation MAX
+	 * @description Rx idle time
+	 * @since 3.5
+	 */
+	optional uint64 ipsecRxIdleTime = 9;
+}
+
+message APStatusWlan {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SSID of the WLAN
+	 * @since 3.5
+	 */
+	optional string	ssid = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description BSSID of the WLAN
+	 * @since 3.5
+	 */
+	optional string	bssid = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description MAC address of the AP
+	 * @since 3.5
+	 */
+	optional string	ap = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio mode used by the AP
+	 * @since 3.5
+	 */
+	optional string	radioMode = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio mode used by the AP
+	 * @since 3.5
+	 */
+	optional string	ap80211RadioMode = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio channel used by the AP
+	 * @since 3.5
+	 */
+	optional int32	channel = 6;
+	/**
+	 * @property delta
+	 * @aggregation SUM
+	 * @description Total data and management packet data size received
+	 * @since 3.5
+	 */
+	optional uint64	rxBytes = 7;
+	/**
+	 * @property delta
+	 * @aggregation SUM
+	 * @description Total data and management packet data size transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txBytes = 8;
+	/**
+	 * @property delta
+	 * @aggregation SUM
+	 * @description Total number of data and management packets received
+	 * @since 3.5
+	 */
+	optional uint64	rxFrames = 9;
+	/**
+	 * @property delta
+	 * @aggregation SUM
+	 * @description Total number of data and management packets transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txFrames = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total broadcast packets transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txBcastFrames = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total multicast packets transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txMcastFrames = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulated number of packets transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txDataFrames = 13;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulated data bytes transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txDataBytes = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulated number of packet transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txMgmtFrames = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulated management bytes transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txMgmtBytes = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total Tx data frames dropped (or dropped by MQ) . In AP internal design, it has a messages queue(MQ) to queue all packets that AP plans to forward to clients. Then AP transmit packets to clients accoring the priority / scheduling/… The MQ is Ruckus propritary internal design.
+	 * @since 3.5
+	 */
+	optional uint64	txDropDataFrames = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total Tx management frames dropped (or dropped by MQ) . In AP internal design, it has a messages queue(MQ) to queue all packets that AP plans to forward to clients. Then AP transmit packets to clients accoring the priority / scheduling/… The MQ is Ruckus propritary internal design.
+	 * @since 3.5
+	 */
+	optional uint64	txDropMgmtFrames = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total broadcast packets received
+	 * @since 3.5
+	 */
+	optional uint64	rxBcastFrames = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total multicast packets received
+	 * @since 3.5
+	 */
+	optional uint64	rxMcastFrames = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulated number of packets received
+	 * @since 3.5
+	 */
+	optional uint64	rxDataFrames = 21;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulate data bytes received
+	 * @since 3.5
+	 */
+	optional uint64	rxDataBytes = 22;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulated number of packets received
+	 * @since 3.5
+	 */
+	optional uint64 rxMgmtFrames = 23;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulate management bytes received
+	 * @since 3.5
+	 */
+	optional uint64	rxMgmtBytes = 24;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Current client count
+	 * @since 3.5
+	 */
+	optional int32	totalNumClients = 25;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description VLAN ID of the WLAN
+	 * @since 3.5
+	 */
+	optional int32	vlan = 26;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description WLAN ID assigned by the controller
+	 * @since 3.5
+	 */
+	optional int32	wsgWlanId = 27;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description WLAN interface ID
+	 * @since 3.5
+	 */
+	optional int32	wlanId = 28;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description WLAN Group name
+	 * @since 3.5
+	 */
+	optional string wlangroup_name = 29;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description WLAN Group identifier
+	 * @since 3.5
+	 */
+	optional string wlangroup_id = 30;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description WLAN tenant identifier
+	 * @since 3.5
+	 */
+	optional string wlantenant_id = 31;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description WLAN tenant name
+	 * @since 3.5
+	 */
+	optional string wlantenant_name = 32;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description 802.11r fast roaming status success
+	 * @since 3.5
+	 */
+	optional uint32 ftassoc_success = 33;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description 802.11r fast roaming status failure
+	 * @since 3.5
+	 */
+	optional uint32 ftassoc_failure = 34;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Probe resp withheld if this is a Probe Request, Client Load Balancing and Band Steering decide whether to withhold the response).
+	 * @since 3.5
+	 */
+	optional uint32 is_probe_withheld = 35;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Auth resp withheld (If this is an Auth Request, Client Load Balancing and Band Steering decide whether to withhold the response).
+	 * @since 3.5
+	 */
+	optional uint32 is_auth_withheld = 36;
+	/* jump to index 1000, for new requirement from SNMP and SCI */
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan SSID
+     * @since 3.5
+     */
+	optional string WlanName = 1001;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan authentication method
+     * @since 3.5
+     */
+	optional string AuthMethod = 1002;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan encryption method
+     * @since 3.5
+     */
+	optional string EncryptMethod = 1003;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description An indication for guest access allowed
+     * @since 3.5
+     */
+	optional uint32	IsGuest = 1004;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Hidden SSID wlan indication
+     * @since 3.5
+     */
+	optional uint32	IsBcastDisable = 1005;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan rate limiting for upstream
+     * @since 3.5
+     */
+	optional uint32	UpRateLimit = 1006;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan rate limiting for downstream
+     * @since 3.5
+     */
+	optional uint32	DownRateLimit = 1007;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tunnel wlan indication
+     * @since 3.5
+     */
+	optional uint32	IsTunnel = 1008;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan RX data rate (not implement yet)  
+     * @since 3.5
+     */
+	optional uint32	RxByteRate = 1009;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan TX data rate(not implement yet)
+     * @since 3.5
+     */
+	optional uint32	TxByteRate = 1010;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan RX data frame drop rate (not implement yet)
+     * @since 3.5
+     */
+	optional uint64	RxDropDataBytes = 1011;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan TX data frame drop rate (not implement yet)
+     * @since 3.5
+     */
+	optional uint64	TxDropDataBytes = 1012;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan RX data frame drop count(not implement yet)
+     * @since 3.5
+     */
+	optional uint64	RxDropDataPkts = 1013;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan TX data frame drop count (not implement yet)
+     * @since 3.5
+     */
+	optional uint64	TxDropDataPkts = 1014;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan retry packet data bytes (not implement yet)
+     * @since 3.5
+     */
+	optional uint64	TxRetryBytes = 1015;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan retry packet count (not implement yet)
+     * @since 3.5
+     */
+	optional uint64	TxRetryPkts = 1016;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan RX error packet count (not implement yet)
+     * @since 3.5
+     */
+	optional uint64	RxErrorPkts = 1017;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan TX error packe tcount (not implement yet)
+     * @since 3.5
+     */
+	optional uint64	TxErrorPkts = 1018;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan RX error packet rate (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	RxPktErrorRate = 1019;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan TX error packet rate (not implement ye)
+	 * @since 3.5
+     */
+	optional uint32	TxPktErrorRate = 1020;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Auth client count (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	NumAuthClients = 1021;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Assoc req count on Wlan
+	 * @since 3.5
+     */
+	optional uint32	NumAssocReq = 1022;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Assoc resp count on wlan
+     * @since 3.5
+     */
+	optional uint32	NumAssocResp = 1023;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Re-assoc req count on wlan
+     * @since 3.5
+     */
+	optional uint32	NumReassocReq = 1024;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Re-assoc resp count on wlan
+     * @since 3.5
+     */
+	optional uint32 NumReassocResp = 1025;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Assoc failure count on wlan
+     * @since 3.5
+     */
+	optional uint32	NumAssocFail = 1026;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Assoc reject count on wlan (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	NumAssocDeny = 1027;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Abnormal disassoc count on wlan (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	DisssocAbnormal = 1028;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Disassoc count by dismatch capacity on wlan (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	NumDisssocCapacity = 1029;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Disassoc count by client leave on wlan (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	MumDisssocLeave = 1030;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Disassoc count by misc reason on wlan (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	NumDisssocMisc = 1031;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description client assoc successful rate on wlan (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	AssocSuccessRate = 1032;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description client assoc failure rate on wlan (not implement yet)
+     * @since 3.5
+     */
+	optional uint32	AssocFailRate = 1033;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description auth req count on wlan
+     * @since 3.5
+     */
+	optional uint32	NumAuthReq = 1034;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description auth resp count on wlan
+     * @since 3.5
+     */
+	optional uint32	NumAuthResp = 1035;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description success auth count on wlan
+     * @since 3.5
+     */
+	optional uint32	NumAuthSuccess = 1036;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description failure auth count on wlan
+     * @since 3.5
+     */
+	optional uint32	NumAuthFail = 1037;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description auth failure rate on wlan
+     * @since 3.5
+     */
+	optional uint32	AuthFailRate = 1038;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan RTS threshold value
+     * @since 3.5
+     */
+	optional uint32 RtsThreshold = 1039;
+}
+
+message APStatusRadio {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio ID number used by the AP
+	 * @since 3.5
+	 */
+	optional int32 	radioId = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio channel used by the AP
+	 * @since 3.5
+	 */
+	optional int32	channel = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio mode used by the AP
+	 * @since 3.5
+	 */
+	optional string	mode = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio band used by the AP
+	 * @since 3.5
+	 */
+	optional string	band = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio mode used by the AP. Radio is 11bgn, means radio support 802.11B , 802.11G, and 802.11n. It has three capaibility. The 11bgn is not a good formate if machine wants to parse. Beacuse we have 11AC now. So we use "/" to seperate the each capability and let machine can parse the string easily.
+	 * @since 3.5
+	 */
+	optional string	radioMode = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Tx power of the WiFi interface
+	 * @since 3.5
+	 */
+	optional string	txPower = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Accumulated number of Rx phy errors
+	 * @since 3.5
+	 */
+	optional uint32	phyError = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Channel blacklist
+	 * @since 3.5
+	 */
+	optional string	channelBlacklist = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation AVG
+	 * @description Last recorded noise floor
+	 * @since 3.5
+	 */
+	optional int32	noiseFloor = 9;
+	/**
+	 * @property delta
+	 * @aggregation SUM
+	 * @description Total data bytes received on radio
+	 * @since 3.5
+	 */
+	optional uint64	rxBytes = 10;
+	/**
+	 * @property delta
+	 * @aggregation SUM
+	 * @description Total data frames received on radio
+	 * @since 3.5
+	 */
+	optional uint64	rxFrames = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total data bytes received on radio
+	 * @since 3.5
+	 */
+	optional uint64	rxRadioBytes = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Number of fragmented frames received
+	 * @since 3.5
+	 */
+	optional uint64	rxRadioFrames = 13;
+	/**
+	 * @property delta
+	 * @aggregation SUM
+	 * @description Total data bytes transmitted on radio
+	 * @since 3.5
+	 */
+	optional uint64	txBytes = 14;
+	/**
+	 * @property delta
+	 * @aggregation SUM
+	 * @description Total data frames transmitted on radio
+	 * @since 3.5
+	 */
+	optional uint64	txFrames = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total data bytes received on radio
+	 * @since 3.5
+	 */
+	optional uint64	txRadioBytes = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Number of fragments transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txRadioFrames = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Number of transmission retries
+	 * @since 3.5
+	 */
+	optional uint64	retry = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Number of excessive transmission retries
+	 * @since 3.5
+	 */
+	optional uint32	drop = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Number of multicast packets received
+	 * @since 3.5
+	 */
+	optional uint64	rxMulticast = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Number of multicast packets transmitted
+	 * @since 3.5
+	 */
+	optional uint64	txMulticast = 21;
+	/**
+	 * @property snapshot
+	 * @aggregation AVG
+	 * @description Exponential average of total channel utilitization
+	 * @since 3.5
+	 */
+	optional uint32	total = 22;
+	/**
+	 * @property snapshot
+	 * @aggregation AVG
+	 * @description Exponential average of channel busy time
+	 * @since 3.5
+	 */
+	optional uint32	busy = 23;
+	/**
+	 * @property snapshot
+	 * @aggregation AVG
+	 * @description Exponential average of channel availability for receiving
+	 * @since 3.5
+	 */
+	optional uint32	rx = 24;
+	/**
+	 * @property snapshot
+	 * @aggregation AVG
+	 * @description Exponential average of channel availability for for transmitting
+	 * @since 3.5
+	 */
+	optional uint32	tx = 25;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Channel width
+	 * @since 3.5
+	 */
+	optional uint32	channelWidth = 26;
+     /**
+     * @property Serialization 
+     * @aggregation NULL
+     * @description serialization data for all of wlans
+     * @since 3.5
+     */
+	repeated APStatusWlan wlans = 27;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP mac address
+	 * @since 3.5
+	 */
+	optional string	ap = 28;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description the time taken by a packet from ethernet ingress to Radio egress or Tx complete
+	 * @since 3.5
+	 */
+	optional uint32 latency = 29;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description the saturated throughput estimate of a link
+	 * @since 3.5
+	 */
+	optional uint32 capacity = 30;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description the rate of client connection failure
+	 * @since 3.5
+	 */
+	optional float connectionFailure = 31;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description 802.11 auth failure count on radio
+	 * @since 3.5
+	 */
+	optional uint32 connectionAuthFailureCount = 32;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description 802.11 assoc failure count on radio
+	 * @since 3.5
+	 */
+	optional uint32 connectionAssocFailureCount = 33;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description total connection count on radio
+	 * @since 3.5
+	 */
+	optional uint32 connectionTotalCount = 34;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description number of channel change on radio
+	 * @since 3.5
+	 */
+	optional uint32	numOfChannelChange = 35;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description is radio latency value exceed criteria or not
+	 * @since 3.5
+	 */
+	optional bool isLatencyFlagged = 36;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description is radio capacity value exceed criteria or not
+	 * @since 3.5
+	 */
+	optional bool isCapacityFlagged = 37;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description is radio connection failure rate exceed criteria or not
+	 * @since 3.5
+	 */
+	optional bool isConnectionFailureFlagged = 38;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description is raido airtime utilization total value exceed criteria or not
+	 * @since 3.5
+	 */
+	optional bool isAirtimeFlagged = 39;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description is wfii interface up or not
+	 * @since 3.5
+	 */
+	optional bool isRadioEnabled = 40;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description second channel value for 80_80MHz channel width
+	 * @since 3.5
+	 */
+	optional uint32 secondaryChannel = 41;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description radio eirp value = tx_power+antenna gain
+	 * @since 3.6
+	 */
+	optional int32 eirp = 42;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description total connection failure count on radio
+	 * @since 3.6
+	 */
+	optional uint32 connectionTotalFailureCount = 43;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description TX RTS frame count
+	 * @since 3.6
+	 */
+	optional uint32 tx_rts_cnt = 44;
+	/**
+	 * @property snapshot
+	 * @aggregation sum
+	 * @description total failure client count
+	 * @since 5.1.1
+	 */
+	optional uint32 totalFailureClientCount = 45;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Current client count per radio
+	 * @since 5.1.1
+	 */
+	optional int32	totalClientCnts = 46;
+
+	/* jump to index 1000, for new requirement from SNMP and SCI */
+
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description TX power control is allowed
+	 * @since 3.6
+	 */
+	optional int32 PowerMgmtEnable = 1001;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Mesh is enabled on radio 
+	 * @since 3.6
+	 */
+	optional int32 MeshEnable = 1002;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description RX error packet on radio
+	 * @since 3.6
+	 */
+	optional uint64 RxErrorPkts = 1003;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description TX error packet on radio
+	 * @since 3.6
+	 */
+	optional uint64 TxErrorPkts = 1004;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description RX packet error rate on radio
+	 * @since 3.6
+	 */
+	optional uint32 RxPktErrorRate = 1005;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description TX packet error rate on radio
+	 * @since 3.6
+	 */
+	optional uint32 TxPktErrorRate = 1006;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description TX packet retry rate on radio
+	 * @since 3.6
+	 */
+	optional uint32 TxPktRetryRate = 1007;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description TX retry packet data bytes on radio
+	 * @since 3.6
+	 */
+	optional uint64 TxRetryBytes = 1008;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description RX drop packet data bytes on radio (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 RxDropBytes = 1009;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description TX drop packet data bytes on radio (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 TxDropBytes = 1010;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description RX drop packet count
+	 * @since 3.6
+	 */
+	optional uint64 RxDropPkts = 1011;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 TotalAssocTime = 1012;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAuthClients = 1013;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumMaxClients = 1014;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAuthReqs = 1015;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAuthResps = 1016;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAuthSuccess = 1017;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAuthFail = 1018;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 AuthFailRate = 1019;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAssocReq = 1020;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAssocResp = 1021;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumReassocReq = 1022;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumReassocResp = 1023;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAssocSuccess = 1024;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAssocFail = 1025;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 NumAssocDeny = 1026;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Assoc success rate on radio
+	 * @since 3.6
+	 */
+	optional uint32 AssocSuccessRate = 1027;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Assoc failure rate on radio
+	 * @since 3.6
+	 */
+	optional uint32 AssocFailRate = 1028;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 ResourceUtil = 1029;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 RxSignalPkts = 1030;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 TxSignalPkts = 1031;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 TotalSignalPkts = 1032;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 AntennaGain = 1033;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Antenna gain value on radio
+	 * @since 3.6
+	 */
+	optional uint32 BeaconPeriod = 1034;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Time period for beaon
+	 * @since 3.6
+	 */
+	optional uint32 RtsThreshold = 1035;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 FragThreshold = 1036;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 RxWepFail = 1037;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 RxDecryptCrcError = 1038;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 RxMicError = 1039;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 Rssi = 1040;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Radio RSSI value
+	 * @since 3.6
+	 */
+}
+
+message APStatusBrownout {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Date and time of the brownout event
+	 * @since 3.5
+	 */
+	optional uint64	timestamp = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Brown out event.It could be "Brownout Occurred" or "Brownout restored"
+	 * @since 3.5
+	 */
+	optional int32	events = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Brown out power. It could be "PoE" or  "12VDC power supply"
+	 * @since 3.5
+	 */
+	optional int32	pwrType = 3;
+}
+
+message APStatusIPSec {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPsec remote server IP address (only populated when IPsec is enabled)
+	 * @since 3.5
+	 */
+	optional string	ipsecActiveServerIP = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPsec virtual IPv4 address (only populated when IPsec is enabled)
+	 * @since 3.5
+	 */
+	optional string	ipsecVirtualIPv4 = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPsec virtual IPv6 address (only populated when IPsec is enabled)
+	 * @since 3.5
+	 */
+	optional string	ipsecVirtualIPv6 = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPsec IKE SA (only populated when IPsec is enabled)
+	 * @since 3.5
+	 */
+	optional string	ipsecEffectiveIKESA = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPsec child SA (only populated when IPsec is enabled)
+	 * @since 3.5
+	 */
+	optional string	ipsecEffectiveESPSA = 5;
+}
+
+message APStatusSystem {
+	enum APState {
+		/**
+	      * @description AP state possible value
+	      * @since 3.5
+	      */
+		Online = 1;
+		/**
+	      * @description AP state possible value
+	      * @since 3.5
+	      */
+		Flagged = 2;
+	}
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description MAC address of the AP
+	 * @since 3.5
+	 */
+	optional string	ap = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description USB device version
+	 * @since 3.5
+	 */
+	optional string	usbDeviceVersion = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description USB device VLAN ID
+	 * @since 3.5
+	 */
+	optional string	usbDeviceVID = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description USB device product ID (PID)
+	 * @since 3.5
+	 */
+	optional string	usbDevicePID = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description GPS information
+	 * @since 3.5
+	 */
+	optional string	gpsInfo = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Country code
+	 * @since 3.5
+	 */
+	optional string	countryCode = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description 
+	 * @since 3.5
+	 */
+	optional uint64	timestamp = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Counter for generating mesh statistics. The count increases by one whenever the AP generates mesh statistics. When the AP restarts, the counter also resets to zero (0).
+	 * @since 3.5
+	 */
+	optional uint64	seqNumber = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Unique zone ID (for example, b381206b-2e5d-43dc-b249-e36ffae9855c) assigned by the controller.
+	 * @since 3.5
+	 */
+	optional string	zone_id = 9;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Zone name assigned by the controller. The admin configures the Zone name via controller’s user interface. The controller passes it to the AP, which the zone name.
+	 * @since 3.5
+	 */
+	optional string	zoneName = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Time zone. The admin configure the time zone via SCG UI. Then SCG pass the time zone to APs.
+	 * @since 3.5
+	 */
+	optional string	timeZone = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Default gateway IP address of the AP
+	 * @since 3.5
+	 */
+	optional string	gatewayIp = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Reason the AP was last rebooted
+	 * @since 3.5
+	 */
+	optional string	lastRebootReason = 13;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Total number of reboots since the AP was last power cycled
+	 * @since 3.5
+	 */
+	optional uint32	totalBootCount = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP br0 mtu setting. MTU stands for Maximum transmission unit. The admin coould confiure the size of MTU via SCG UI. Then SCG pass configuration to APs. So the max pake size is 1400 bytes if admin configure configure the MTU to 1400. The more details please refer https://en.wikipedia.org/wiki/Maximum_transmission_unit
+	 * @since 3.5
+	 */
+	optional uint32	mtuSize = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Number of times the AP rejoined the controller
+	 * @since 3.5
+	 */
+	optional uint32	rejoinCount = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Reason the AP rejoined the controller
+	 * @since 3.5
+	 */
+	optional string	rejoinReason = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Kernel oops if there is kernel panic. The AP logs crash point when AP's kernel panic happened. Then AP report the crash point to SCG after AP boots up again.
+	 * @since 3.5
+	 */
+	optional string	oops = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Number of times the AP lost connection with the controller
+	 * @since 3.5
+	 */
+	optional uint32	lossConnectBootCnt = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Name of the AP
+	 * @since 3.5
+	 */
+	optional string	deviceName = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Location of the AP
+	 * @since 3.5
+	 */
+	optional string	location = 21;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Version of firmware installed on the AP
+	 * @since 3.5
+	 */
+	optional string	fwVersion = 22;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Indicator for USB support on the AP . It could be 0 and 1. 0: not support, 1: support
+	 * @since 3.5
+	 */
+	optional int32	devSupportUsb = 23;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Current IP mode of the AP (IPv4 or IPv6)
+	 * @since 3.5
+	 */
+	optional int32	deviceIpMode = 24;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPv4 address of the AP
+	 * @since 3.5
+	 */
+	optional string	ip = 25;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPv6 address of the AP
+	 * @since 3.5
+	 */
+	optional string	ipv6 = 26;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPsec virtual IP address of the AP (only populated when IPsec is enabled)
+	 * @since 3.5
+	 */
+	optional string	ipsecIp = 27;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IP address the AP uses to connect to the controller.
+	 * @since 3.5
+	 */
+	optional string	apConnectedIp = 28;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Duration since the AP was last rebooted . The unit is second.
+	 * @since 3.5
+	 */
+	optional int32	uptime = 29;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP mount state
+	 * @since 3.5
+	 */
+	optional string	mountState = 30;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Current temperature inside the AP
+	 * @since 3.5
+	 */
+	optional int32	currentTemperature = 31;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Highest AP temperature ever recorded
+	 * @since 3.5
+	 */
+	optional int32	lifeMaxTemperature = 32;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Lowest AP temperature ever recorded
+	 * @since 3.5
+	 */
+	optional int32	lifeMinTemperature = 33;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description rks_gre tunnel gateway IP address
+	 * @since 3.5
+	 */
+	optional string dnatInfo = 34;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Data blade IP address and port number
+	 * @since 3.5
+	 */
+	optional string rksDpIp = 35;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Data blade IP address
+	 * @since 3.5
+	 */
+	optional string rksDpIpOnly = 36;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPv4 or IPv6
+	 * @since 3.5
+	 */
+	optional string ipType = 37;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Fake data;  should be removed
+	 * @since 3.5
+	 */
+	optional uint32 isIpTypeChanged = 38;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP management VLAN ID
+	 * @since 3.5
+	 */
+	optional uint32 managementVlan = 39;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP KPI status (Online(normal) or Flagged)
+	 * @since 3.5
+	 */
+	optional APState apState = 40;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP KPI attribute “client total connection” flagging status
+	 * @since 3.5
+	 */
+	optional bool isConnectionTotalCountFlagged = 41;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP KPI attribute “client total connection” number
+	 * @since 3.5
+	 */
+	optional uint32 totalConnectedClient = 42;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Indicator if there is crash dump is generated on AP or not
+	 * @since 3.5
+	 */
+	optional uint32 crashDump = 43;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description GPS attribute : floor or meters
+	 * @since 3.5
+	 */
+	optional string altitudeUnit = 44;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description GPS attribute: floor value
+	 * @since 3.5
+	 */
+	optional uint32 altitudeValue = 45;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description 8023af PoE power source
+	 * @since 3.5
+	 */
+	optional uint32 poeMode = 46;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description 8023af PoE mode
+	 * @since 3.5
+	 */
+	optional uint32 poeModeSetting = 47;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP IPv6 mode (static, pope, auto)
+	 * @since 3.5
+	 */
+	optional string ipv6Type = 48;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The percentage of AP free memeory 
+	 * @since 5.0
+	 */
+	optional double freeMemoryPercentage = 49;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The percentage of AP free storage
+	 * @since 5.0
+	 */
+	optional double freeStoragePercentage = 50;
+    	/**
+     	* @property snapshot
+     	* @aggregation NULL
+     	* @description AP power level
+     	* @since 5.2
+     	*/
+    	optional uint32 poeUnderPowered = 51;
+
+	/* jump to index 1000, for new requirement from SNMP and SCI */
+
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The percentage of AP CPU using rate
+	 * @since 3.6
+	 */
+	optional double cpuPercentage = 1001;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP totoal memory size
+	 * @since 3.6
+	 */
+	optional uint64 totalMemory = 1002;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP current free memory size
+	 * @since 3.6
+	 */
+	optional uint64 freeMemory = 1003;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP model name
+	 * @since 3.6
+	 */
+	optional string model = 1004;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The serial number in AP borad data
+	 * @since 3.6
+	 */
+	optional string serialNumber = 1005;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP model display string
+	 * @since 3.6
+	 */
+	optional string desc = 1006;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Number of radio on AP
+	 * @since 3.6
+	 */
+	optional int32 numRadio = 1007;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SZ CP IPv4 address that is used by this AP connection.
+	 * @since 3.6
+	 */
+	optional string szConnCpIp = 1008;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SZ CP IPv6 address that is used by this AP connection.
+	 * @since 3.6
+	 */
+	optional string szConnCpIpv6 = 1009;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SZ DP IPv4 address that is used by this AP connection for tunnel traffic.
+	 * @since 3.6
+	 */
+	optional string szConnDpIp = 1010;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SZ DP IPv6 address that is used by thsi AP connection for tunnel traffic.
+	 * @since 3.6
+	 */
+	optional string szConnDpIpv6 = 1011;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The netmask is used by this AP network.
+	 * @since 3.6
+	 */
+	optional string netmask = 1012;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description DNS server 1 IPv4 address that is used by this AP.
+	 * @since 3.6
+	 */
+	optional string IpDnsSvr1 = 1013;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description DNS server 2 IPv4 address that is used by this AP.
+	 * @since 3.6
+	 */
+	optional string IpDnsSvr2 = 1014;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description DNS server 1 IPv6 address that is used by this AP.
+	 * @since 3.6
+	 */
+	optional string Ipv6DnsSvr1 = 1015;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description DNS server 2 IPv6 address that is usd by this AP.
+	 * @since 3.6
+	 */
+	optional string Ipv6DnsSvr2 = 1016;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The status for AP connect to SZ 
+	 * @since 3.6
+	 */
+	optional int32 ApStatus = 1017;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 firstJoinTime = 1018;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 lastBootTime = 1019;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The timestamp for last configuration sync up.
+	 * @since 3.6
+	 */
+	optional uint64 lastConfSyncTime = 1020;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP free storage size
+	 * @since 3.6
+	 */
+	optional uint64 freeStorage = 1021;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port status (up/down)
+	 * @since 3.6
+	 */
+	optional int32 ethPortStatus = 1022;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional int32 ethStateChange = 1023;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 numRogues = 1024;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 numAuthClients = 1025;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 rxByteRate = 1026;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint32 txByteRate = 1027;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description RX error packet count on radio
+	 * @since 3.6
+	 */
+	optional uint64 rxErrorPkts = 1028;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description TX error packet count on radio
+	 * @since 3.6
+	 */
+	optional uint64 txErrorPkts = 1029;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description RX packet drop count on radio
+	 * @since 3.6
+	 */
+	optional uint64 RxDropPkts = 1030;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port RX data bytes
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsRxBytes = 1031;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port TX data bytes
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsTxBytes = 1032;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port RX data packets
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsRxPkts = 1033;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port TX data packets
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsTxPkts = 1034;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port RX error packet count
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsRxErrorPkts = 1035;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port TX error packet count
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsTxErrorPkts = 1036;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsRxBcastPkts = 1037;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsTxBcastPkts = 1038;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsRxMcastPkts = 1039;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsTxMcastPkts = 1040;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsRxUcastPkts = 1041;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsTxUcastPkts = 1042;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port RX drop packet count
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsRxDroppedPkts = 1043;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP ethernet port TX drop packet count
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsTxDroppedPkts = 1044;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsRxByteRate = 1045;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description (not implement yet)
+	 * @since 3.6
+	 */
+	optional uint64 LanStatsTxByteRate = 1046;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP total TX drop packet count on wifi
+	 * @since 3.6
+	 */
+	optional uint64	TxDropPkts = 1047;
+}
+
+message LanPortStatus {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Port number for Ethernet interface
+	 * @since 3.5
+	 */
+	optional uint32 port = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Interface name for lan device
+	 * @since 3.5
+	 */
+	optional string interface = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Dot1X support mode (auth,sup, none)
+	 * @since 3.5
+	 */
+	optional string dot1x = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Link status (up/down)
+	 * @since 3.5
+	 */
+	optional string logicLink = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Link attributes(up/down, speed, duplex)
+	 * @since 3.5
+	 */
+	optional string phyLink = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Sfp supported information
+	 * @since 3.5
+	 */
+	optional string sfpInfo = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Description for this interface is WAN or LAN interface
+	 * @since 3.6
+	 */
+    	optional string wanConnectivity = 7;
+    	/**
+     	* @property snapshot
+     	* @aggregation NULL
+     	* @description Description for this interface capability
+     	* @since 5.2
+     	*/
+    	optional string phyCapability = 8;
+}
+
+message CableModemInfo {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cable modem device mac address
+	 * @since 3.5
+	 */
+	optional string cmMac = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cable modem IP address
+	 * @since 3.5
+	 */
+	optional string cmIp = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cable modem version
+	 * @since 3.5
+	 */
+	optional string cmFwVersion = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cable modem alive time
+	 * @since 3.5
+	 */
+	optional uint64	cmUptime = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cable modem serial number
+	 * @since 3.5
+	 */
+	optional string cmSerialNumber = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cable modem IPv6 address
+	 * @since 3.5
+	 */
+	optional string cmIpv6 = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Capabilities of cable modem
+	 * @since 3.5
+	 */
+	optional string cmCapabilities = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for ranging timeout
+	 * @since 3.5
+	 */
+	optional uint32 cmRangingTimeout = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for status value.
+	 * @since 3.5
+	 */
+	optional uint32 cmStatusValue = 9;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for status code.
+	 * @since 3.5
+	 */
+        optional string cmStatusCode = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for TxPower.
+	 * @since 3.5
+	 */
+        optional string cmStatusTxPower = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for status reset.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusResets = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for StatusLostsSyncs.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusLostSyncs = 13;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data StatusInvalidMap.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusInvalidMaps = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data StatusInvalidUcds.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusInvalidUcds = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data StatusInvalidRangingResponses.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusInvalidRangingResponses = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for StatusInvalidRegistrationResponses
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusInvalidRegistrationResponses = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for StatusT1Timeouts.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusT1Timeouts = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data StatusT2Timeouts.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusT2Timeouts = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for StatusT3Timeouts.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusT3Timeouts = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for StatusT4Timeouts.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusT4Timeouts = 21;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for statusRangingAborteds
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusRangingAborteds = 22;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for StatusDocsisOperMode.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusDocsisOperMode = 23;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for CmStatusModulationType.
+	 * @since 3.5
+	 */
+        optional uint32 cmStatusModulationType = 24;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Gets the data for CmStatusEqualizationData.
+	 * @since 3.5
+	 */
+        optional string cmStatusEqualizationData =25;
+	
+}
+
+message APStatusLBS {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP LBS  supported status
+	 * @since 3.5
+	 */
+	optional bool isLBSEnable = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description LBS connected stauts
+	 * @since 3.5
+	 */
+	optional bool isLBSConnected = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Fake data; should removed
+	 * @since 3.5
+	 */
+	optional bool isSupportLBS = 3;
+}
+
+message CellularInfo {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular WAN interface
+	 * @since 5.0
+	 */
+	optional string cellularWanInterface = 1; // "wwan0"
+	/**
+	* @property snapshot
+	* @aggregation NULL
+	* @description Cellular connection status
+	* @since 5.0
+	*/
+	optional string cellularConnectionStatus = 2; // "2G" / "3G" / "4G" / "Not Connected"
+	/**
+	* @property snapshot
+	* @aggregation NULL
+	* @description SIM0 IMSI
+	* @since 5.0
+	*/
+	optional string cellularIMSISIM0 = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 IMSI
+	 * @since 5.0
+	 */
+	optional string cellularIMSISIM1 = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM0 ICCID
+	 * @since 5.0
+	 */
+	optional string cellularICCIDSIM0 = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 ICCID
+	 * @since 5.0
+	 */
+	optional string cellularICCIDSIM1 = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM0 present
+	 * @since 5.0
+	 */
+	optional string cellularIsSIM0Present = 7; // YES or NO
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 present
+	 * @since 5.0
+	 */
+	optional string cellularIsSIM1Present = 8; // YES or NO
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM0 Tx in Byte
+	 * @since 5.0
+	 */
+	optional uint64 cellularTxBytesSIM0 = 9;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 Tx in Byte
+	 * @since 5.0
+	 */
+	optional uint64 cellularTxBytesSIM1 = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM0 Rx in Byte
+	 * @since 5.0
+	 */
+	optional uint64 cellularRxBytesSIM0 = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 Rx in Byte
+	 * @since 5.0
+	 */
+	optional uint64 cellularRxBytesSIM1 = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular active SIM
+	 * @since 5.0
+	 */
+	optional string cellularActiveSim = 13; // "SIM0" / "SIM1"
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular IP address
+	 * @since 5.0
+	 */
+	optional string cellularIPaddress = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular subnet mask
+	 * @since 5.0
+	 */
+	optional string cellularSubnetMask = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular default gateway
+	 * @since 5.0
+	 */
+	optional string cellularDefaultGateway = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular operator
+	 * @since 5.0
+	 */
+	optional string cellularOperator = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular 3g/4g channel
+	 * @since 5.0
+	 */
+	optional int32 cellular3G4GChannel = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular signal strength
+	 * @since 5.0
+	 */
+	optional string cellularSignalStrength = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Country name
+	 * @since 5.0
+	 */
+	optional string cellularCountry = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular radio uptime
+	 * @since 5.0
+	 */
+	optional int32 cellularRadioUptime = 21;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular LTE firmware
+	 * @since 5.0
+	 */
+	optional string cellularLTEFirmware = 22;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM0 switch count
+	 * @since 5.0
+	 */
+	optional int64 cellularSwitchCountSIM0 = 23;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 switch count
+	 * @since 5.0
+	 */
+	optional int64 cellularSwitchCountSIM1 = 24;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM0 NW lost count
+	 * @since 5.0
+	 */
+	optional int64 cellularNWLostCountSIM0 = 25;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 NW lost count
+	 * @since 5.0
+	 */
+	optional int64 cellularNWLostCountSIM1 = 26;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM0 card removal count
+	 * @since 5.0
+	 */
+	optional int64 cellularCardRemovalCountSIM0 = 27;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 card removal count
+	 * @since 5.0
+	 */
+	optional int64 cellularCardRemovalCountSIM1 = 28;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM0 DCHP timeout count
+	 * @since 5.0
+	 */
+	optional int64 cellularDHCPTimeoutCountSIM0 = 29;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SIM1 DCHP timeout count
+	 * @since 5.0
+	 */
+	optional int64 cellularDHCPTimeoutCountSIM1 = 30;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular roaming status
+	 * @since 5.0
+	 */
+	optional string cellularRoamingStatus = 31;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular IMEI
+	 * @since 5.0
+	 */
+	optional string cellularIMEI = 32;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular RSRP
+	 * @since 5.1
+	 */
+	optional int32 cellularRSRP = 33;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular RSRQ
+	 * @since 5.1
+	 */
+	optional int32 cellularRSRQ = 34;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular SINR
+	 * @since 5.1
+	 */
+	optional int32 cellularSINR = 35;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular RSCP
+	 * @since 5.1
+	 */
+	optional int32 cellularRSCP = 36;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular ECIO
+	 * @since 5.1
+	 */
+	optional int32 cellularECIO = 37;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular band
+	 * @since 5.1
+	 */
+	optional string cellularBand = 38;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular uplink bandwidth 
+	 * @since 5.1
+	 */
+	optional string cellularUplinkBandwidth = 39;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cellular downlink bandwidth 
+	 * @since 5.1
+	 */
+	optional string cellularDownlinkBandwidth = 40;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description GPS history 
+	 * @since 5.1
+	 */
+	repeated GpsHistoryData gpsHistory = 41;
+}
+message GpsHistoryData {
+	/**
+	 * @property
+	 * @aggregation
+	 * @description
+	 * @since 5.1
+	 */
+	optional uint64 timestamp = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description latitude
+	 * @since 5.1
+	 */
+	optional string latitude = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description longitude
+	 * @since 5.1
+	 */
+	optional string longitude = 3;
+}
+
+message APStatusData {
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of AP system information.
+	 * @since 3.5
+	 */
+	optional APStatusSystem APSystem = 1;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of IPSec tunnel information.
+	 * @since 3.5
+	 */
+	optional APStatusIPSec APIPSec = 2;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of AP brown out information.
+	 * @since 3.5
+	 */
+	repeated APStatusBrownout APBrownout = 3;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of AP radio information.
+	 * @since 3.5
+	 */
+	repeated APStatusRadio APRadio = 4;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of AP IPSec tunnel stats information.
+	 * @since 3.5
+	 */
+	optional APStatusIPSecStats APIPSecStats = 5;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of AP tunnel stats information.
+	 * @since 3.5
+	 */
+	repeated APStatusTunnel APTunnel = 6;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of ethernet port status information.
+	 * @since 3.5
+	 */
+	repeated LanPortStatus lanPortStatus = 7;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of cable modem device information.
+	 * @since 3.5
+	 */
+	optional CableModemInfo cableModemInfo = 9;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of LBS information.
+	 * @since 3.5
+	 */
+	optional APStatusLBS APStatusLBS = 10;
+	/**
+	 * @property Serialization
+	 * @aggregation NULL
+	 * @description Serialization data for all of cellular information.
+	 * @since 3.5
+	 */
+	optional CellularInfo cellularInfo = 11;
+}
+
+
+message APStatus {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description This stats report version number
+	 * @since 3.5
+	 */
+	required uint32 version = 1;
+	/**
+	 * @property Serialization 
+	 * @aggregation NULL
+	 * @description Serialization data for AP status information
+	 * @since 3.5
+	 */
+	optional APStatusData ap_status_data = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Zone UUID
+	 * @since 3.5
+	 */
+	optional string zone_id = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP gorup UUID
+	 * @since 3.5
+	 */
+	optional string apgroup_id = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Cluster UUID
+	 * @since 3.5
+	 */
+	optional string cluster_id = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Domain UUID
+	 * @since 3.5
+	 */
+	optional string domain_id = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP tenant UUID
+	 * @since 3.5
+	 */
+	optional string aptenant_id = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description MAP UUID
+	 * @since 3.5
+	 */
+	optional string map_id = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP tenant name
+	 * @since 3.5
+	 */
+	optional string aptenant_name = 9;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Zone name
+	 * @since 3.5
+	 */
+	optional string zone_name = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP group name
+	 * @since 3.5
+	 */
+	optional string apgroup_name = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Domain name
+	 * @since 3.5
+	 */
+	optional string domain_name = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description UUID for Wlan group on 2.4G radio 
+	 * @since 3.5
+	 */
+	optional string wlangroup24G_id = 13;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description name for wlan group on 2.4G radio
+	 * @since 3.5
+	 */
+	optional string wlangroup24G_name = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description UUID for wlan group on 5G radio
+	 * @since 3.5
+	 */
+	optional string wlangroup5G_id = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description namefor wlan group on 5G radio
+	 * @since 3.5
+	 */
+	optional string wlangroup5G_name = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Timestamp to generate this stats report
+	 * @since 3.5
+	 */
+	optional uint64 sampleTime = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Interval for stats data aggregration
+	 * @since 3.5
+	 */
+	optional uint32 aggregationInterval = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description MAP name
+	 * @since 3.5
+	 */
+	optional string map_name = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP MAC address
+	 * @since 3.5
+	 */
+	optional string apMac = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description LACP Feature State 1:Enabled, 0:Disabled
+	 * @since 3.5
+	 */
+	optional int32 lacp_state = 21;
+}

@@ -1,0 +1,219 @@
+syntax = "proto2";
+option java_package = "com.ruckuswireless.scg.protobuf.sci";
+
+option java_outer_classname = "SciProtocolMessage";
+import "ap_status.proto";
+import "ap_report.proto";
+import "ap_client.proto";
+import "ap_mesh.proto";
+import "ap_rogue.proto";
+import "sci-event.proto";
+import "sci-configuration.proto";
+import "ap_avc.proto";
+import "ap_avc_all.proto";
+import "sci-alarm.proto";
+import "ap_wired_client.proto";
+import "ap_hccd_report.proto";
+import "sci-pci.proto";
+import "switch_all.proto";
+import "switches.proto";
+import "sci-rogue.proto";
+import "ap_peerlist.proto";
+import "session_manager.proto";
+
+message SciMessage {
+
+    extensions 1001 to 3000;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description protocol version.
+     * @since 3.5
+     */
+    optional string version = 1;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Message identifier for duplication detection.
+     * @since 3.5
+     */
+    optional bytes uuid = 3;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Sent time in milliseconds.
+     * @since 3.5
+     */
+    optional int64 sentTimeMs = 4;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SCI System identifier.
+     * @since 3.5
+     */
+    optional string sciSystemId = 5;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description APStatus from Routine AP Statistic Report.
+     * @since 3.5
+     */
+    optional APStatus apStatus = 101;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description APReportStats from Routine AP Statistic Report.
+     * @since 3.5
+     */
+    optional APReportStats apReport = 102;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description APClientStats from Routine AP Statistic Report.
+     * @since 3.5
+     */
+    optional APClientStats apClient = 103;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description APMeshStats from Routine AP Statistic Report.
+     * @since 3.5
+     */
+    optional APMeshStats apMesh = 104;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description RogueAPStats from Routine AP Statistic Report.
+     * @since 3.5
+     */
+    optional RogueAPStats apRogue = 105;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Event message which has been applied to be sent to outer service.
+     * @since 3.5
+     */
+    optional EventMessage eventMessage = 106;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SZ overall configuration message sent out every 15 minutes.
+     * @since 3.5
+     */
+    optional ConfigurationMessage configurationMessage = 107;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Alarm message will be sent out when the alarm happens.
+     * @since 3.5.1
+     */
+    optional AlarmMessage alarmMessage = 108;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description APWiredClientStats from Routine AP Statistic Report.
+     * @since 3.5.1
+     */
+    optional APWiredClientStats apWiredClient = 109;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description PCI Compliance Report which will be sent out every 15 minutes.
+     * @since 5.0.0
+     */
+    optional PciReportMessage pciReportMessage = 110;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description ApHccdReportMessage from Routine AP Statistic Report.
+     * @since 5.0.0
+     */
+    optional ApHccdReportMessage apHccdReportMessage = 111;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SwitchMessage from ICX Statistic Report.
+     * @since 5.1.1
+     */
+    optional com.ruckuswireless.scg.protobuf.icx.SwitchMessage switchMessage = 112;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SciRogueMessage from AP rogue AP report which have been classified by rogue AP policy of SZ.
+     * @since 5.1.1
+     */
+    optional SciRogueMessage sciRogueMessage = 113;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SessionManagerClientData from Session Manager's client auth/deauth or connect/disconnect event.
+     * @since 5.2
+     */
+    optional SessionManagerClientData sessionManagerClientData = 114;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description ArcMessage is from Routine AP Statistic Report which will be sent out every 5 minutes.
+     * @since 3.5
+     */
+    repeated ArcMessage arcMessage = 206;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description APAVCStats contains a series of ArcMessage..
+     * @since 5.1.1
+     */
+    optional APAVCStats apAvc = 207;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch overall configuration message sent out every 15 minutes.
+     * @since 5.1.2
+     */
+    optional com.ruckuswireless.scg.protobuf.icx.SwitchConfigurationMessage switchConfigurationMessage = 300;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch realtime status.
+     * @since 5.1.2
+     */
+    optional com.ruckuswireless.scg.protobuf.icx.RealtimeSwitchStatus realtimeSwitchStatus = 301;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description APPeerReport for on-demand API.
+     * @since 5.2.0
+     */
+    optional APPeerReport apPeer = 302;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The list of attached switch detail
+     * @since 5.2
+     */
+    optional com.ruckuswireless.scg.protobuf.icx.SwitchDetailMessage switchDetailMessage = 303;
+}

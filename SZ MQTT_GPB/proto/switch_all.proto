@@ -1,0 +1,72 @@
+syntax = "proto2";
+
+import "switches.proto";
+
+package com.ruckuswireless.scg.protobuf.icx;
+
+message SwitchMessage {
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 5.1.1
+     */
+    optional uint32 version = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Status of switch, ex: CPU, Memory, System Information, System Network Information.
+     * @since 5.1.1
+     */
+    optional SwitchStatus switchStatus = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Stats of switch for statistical analysis, ex Network Traffic, CPU, Memory.
+     * @since 5.1.1
+     */
+    optional SwitchStats switchStats = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Status of port, ex: CPU, Memory, Port Information(Network, PoE, Traffic, Packets In/Out).
+     * @since 5.1.1
+     */
+    repeated PortStatus portStatuses = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Stats of port for statistical analysis, ex: Port Network Traffic.
+     * @since 5.1.1
+     */
+    repeated PortStats portStats = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Status of connected device, ex: Remote Port Information(Device Name, Mac Address, Type, Description), Local Port Information(Name, Mac Address).
+     * @since 5.1.1
+     */
+    repeated ConnectedDeviceStatus connectedDevicesStatus = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Status of switch unit, ex: Switch Unit Information(ID, Uptime, Status, Serial Number).
+     * @since 5.1.1
+     */
+    repeated SwitchUnitStatus switchUnitStatuses = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Visibility of switch client; Deprecated since SZ version 5.2 please consumes the SwitchClientStatus at index 9 instead.
+     * @since 5.1.2
+     */
+    repeated SwitchClientVisibility switchClientVisibility = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description status of switch client
+     * @since 5.1.2
+     */
+     optional SwitchClientStatus switchClientStatus = 9;
+
+}

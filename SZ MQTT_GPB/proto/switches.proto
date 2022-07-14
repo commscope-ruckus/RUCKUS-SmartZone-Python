@@ -1,0 +1,3156 @@
+syntax = "proto2";
+
+import "simple-storage.proto";
+import "commons.proto";
+
+package com.ruckuswireless.scg.protobuf.icx;
+
+/**
+ * @internal
+ **/
+enum CliTask {
+    NONE = 1;
+    RELOAD = 2;
+    DELETE = 3;
+    DISCONNECT = 4;
+}
+
+/**
+ * @internal
+ **/
+enum RegistrationStatus {
+    UNKNOWN = 1;
+    REGISTRATION_PENDING = 2;
+    PENDING = 3;
+    OVERLOADING = 4;
+    APPROVED = 5;
+    REJECTED = 6;
+}
+
+/**
+ * @internal
+ **/
+message GpbNetworkSwitch {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = DEVICE;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true]; //Switch/Stack Router ID + MAC
+    optional SwitchConfig switchConfig = 2;
+    optional SwitchStatus switchStatus = 3;
+}
+
+/**
+ * @internal
+ **/
+message SwitchConfig {
+
+    enum ProvisionState {
+        INIT = 1;
+        FAILURE = 2;
+        SUCCESS = 3;
+    }
+
+    option (com.ruckuswireless.scg.protobuf.storage.category) = CONFIG;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string hostName = 2;
+    optional RegistrationStatus registrationStatus = 3;
+    optional string activeIpList = 4;
+    optional string passiveIpList = 5;
+    optional string sshAccountName = 6;
+    optional string switchRsaPublicKey = 7;
+    optional string switchRsaPrivateKey = 8;
+    optional string szSshPublicKey = 9;
+    optional string syslogIpAddress = 10;
+    optional int32 syslogPort = 11;
+    optional string snmpIpAddress = 12;
+    optional int32 snmpPort = 13;
+    optional string cliIpAddress = 14;
+    optional int32 cliPort = 15;
+    optional string domainId = 16;
+    optional string tenantId = 17;
+    optional string switchGroupLevelOneId = 18;
+    optional string switchGroupLevelTwoId = 19;
+    optional string switchSshKey = 20;
+    optional string serialNumber = 21;
+    optional string routerId = 22;
+    optional string szNodeAttached = 23;
+    optional CliTask cliTask = 24 [default = NONE];
+    optional string macAddress = 26;
+    optional int64 lastBackupTime = 27;
+    optional int64 lastRestoreTime = 28;
+    optional string lastBackupStatus = 29;
+    optional string lastRestoreStatus = 30;
+    optional string ipAddress = 31;
+    optional int64 createdTimestamp = 32;
+    optional int64 lastConfigTime = 33;
+    optional int32 szHttpClientPort = 34;
+    optional int32 supportedCsl = 35;
+    optional bool cacheFactoryDefault = 36;
+    optional bool isCslRequested = 37;
+    optional string cloudPort = 38;
+    optional string licenseType = 39;
+    optional string firmwareUpdateScheduleId = 40;
+    optional string firmwareUpdateScheduledTime = 41;
+    optional string firmwareUpdateModifiedTime = 42;
+    optional string firmwareUpdateStatus = 43;
+    optional string firmwareUpdateToVersion = 44;
+    optional bool isMigration = 45;
+    optional ProvisionState provisionState = 46;
+    optional bool operational = 47;
+}
+
+/**
+ * @internal
+ */
+message PowerSupplyGroup {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.2
+     */
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Stack identifier of switch.
+     * @since 5.1.2
+     */
+    optional string stackId = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Power Supply Slot Number of switch.
+     * @since 5.1.2
+     */
+    optional int32 powerSlotNum = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Power Supply Type of switch.
+     * @since 5.1.2
+     */
+    optional string powerSupplyType = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Power Supply Status of switch.
+     * @since 5.1.2
+     */
+    optional string powerSupplyStatus = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial Number of switch.
+     * @since 5.1.2
+     */
+    optional string serialNumber = 6;
+}
+
+/**
+ * @internal
+ **/
+message TempThresholdGroup {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string stackId = 2;
+    optional int32 slotNum = 3;
+    optional int32 tempThreshold = 4;
+    optional double temperatureValue = 5;
+}
+
+/**
+ * @internal
+ **/
+message FanGroup {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.2
+     */
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Stack identifier of switch.
+     * @since 5.1.2
+     */
+    optional string stackId = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Fan Slot Number of switch.
+     * @since 5.1.2
+     */
+    optional int32 slotNum = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Fan Type of switch.
+     * @since 5.1.2
+     */
+    optional string type = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Fan Status of switch.
+     * @since 5.1.2
+     */
+    optional string status = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial Number of switch.
+     * @since 5.1.2
+     */
+    optional string serialNumber = 6;
+}
+
+message SwitchStatus {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = STATUS;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.1
+     */
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Firmware version of switch.
+     * @since 5.1.1
+     */
+    optional string firmware = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Model of switch.
+     * @since 5.1.1
+     */
+    optional string model = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Default gateway of switch.
+     * @since 5.1.1
+     */
+    optional string defaultGateway = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Number of switch ports.
+     * @since 5.1.1
+     */
+    optional int32 numOfPorts = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description NAT IP of switch.
+     * @since 5.1.1
+     */
+    optional string natIp = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Status of switch
+     * @since 5.1.1
+     */
+    optional string status = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description PoE support of switch.
+     * @since 5.1.1
+     */
+    optional bool poeAvailable = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Last backup of switch.
+     * @since 5.1.1
+     */
+    optional uint64 lastBackup = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description CPU utilization of switch.
+     * @since 5.1.1
+     */
+    optional uint64 cpu = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Memory utilization of switch.
+     * @since 5.1.1
+     */
+    optional uint64 memory = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Uptime of switch.
+     * @since 5.1.1
+     */
+    optional string uptime = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Alerts of switch.
+     * @since 5.1.1
+     */
+    optional int32 alerts = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Priority.
+     * @since 5.1.1
+     */
+    optional int32 priority = 20;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Modules of switch.
+     * @since 5.1.1
+     */
+    optional string modules = 21;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string domainId = 23;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Group identifier of switch.
+     * @since 5.1.1
+     */
+    optional string groupId = 24;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Last update time in millis.
+     * @since 5.1.1
+     */
+    optional uint64 lastUpdateTimeInMillis = 27;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Name of switch.
+     * @since 5.1.1
+     */
+    optional string switchName = 28;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string tenantId = 29;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelOneId = 30;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelTwoId = 31;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial number of switch.
+     * @since 5.1.1
+     */
+    optional string serialNumber = 32;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial numbers of switch unit.
+     * @since 5.1.1
+     */
+    optional string unitSerialNumbers = 33;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Port module identifiers of switch.
+     * @since 5.1.1
+     */
+    optional string portModuleIds = 34;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Partition in use.
+     * @since 5.1.1
+     */
+    optional string partitionInUse = 35;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mode of switch.
+     * @since 5.1.1
+     */
+    optional string switchMode = 36; //Router or switch
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Software version of switch.
+     * @since 5.1.1
+     */
+    optional string switchSWVersion = 37; //Ex. SW: Version 08.0.80icxm_dev103T213
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Number of switch units.
+     * @since 5.1.1
+     */
+    optional int32 numOfUnits = 38;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description PoE allocated capacity of switch.
+     * @since 5.1.1
+     */
+    optional int32 poeUtilization = 39;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Total PoE capacity of switch.
+     * @since 5.1.1
+     */
+    optional int32 poeTotal = 40;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description PoE unallocated capacity of switch.
+     * @since 5.1.1
+     */
+    optional int32 poeFree = 41;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Family of switch.
+     * @since 5.1.1
+     */
+    optional string family = 42;
+    /**
+     * @property cloudPort
+     * @aggregation NULL
+     * @description cloud port(uplink port) of switch for Alto.
+     * @since 5.1.2
+     */
+    optional string cloudPort = 43;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name of SZ.
+     * @since 5.1.2
+     */
+    optional string domainName = 44;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneName = 45;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoName = 46;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Power Supply Group status of switch.
+     * @since 5.1.2
+     */
+    optional string powerSupplyGroups = 47;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Fan Group status of switch.
+     * @since 5.1.2
+     */
+    optional string fanGroups = 48;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch ip
+     * @since 5.1.2
+     */
+    optional string ipAddress = 49;
+}
+
+message SwitchStats {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = STATISTIC;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch identifier
+     * @since 5.1.1
+     */
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp.
+     * @since 5.1.1
+     */
+    optional int64 timestamp = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial number of switch.
+     * @since 5.1.1
+     */
+    optional string switchSerialNum = 3;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX bytes of switch.
+     * @since 5.1.1
+     */
+    optional int64 tx = 4 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description RX bytes of switch.
+     * @since 5.1.1
+     */
+    optional int64 rx = 5 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX/RX bytes of switch.
+     * @since 5.1.1
+     */
+    optional int64 txRx = 6 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX packets of switch.
+     * @since 5.1.1
+     */
+    optional int64 txPkt = 7 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description RX packets of switch.
+     * @since 5.1.1
+     */
+    optional int64 rxPkt = 8 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX/RX packets of switch.
+     * @since 5.1.1
+     */
+    optional int64 txRxPkt = 9 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX bit rate of switch (in kilobits per second, within a five-minute interval.).
+     * @since 5.1.1
+     */
+    optional int64 txRate = 10 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description RX bit rate of switch (in kilobits per second, within a five-minute interval.).
+     * @since 5.1.1
+     */
+    optional int64 rxRate = 11 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX/RX bit rate of switch (in kilobits per second, within a five-minute interval.).
+     * @since 5.1.1
+     */
+    optional int64 txRxRate = 12 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description CPU utilization of switch.
+     * @since 5.1.1
+     */
+    optional int64 cpu = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Memory utilization of switch.
+     * @since 5.1.1
+     */
+    optional int64 memory = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string domainId = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string tenantId = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelOneId = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelTwoId = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name of SZ.
+     * @since 5.1.2
+     */
+    optional string domainName = 19;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 Group name of switch group.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneName = 20;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 Group name of switch group.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoName = 21;
+}
+
+message PortStats {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = STATISTIC;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Port identifier
+     * @since 5.1.1
+     */
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp.
+     * @since 5.1.1
+     */
+    optional int64 timestamp = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial number of switch.
+     * @since 5.1.1
+     */
+    optional string switchSerialNum = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mac address of port.
+     * @since 5.1.1
+     */
+    optional string portMac = 4;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX bytes of port.
+     * @since 5.1.1
+     */
+    optional int64 tx = 5 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description RX bytes of port.
+     * @since 5.1.1
+     */
+    optional int64 rx = 6 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX/RX bytes of port.
+     * @since 5.1.1
+     */
+    optional int64 txRx = 7 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX packets of port.
+     * @since 5.1.1
+     */
+    optional int64 txPkt = 8 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description RX packets of port.
+     * @since 5.1.1
+     */
+    optional int64 rxPkt = 9 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX/RX packets of port.
+     * @since 5.1.1
+     */
+    optional int64 txRxPkt = 10 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX bit rate of port (in kilobits per second, within a five-minute interval.).
+     * @since 5.1.1
+     */
+    optional int64 txRate = 11 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description RX bit rate of port (in kilobits per second, within a five-minute interval.).
+     * @since 5.1.1
+     */
+    optional int64 rxRate = 12 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX/RX bit rate of port (in kilobits per second, within a five-minute interval.).
+     * @since 5.1.1
+     */
+    optional int64 txRxRate = 13 [(com.ruckuswireless.scg.protobuf.storage.ingest) = "delta"];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string domainId = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string tenantId = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelOneId = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelTwoId = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.1
+     */
+    optional string switchId = 18;    // Switch/Stack MAC for traffic usage.
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name of SZ.
+     * @since 5.1.2
+     */
+    optional string domainName = 19;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneName = 20;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoName = 21;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch unit.
+     * @since 5.2
+     */
+    optional string switchUnitId = 22;
+}
+
+/**
+ * @internal
+ **/
+message SwitchGroup {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string domainId = 2;
+    optional string creatorId = 3;
+    optional string tenantId = 4;
+    optional string switchGroupLevelOneId = 5;
+    optional string switchGroupLevelTwoId = 6;
+    optional uint64 createDatetime = 7;
+    optional string name = 8;
+    optional string description = 9;
+    optional string firmware = 10;
+}
+
+/**
+ * @internal
+ **/
+message GpbNetworkPort {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = DEVICE;
+    optional string portMac = 1;
+    optional string switchSerialNum = 2;
+    optional string switchUnitId = 3;
+    optional PortConfig portConfig = 4;
+    optional PortStatus portStatus = 5;
+    optional string portId = 6 [(com.ruckuswireless.scg.protobuf.storage.id) = true]; // portMac_portIdentifier
+}
+
+/**
+ * @internal
+ **/
+message PortConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = CONFIG;
+    optional string portMac = 1;
+    optional string switchId = 2;
+    optional string switchUnitId = 3;
+    optional string portId = 4 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+}
+
+message PortStatus {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = STATUS;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mac address of port.
+     * @since 5.1.1
+     */
+    optional string portMac = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.1
+     */
+    optional string switchId = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Type of port.
+     * @since 5.1.1
+     */
+    optional string type = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Name of port.
+     * @since 5.1.1
+     */
+    optional string name = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Status of port.
+     * @since 5.1.1
+     */
+    optional string status = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description admin status of port.
+     * @since 5.1.1
+     */
+    optional string adminStatus = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description VLAN identifier of port.
+     * @since 5.1.1
+     */
+    optional string vlanIds = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Neighbor name of port.
+     * @since 5.1.1
+     */
+    optional string neighborName = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Speed of port.
+     * @since 5.1.1
+     */
+    optional string portSpeed = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Ruckus devices support of port.
+     * @since 5.1.1
+     */
+    optional bool ruckusDevice = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description LLDP enabled flag of port.
+     * @since 5.1.1
+     */
+    optional bool lldpEnabled = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description LAG name of port.
+     * @since 5.1.1
+     */
+    optional string lagName = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description LAG status of port.
+     * @since 5.1.1
+     */
+    optional string lagStatus = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Spanning tree status of port.
+     * @since 5.1.1
+     */
+    optional string spanningTreeStatus = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Amount of inline power consumed by the port. Each unit is in milliwatts.
+     * @since 5.1.1
+     */
+    optional int32 poeUsed = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Adjusts the inline power wattage. Valid values are from 1000 through 15400(IEEE802_3AF)/30000(IEEE802_3AT). Each unit is in milliwatts.
+     * @since 5.1.1
+     */
+    optional int32 poeTotal = 16;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Percentage of inline power consumed by the port.
+     * @since 5.1.1
+     */
+    optional double poePercent = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string domainId = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelOneId = 19;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description TX bytes of port.
+     * @since 5.1.1
+     */
+    optional int64 tx = 20;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description RX bytes of port.
+     * @since 5.1.1
+     */
+    optional int64 rx = 21;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Input network utilization in hundredths of a percent over a five-minute interval.
+     * @since 5.1.1
+     */
+    optional double signalIn = 22;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Output network utilization in hundredths of a percent over a five-minute interval.
+     * @since 5.1.1
+     */
+    optional double signalOut = 23;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Stats CRC align errors of port.
+     * @since 5.1.1
+     */
+    optional int64 crcErr = 24;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Input errors of port.
+     * @since 5.1.1
+     */
+    optional int64 inErr = 25;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Output errors of port.
+     * @since 5.1.1
+     */
+    optional int64 outErr = 26;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Optics type of port.
+     * @since 5.1.1
+     */
+    optional string opticsType = 27;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string tenantId = 29;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelTwoId = 30;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Capacity of port speed.
+     * @since 5.1.1
+     */
+    optional string portSpeedCapacity = 31;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch unit.
+     * @since 5.1.1
+     */
+    optional string switchUnitId = 32;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Interface name of port.
+     * @since 5.1.1
+     */
+    optional string portIfaceName = 33;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description PoE enabled flag of port.
+     * @since 5.1.1
+     */
+    optional bool poeEnabled = 34;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description "Used in forming stack" flag of port.
+     * @since 5.1.1
+     */
+    optional bool usedInFormingStack = 35;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Description of port.
+     * @since 5.1.1
+     */
+    optional string portIdentifier = 36;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Untagged VLAN of port.
+     * @since 5.1.1
+     */
+    optional string unTaggedVlan = 37;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description "Is in warning state" flag of port.
+     * @since 5.1.1
+     */
+    optional bool isInWarningState = 38;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Input discards of port.
+     * @since 5.1.1
+     */
+    optional int64 inDiscard = 39;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Input broadcast packets of port.
+     * @since 5.1.1
+     */
+    optional int64 broadcastIn = 40;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Output broadcast packets of port.
+     * @since 5.1.1
+     */
+    optional int64 broadcastOut = 41;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Input multicast packets of port.
+     * @since 5.1.1
+     */
+    optional int64 multicastIn = 42;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Output multicast packets of port.
+     * @since 5.1.1
+     */
+    optional int64 multicastOut = 43;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description PoE type of port.
+     * @since 5.1.1
+     */
+    optional string poeType = 44;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Formatted of port identifier.
+     * @since 5.1.1
+     */
+    optional string portIdentifierFormatted = 45;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Port identifier.
+     * @since 5.1.1
+     */
+    optional string portId = 46 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name of SZ.
+     * @since 5.1.2
+     */
+    optional string domainName = 47;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneName = 48;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoName = 49;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated GpbNetworkPort ports = 1000;
+}
+
+/**
+ * @internal
+ **/
+message Client {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = STATUS;
+    optional string mac = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string switchSerialNum = 2;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated GpbNetworkSwitch switches = 1001;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated SwitchGroup switchGroups = 1002;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated RegistrationRule registrationRules = 1003;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated FanGroup fanGroups = 1004;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated TempThresholdGroup tempThresholdGroups = 1005;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated PowerSupplyGroup powerSupplyGroups = 1006;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated GpbSwitchUnit switchUnits = 1007;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated Job jobs = 1008;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated GpbConnectedDevice connectedDevices = 1009;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated SwitchCredential switchCredentials = 1010;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated ConfigBackup configBackups = 1011;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated Schedule schedules = 1012;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated SystemConfig systemConfigs = 1013;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated GroupModelConfig groupModelConfigs = 1014;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated VlanConfig vlanConfigs = 1015;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated AaaServer aaaServers = 1016;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated DeployLog deployLogs = 1017;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated DeployLogItem deployLogItems = 1018;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated SwitchConfigStore switchConfigStores = 1019;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated CommonSettings commonSettings = 1020;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated StaticRoute staticRoutes = 1021;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated ACLConfig aclConfigs = 1022;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated SpecificSettings specificSettings = 1023;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated PortConfiguration portConfiguration = 1024;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated VEConfig veConfigs = 1025;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated LAGConfig lagConfigs = 1027;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated StackConfig stackConfigs = 1028;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated VlanPortRelation vlanPortRelations = 1029;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated DeploySchedule deploySchedules = 1030;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated DeployPending deployPendings = 1031;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated SwitchClientVisibility switchClientVisibilities = 1032;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated SupportSaveStatus supportSaveStatus = 1033;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated KumoSwitch kumoSwitch = 1034;
+}
+
+extend com.ruckuswireless.scg.protobuf.storage.ListModel {
+    repeated AAASetting aaaSetting = 1035;
+}
+
+/**
+ * @internal
+ **/
+message Job {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string type = 2;
+    optional string action = 3;
+    optional string status = 4;
+    optional string failureReason = 5;
+    optional string switchId = 6;
+    optional string domainId = 7;
+    optional string tenantId = 8;
+    optional string switchGroupLevelOneId = 9;
+    optional string switchGroupLevelTwoId = 10;
+    optional int64 createdTimestamp = 11;
+    optional int64 modifiedTimestamp = 12;
+    optional string csvData = 13;
+    optional string stickyNodeId = 14;
+    optional string scheduleId = 15;
+    optional int32 retryCount = 16;
+}
+
+/**
+ * @internal
+ **/
+message Schedule {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string type = 2;
+    optional string triggerValue = 3;
+    optional int64 createdTimestamp = 4;
+    optional string switchId = 5;
+    optional string jobType = 6;
+    optional string jobAction = 7;
+    optional string csvData = 8;
+    optional string stickyNodeId = 9;
+    optional string status = 10;
+}
+
+/**
+ * @internal
+ **/
+enum RegistrationRuleType {
+    IP_RANGE = 1;
+    SUBNET = 2;
+    MODEL_NUMBER = 3;
+}
+
+
+/**
+ * @internal
+ **/
+message RegistrationRule {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    // No suitable category, set the category to GROUP for now. 
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string creatorId = 2;
+    optional string switchGroupId = 3;
+    optional RegistrationRuleType type = 4;
+    optional string ipFrom = 5;
+    optional string ipTo = 6;
+    optional string network = 7;
+    optional string subnetMask = 8;
+    optional string modelNumber = 9;
+    optional int32 rank = 10;
+    optional uint64 createDatetime = 11;
+    optional string description = 12;
+}
+
+/**
+ * @internal
+ **/
+message GpbSwitchUnit {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = DEVICE;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional SwitchUnitConfig switchUnitConfig = 2;
+    optional SwitchUnitStatus switchUnitStatus = 3;
+}
+
+/**
+ * @internal
+ **/
+message SwitchUnitConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = CONFIG;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true]; //Switch-Unit serial number
+    optional string switchId = 2; //Reference key for Switch/Stack
+    optional string model = 3;
+    optional string macAddress = 4;
+    optional int32 numOfPorts = 5;
+    optional string modules = 6;
+    optional string unitName = 7;
+    optional string unitSlNum = 8;
+    optional string portStatusUp = 9;
+    optional string portStatusWarning = 10;
+    optional string portStatusDown = 11;
+}
+
+message SwitchUnitStatus {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = STATUS;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch unit.
+     * @since 5.1.1
+     */
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true]; //Switch-Unit serial number
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.1
+     */
+    optional string switchId = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Uptime of switch.
+     * @since 5.1.1
+     */
+    optional string upTime = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Status of switch unit.
+     * @since 5.1.1
+     */
+    optional string unitStatus = 4; //Unknown or Other or Active or Standby or Member or Standalone
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial Number of switch unit.
+     * @since 5.1.1
+     */
+    optional string unitSlNum = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain identifier of SZ.
+     * @since 5.1.2
+     */
+    optional string domainId = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 identifier of switch unit.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneId = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 identifier of switch unit.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoId = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name of switch unit.
+     * @since 5.1.2
+     */
+    optional string domainName = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 Group name of switch unit.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneName = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 Group name of switch unit.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoName = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description stack unit ID.
+     * @since 5.1.1
+     */
+    optional int32 unitId = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description switch stacking config unit state.
+     * @since 5.1.2
+     */
+    optional string unitState = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description switch stacking config unit name.
+     * @since 5.1.2
+     */
+    optional string unitName = 17;
+}
+
+//Connected Device
+/**
+ * @internal
+ **/
+message GpbConnectedDevice {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = DEVICE;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true]; //Remote Port MAC
+    optional ConnectedDeviceConfig connectedDeviceConfig = 2;
+    optional ConnectedDeviceStatus connectedDeviceStatus = 3;
+}
+
+/**
+ * @internal
+ **/
+message ConnectedDeviceConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = CONFIG;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true]; //Remote Port MAC
+    optional string remotePortMac = 2; //Remote Port MAC
+    optional string localPortMac = 3;
+    optional string switchId = 4;
+    optional string remoteDeviceMac = 5;
+}
+
+message ConnectedDeviceStatus {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = STATUS;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of remote port.
+     * @since 5.1.1
+     */
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true]; //Remote Port MAC
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mac address of remote port.
+     * @since 5.1.1
+     */
+    optional string remotePortMac = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Name of remote device.
+     * @since 5.1.1
+     */
+    optional string remoteDeviceName = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Type of remote port.
+     * @since 5.1.1
+     */
+    optional string remotePortType = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Description of remote port.
+     * @since 5.1.1
+     */
+    optional string remotePortDesc = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Local port interface.
+     * @since 5.1.1
+     */
+    optional string localPort = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Remote port interface.
+     * @since 5.1.1
+     */
+    optional string remotePort = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description RuckusAP support of remote device.
+     * @since 5.1.1
+     */
+    optional string isRuckusAP = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string domainId = 9;
+/**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant identifier of SZ.
+     * @since 5.1.1
+     */
+    optional string tenantId = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelOneId = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 identifier of switch group.
+     * @since 5.1.1
+     */
+    optional string switchGroupLevelTwoId = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.1
+     */
+    optional string switchId = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch unit.
+     * @since 5.1.1
+     */
+    optional string unitId = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Interface name of local port.
+     * @since 5.1.1
+     */
+    optional string localPortIfaceName = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mac address of local port.
+     * @since 5.1.1
+     */
+    optional string localPortMac = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name of SZ.
+     * @since 5.1.2
+     */
+    optional string domainName = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneName = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoName = 19;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description update time of connected device information
+     * @since 5.2
+     */
+    optional int64 updatedTime = 20;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description ConnectedDevice remote mac address.
+     * @since 5.2
+     */
+    optional string remoteDeviceMac = 21;
+}
+
+/**
+ * @internal
+ **/
+enum SwitchCredentialSNMPType {
+    SNMP_V2 = 1;
+    SNMP_V3 = 2;
+}
+
+/**
+ * @internal
+ **/
+enum SwitchCredentialAuthProtocolType {
+    SHA = 1;
+    MD5 = 2;
+}
+
+/**
+ * @internal
+ **/
+enum SwitchCredentialPrivacyProtocolType {
+    PROTO_NONE = 1;
+    AES = 2;
+    DES = 3;
+}
+
+/**
+ * @internal
+ **/
+message SwitchCredential {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string creatorName = 2;
+    optional SwitchCredentialSNMPType type = 3;
+    optional string description = 4;
+    optional string community = 5;
+    optional string userName = 6;
+    optional string authPassword = 7;
+    optional SwitchCredentialAuthProtocolType authProtocol = 8;
+    optional string privacyPassword = 9;
+    optional SwitchCredentialPrivacyProtocolType privacyProtocol = 10;
+    optional int32 rank = 11;
+    optional uint64 createDatetime = 12;
+}
+
+/**
+ * @internal
+ **/
+message ConfigBackup {
+    option (com.ruckuswireless.scg.protobuf.storage.entity) = true;
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    /**
+     * @internal
+     **/
+    enum BackupType {
+        MANUAL = 1;
+        SCHEDULED = 2;
+    }
+
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string name = 2;
+    optional int64 backupStartTime = 3;
+    optional int64 backupEndTime = 4;
+    optional int64 lastRestoreStartTime = 5;
+    optional int64 lastRestoreEndTime = 6;
+    optional BackupType type = 7;
+    optional string switchId = 8;
+    optional string config = 9;
+    optional string backupStatus = 10;
+    optional string lastRestoreStatus = 11;
+    optional string domainId = 12;
+    optional string switchGroupLevelOneId = 13;
+    optional string switchGroupLevelTwoId = 14;
+    optional string failureReason = 15;
+    optional int64 backupStartTriggerTime = 16;
+    optional int64 restoreStartTriggerTime = 17;
+    optional int32 retryCount = 18;
+}
+
+/**
+ * @internal
+ **/
+message SystemConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = DATA;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string scepEnrollments = 2;
+    optional string eventConfig = 3;
+    optional string switchTrackConfig = 4;
+    optional string aaaSettings = 5;
+    optional int64 postUpgradeTime = 6;
+}
+
+/**
+ * @internal
+ **/
+message GroupModelConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string familyId = 2;
+    optional string groupId = 3;
+    optional int64 createdTime = 4;
+    optional int64 updatedTime = 5;
+    optional bool hasVlanConfig = 6;
+    optional bool hasAclConfig = 7;
+    optional bool hasStaticRouteConfig = 8;
+    optional bool hasConfigured = 9;
+    optional bool hasSelected = 10;
+}
+
+/**
+ * @internal
+ **/
+message VlanConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional int32 vlanId = 2;
+    optional string name = 3;
+    optional string groupId = 4;
+    optional string familyId = 5;
+    optional string switchId = 6;
+    optional bool enableIpv4DhcpSnooping = 7;
+    optional string ipv4DhcpSnoopingTrustPort = 8;
+    optional bool enableArpInspection = 9;
+    optional string arpInspectionTrustPort = 10;
+    optional IgmpSnoopingType igmpSnooping = 11;
+    optional string multicastVersion = 12;
+    optional SpanningTreeType spanningTree = 13;
+    optional int32 spanningTreePriority = 14;
+    optional string portsConfig = 15;
+    optional PushTimeType pushTimeType = 16;
+    optional int64 pushTime = 17;
+    optional int64 createdTime = 18;
+    optional int64 updatedTime = 19;
+    optional string arpInspectionsConfig = 20;
+    optional int64 scheduled = 21;
+    optional bool initialConfig = 22;
+    optional string rootBridgeFamilyId = 23;
+
+}
+
+
+/**
+ * @internal
+ **/
+enum Level {
+    READ_WRITE = 1;
+    PORT_CONFIG = 2;
+    READ_ONLY = 3;
+	LEVEL_NONE = 4;
+}
+
+/**
+ * @internal
+ **/
+enum ServerType {
+    RADIUS = 1;
+    TACACS_PLUS = 2;
+    LOCAL = 3;
+    SERVER_TYPE_NONE = 4;
+}
+
+/**
+ * @internal
+ **/
+message AAASetting {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    
+    optional bool authnEnabledSSH = 2;
+    optional bool authnEnableTelnet = 3;
+    optional ServerType authnFirstPref = 4 [default = SERVER_TYPE_NONE];
+    optional ServerType authnSecondPref = 5 [default = SERVER_TYPE_NONE];
+    optional ServerType authnThirdPref = 6 [default = SERVER_TYPE_NONE];
+
+    optional bool authzEnabledCommand = 7;
+    optional bool authzEnabledExec = 8;
+    optional Level authzCommonsLevel = 9 [default = LEVEL_NONE];
+    optional ServerType authzCommonsServer1 = 10 [default = SERVER_TYPE_NONE];
+    optional ServerType authzCommonsServer2 = 11 [default = SERVER_TYPE_NONE];
+    optional ServerType authzExecServer1 = 12 [default = SERVER_TYPE_NONE];
+    optional ServerType authzExecServer2 = 13 [default = SERVER_TYPE_NONE];
+
+    optional bool acctEnabledCommand = 14;
+    optional bool acctEnabledExec = 15;
+    optional Level acctCommonsLevel = 16 [default = LEVEL_NONE];
+    optional ServerType acctCommonsServer1 = 17 [default = SERVER_TYPE_NONE];
+    optional ServerType acctCommonsServer2 = 18 [default = SERVER_TYPE_NONE];
+    optional ServerType acctExecServer1 = 19 [default = SERVER_TYPE_NONE];
+    optional ServerType acctExecServer2 = 20 [default = SERVER_TYPE_NONE];
+    optional int64 updatedTime = 21;
+}
+
+/**
+ * @internal
+ **/
+message AaaServer {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    /**
+     * @internal
+     **/
+    enum Purpose {
+        DEFAULT = 1;
+        AUTHENTICATION_ONLY = 2;
+        AUTHORIZATION_ONLY = 3;
+        ACCOUNTING_ONLY = 4;
+    }
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string name = 2;
+    optional int64 createdTime = 3;
+    optional int64 updatedTime = 4;
+    optional ServerType serverType = 5;
+
+    // radius and tacacs
+    optional string ip = 6;
+    optional int32 authPort = 7;
+    optional int32 acctPort = 8;
+    optional string secret = 9;
+
+    // tacacs
+    optional Purpose purpose = 10;
+
+    // local user
+    optional string username = 11;
+    optional string password = 12;
+    optional Level level = 13;
+
+    // creator & updater
+    optional string creatorUsername = 14;
+    optional string creatorId = 15;
+    optional string updaterUsername = 16;
+    optional string updaterId = 17;
+    optional string groupId = 18;
+}
+
+/**
+ * @internal
+ **/
+enum DeployScope {
+    PRE_PROVISION = 1; 
+	PROVISION = 2;
+   	GROUP = 3;
+    PORT = 4;
+    SWITCH = 5;
+   	COPY = 6;
+   	OVERWRITE = 7;
+}
+
+/**
+ * @internal
+ **/
+enum ConfigFeature {
+	VLAN = 1;
+	ACL = 2;
+	STATIC_ROUTE = 3;
+}
+
+/**
+ * @internal
+ **/
+enum ConfigType {
+    PROVISIONING = 1;
+    GLOBAL = 2;
+    COMMON = 3;
+    MODEL = 4;
+    SWITCH_SETTINGS = 5;
+    PORT_SETTINGS = 6;
+    COPY_CONFIGS = 7;
+    LAG_SETTINGS = 8;
+    IP_PORTS = 9;
+    VE_PORTS = 10;
+    PORT_CONFIGURATION = 11;
+    OVERWRITE_CONFIGURATION = 12;
+    STACK = 13;
+    AAA_SETTING = 14;
+    AAA_SERVER = 15;
+}
+    
+/**
+ * @internal
+ **/
+message DeployLog {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    /**
+     * @internal
+     **/
+    enum DeployStatus {
+        PENDING = 1;
+        STARTED = 2;
+        SUCCESS = 3;
+	FAILURE = 4;
+    }
+	
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string transactionId = 2;
+    optional string groupId = 3;
+    optional string modelFamily = 4;
+    optional string yang = 5;
+    optional ConfigType configType = 6;
+    optional DeployScope deployScope = 7;
+    optional DeployStatus deployStatus = 8;
+    optional string switchIds = 9;
+    optional int64 scheduled = 10;
+    optional int64 startTime = 11;
+    optional int64 endTime = 12;
+    optional ConfigFeature configFeature = 13;
+    optional int32 success = 14;
+    optional int32 failed = 15;
+    optional int32 failedNoResponse = 16;
+    optional int32 failedSaveFlash = 17;
+    optional string nodeId = 18;
+}
+
+/**
+ * @internal
+ **/
+message DeployLogItem {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    /**
+     * @internal
+     **/
+    enum DispatchStatus {
+        PENDING = 1;
+        IN_PROGRESS = 2;
+        SUCCESS = 3;
+        FAILED = 4;
+        PENDING_LOCAL_SYNC = 5;
+        FAILED_NO_RESPONSE = 6;
+        FAILED_SAVE_FLASH = 7;
+	    NO_CONFIG_CHANGE = 8;
+	    OFFLINE = 9;
+	    ROAMED = 10;
+    }
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string transactionId = 2;
+    optional string switchId = 3;
+    optional string yang = 4;
+    optional string clis = 5;
+    optional DispatchStatus dispatchStatus = 6;
+    optional string dispatchError = 7;
+    optional int64 startTime = 8;
+    optional int64 endTime = 9;
+    optional string removeYang = 10;
+    optional string nodeId = 11;
+}
+
+/**
+ * @internal
+ **/
+message SwitchConfigStore {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = CONFIG;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string yang = 2;
+    optional string backup = 3;
+    optional int64 lastConfigTime = 4;
+    optional int64 lastSwitchConfigTime = 5;
+    optional int64 lastStartupSwitchConfigTime = 6;
+    optional bool localSyncCompleted = 7;
+}
+
+/**
+ * @internal
+ **/
+message CommonSettings {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional int64 updatedTime = 2;
+    optional int64 createdTime = 3;
+    optional string dnsConfig = 4;
+}
+
+/**
+ * @internal
+ **/
+message CommonSettingsDns {
+    optional string ip = 1;
+}
+
+/**
+ * @internal
+ **/
+message StaticRoute {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string groupId = 2;
+    optional string familyId = 3;
+    optional string destinationIp = 4;
+    optional string nextHop = 5;
+    optional int64 adminDistance = 6;
+    optional PushTimeType pushTimeType = 7;
+    optional int64 pushTime = 8;
+
+    optional int64 createdTime = 9;
+    optional int64 updatedTime = 10;
+
+    optional string switchId = 11;
+    optional int64 scheduled = 12;
+    optional bool initialConfig = 13;
+}
+
+/**
+ * @internal
+ **/
+message ACLConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string groupId = 2;
+    optional string familyId = 3;
+    optional string switchId = 4;
+    optional string name = 5;
+    optional ACLType aclType = 6;
+    optional string ruleConfig = 7;
+
+    optional PushTimeType pushTimeType = 8;
+    optional int64 pushTime = 9;
+
+    optional int64 createdTime = 10;
+    optional int64 updatedTime = 11;
+    optional int64 scheduled = 12;
+}
+
+/**
+ * @internal
+ **/
+enum ACLType {
+    STANDARD = 1;
+    EXTENDED = 2;
+}
+
+/**
+ * @internal
+ **/
+message ACLRule {
+    optional int32 seq = 1;
+    optional ACLRuleAction action = 2;
+    optional ACLRuleProtocol protocol = 3;
+    optional string srcNetwork = 4;
+    optional string destNetwork = 5;
+    optional int32 srcPort = 6;
+    optional int32 destPort = 7;
+}
+
+
+/**
+ * @internal
+ **/
+enum ACLRuleAction {
+    PERMIT = 1;
+    DENY = 2;
+}
+
+/**
+ * @internal
+ **/
+enum ACLRuleProtocol {
+    IP = 1;
+    TCP = 2;
+    UDP = 3;
+}
+
+/**
+ * @internal
+ **/
+enum PushTimeType {
+    NOW = 1;
+    SCHEDULE = 2;
+}
+
+/**
+ * @internal
+ **/
+message StackConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id             = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional int64  createdTime    = 2;
+    optional int64  updatedTime    = 3;
+
+    optional string switchId       = 4;
+    optional bool   isActiveRole   = 5;
+    optional string activeSwitchId = 6;
+    optional int32  suggestedId    = 7;
+    optional StackDeployState stackDeployState = 8;
+
+    enum StackDeployState {
+        INIT = 1;
+        FAILURE = 2;
+        SUCCESS = 3;
+    }
+}
+
+/**
+ * @internal
+ **/
+message SpecificSettings {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string hostname = 2;
+    optional IgmpSnoopingType igmpSnooping = 3;
+    optional bool jumboMode = 4;
+    optional bool dhcpServerEnabled = 5;
+    optional bool enabledAclPerPortPerVlan = 6;
+    optional string dhcpServerSetting = 7;
+
+    optional int64 createdTime = 8;
+    optional int64 updatedTime = 9;
+    optional string groupId = 10;
+
+    optional string ipv4DhcpSnoopingTrustPort = 11;
+    optional string arpInspectionTrustPort = 12;
+}
+
+/**
+ * @internal
+ **/
+message DHCPServer {
+    optional string poolName = 1;
+    optional string network = 2;
+    optional string excludedStart = 3;
+    optional string excludedEnd = 4;
+    optional int32 leaseDays = 5;
+    optional int32 leaseHrs = 6;
+    optional int32 leaseMins = 7;
+    optional string defaultRouterIp = 8;
+    repeated DHCPOption dhcpOptions = 9;
+}
+
+/**
+ * @internal
+ **/
+message DHCPOption {
+    optional int32 seq = 1;
+    optional DHCPOptionType type = 2;
+    optional string value = 3;
+
+    /**
+     * @internal
+     **/
+    enum DHCPOptionType {
+        ASCII = 1;
+        HEX = 2;
+        IP = 3;
+    }
+}
+
+/**
+ * @internal
+ **/
+enum IgmpSnoopingType {
+    IST_NONE = 1;
+    ACTIVE = 2;
+    PASSIVE = 3;
+}
+
+/**
+ * @internal
+ **/
+message PortConfiguration {
+  option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+  optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+  optional string groupId = 2;
+  optional string switchId = 3;
+  optional string port = 4;
+  optional string portName = 5;
+  optional bool portEnabled = 6;
+  optional string taggedVlans = 7;
+  optional string untaggedVlans = 8;
+  optional bool poeEnabled = 9;
+  optional POEClass poeClass = 10;
+  optional int32 poePriority = 11;
+  optional PortSpeed portSpeed = 13;
+  optional bool rstpAdminEdgePortEnabled = 14;
+  optional bool stpBpduGuardEnabled = 15;
+  optional bool stpRootGuardEnabled = 16;
+  optional bool dhcpSnoopingTrustPortEnabled = 17;
+  optional bool ipsgEnabled = 18;
+  optional bool lldpEnabled = 19;
+  optional string inAclConfigUUID = 20;
+  optional string inAclConfigName = 21;
+  optional string outAclConfigUUID = 22;
+  optional string outAclConfigName = 23;
+  optional string dhcpRelayAgent = 24;
+  optional string ipAddress = 25;
+  optional string ospfArea = 26;
+  optional string subnetMask = 27;
+  optional int64 createdTime = 28;
+  optional int64 updatedTime = 29;
+  optional string portIdentifierFormatted = 30;
+  optional bool hasLayerThreeConfig = 31;
+  optional bool poeCapability = 32;
+
+  /**
+   * @internal
+   **/
+  enum POEClass{
+    ZERO = 1;
+    ONE = 2;
+    TWO = 3;
+    THREE = 4;
+    FOUR = 5;
+    FIVE = 6;
+  }
+  
+  /**
+   * @internal
+   **/
+  enum PortSpeed {
+    NONE = 1;
+    AUTO = 2;
+    TEN_M_FULL = 3;
+    TEN_M_HALF = 4;
+    ONE_HUNDRED_M_FULL = 5;
+    ONE_HUNDRED_M_HALF = 6;
+    ONE_G_FULL = 7;
+    ONE_G_FULL_MASTER = 8;
+    ONE_G_FULL_SLAVE = 9;
+    TWO_POINT_FIVE_G_FULL = 10;
+    TWO_POINT_FIVE_G_FULL_MASTER = 11;
+    TWO_POINT_FIVE_G_FULL_SLAVE = 12;
+    FIVE_G_FULL = 13;
+    FIVE_G_FULL_MASTER = 14;
+    FIVE_G_FULL_SLAVE = 15;
+    TEN_G_FULL = 16;
+    TEN_G_FULL_MASTER = 17;
+    TEN_G_FULL_SLAVE = 18;
+    TWENTY_FIVE_G_FULL = 19;
+    FORTY_G_FULL = 20;
+    ONE_HUNDRED_G_FULL = 21;
+  }
+
+}
+
+/**
+ * @internal
+ **/
+enum SpanningTreeType {
+    STT_NONE = 1;
+    STP = 2;
+    RSTP = 3;
+}
+
+/**
+ * @internal
+ **/
+message VEConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string name = 2;
+    optional string groupId = 3;
+    optional string switchId = 4;
+    optional string ospfArea = 5;
+    optional int32 vlanId = 6;
+    optional string dhcpRelayAgent = 7;
+    optional string ipAddress = 8;
+    optional string subnetMask = 9;
+    optional string inAclConfigUUID = 10;
+    optional string inAclConfigName = 11;
+    optional string outAclConfigUUID = 12;
+    optional string outAclConfigName = 13;
+    optional int32 veId = 14;
+    optional int64 createdTime = 15;
+    optional int64 updatedTime = 16;
+    optional bool initialConfig = 17;
+}
+
+/**
+ * @internal
+ **/
+message LAGConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string switchId = 2;
+    optional string groupId = 3;
+    optional string name = 4;
+    optional string portsConfig = 5;
+    optional LAGType type = 6;
+    optional int64 createdTime = 7;
+    optional int64 updatedTime = 8;
+    optional string lastName = 9;
+
+    /**
+     * @internal
+     **/
+    enum LAGType {
+        STATIC = 1;
+        DYNAMIC = 2;
+    }
+}
+
+/**
+ * @internal
+ **/
+message VlanPortRelation {
+  option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+  optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+
+  optional string groupId = 2;
+  optional string switchId = 3;
+  optional RelationType relationType = 4;
+  optional string port = 5;
+  optional int32 vlanId = 6;
+
+  /**
+   * @internal
+   **/
+  enum RelationType{
+    TAGGED = 1;
+    UNTAGGED = 2;
+  }
+}
+
+/**
+ * @internal
+ **/
+message DeploySchedule {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional int64 scheduled = 2;
+    optional int64 createdTime = 3;
+    optional int64 pickedTime = 4;
+    optional string transactionId = 5;
+    optional string entityId = 6;
+    optional string groupId = 7;
+    optional string switchId = 8;
+    optional string modelFamily = 9;
+    optional ConfigType configType = 10;
+    optional DeployScope deployScope = 11;
+    optional ConfigFeature configFeature = 12;
+    optional string config = 13;
+    optional string switchIds = 14;
+    optional string works = 15;
+    optional string nodeId = 16;
+}
+
+/**
+ * @internal
+ **/
+message DeployPending {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional int64 createdTime = 2;
+    optional string switchId = 3;
+    optional ConfigType configType = 4;
+    optional ConfigFeature configFeature = 5;
+    optional string globalTypes = 6;
+    optional string config = 7;
+    optional string nodeId = 8;
+}
+
+message SwitchClientStatus {
+    /**
+    * @property snapshot
+    * @aggregation NULL
+    * @description List of Switch Client Visibility
+    * @since 5.1.2.1
+    */
+    repeated SwitchClientVisibility switchClientVisibilities = 1;
+    /**
+    * @property snapshot
+    * @aggregation NULL
+    * @description Number of Switch Client Visibility
+    * @since 5.1.2.1
+    */
+    optional int32 switchClientVisibilityCount = 2;
+    /**
+    * @property snapshot
+    * @aggregation NULL
+    * @description Domain identifier of SZ.
+    * @since 5.1.2.1
+    */
+    optional string domainId = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.2.1
+     */
+    optional string switchId = 4;
+}
+
+message SwitchClientVisibility {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = INFORMATION;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of SwitchId + SwitchPortId + ClientMAC + VLAN.
+     * @since 5.1.2
+     */
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true]; //SwitchId + SwitchPortId + ClientMAC + VLAN
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain identifier of SZ.
+     * @since 5.1.2
+     */
+    optional string domainId = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant identifier of SZ.
+     * @since 5.1.2
+     */
+    optional string tenantId = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch.
+     * @since 5.1.2
+     */
+    optional string switchId = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Group identifier of switch.
+     * @since 5.1.2
+     */
+    optional string groupId = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Identifier of switch unit.
+     * @since 5.1.2
+     */
+    optional string unitId = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description switch port id.
+     * @since 5.1.2
+     */
+    optional string switchPortId = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description domian name.
+     * @since 5.1.2
+     */
+    optional string domainName = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description switch name.
+     * @since 5.1.2
+     */
+    optional string switchName = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description switch Port.
+     * @since 5.1.2
+     */
+    optional string switchPort = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mac address of client.
+     * @since 5.1.2
+     */
+    optional string clientMac = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description VLAN of client.
+     * @since 5.1.2
+     */
+    optional string clientVlan = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description type of client.
+     * @since 5.1.2
+     */
+    optional ClientType clientType = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description auth type of client
+     * @since 5.1.2
+     */
+    optional ClientAuthType clientAuthType = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description status of client.
+     * @since 5.1.2
+     */
+    optional ClientAuthStatus clientAuthStatus = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description description of client
+     * @since 5.1.2
+     */
+    optional string clientDesc = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description user name of client
+     * @since 5.1.2
+     */
+    optional string clientUserName = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description IPv4 adder of client
+     * @since 5.1.2
+     */
+    optional string clientIpv4Addr = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description IPv6 adder of client
+     * @since 5.1.2
+     */
+    optional string clientIpv6Addr = 19;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description up time of client
+     * @since 5.1.2
+     */
+    optional string clientUpTime = 20;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description past 24hour auth history of client
+     * @since 5.1.2
+     */
+    optional string pastAuthHistory = 21;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description create time of client information
+     * @since 5.1.2
+     */
+    optional int64 createdTime = 22;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description update time of client information
+     * @since 5.1.2
+     */
+    optional int64 updatedTime = 23;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description name of Vlan
+     * @since 5.1.2
+     */
+    optional string vlanName = 24;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description used to check if pastAuthHistory is expired
+     * @since 5.1.2
+     */
+    optional int64 historyExpirationTime = 25;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 identifier of switch group.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneId = 26;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 identifier of switch group.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoId = 27;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneName = 28;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 Group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoName = 29;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The wired client is RuckusAP
+     * @since 5.2
+     */
+    optional bool isRuckusAP = 30;
+
+}
+
+/**
+ * @internal
+ **/
+enum ClientType {
+    OTHER = 1;
+    PHONE = 2;
+    WLAN_AP = 3;
+    ROUTER = 4;
+    BRIDGE = 5;
+    CABLE_DEVICE = 6;
+}
+
+/**
+ * @internal
+ **/
+enum ClientAuthType {
+    CLIENT_AUTH_TYPE_NONE = 1;
+    DOT1X = 2;
+    MAC_AUTH = 3;
+    WEB_AUTH = 4;
+}
+
+/**
+ * @internal
+ **/
+enum ClientAuthStatus {
+    NO_AUTH = 1;
+    ALLOWED = 2;
+    BLOCKED = 3;
+    RESTRICTED = 4;
+    CRITICAL = 5;
+    GUEST = 6;
+}
+
+message SwitchConfigurationMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The cluster information
+     * @since 5.1.2
+     */
+    optional SwitchClusterMessage clusterInfo = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The timestamp
+     * @since 5.1.2
+     */
+    optional uint64 timestamp = 2;
+}
+
+message SwitchClusterMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Cluster UUID
+     * @since 5.1.2
+     */
+    optional string clusterUuid = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Cluster name
+     * @since 5.1.2
+     */
+    optional string clusterName = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description System Hierarchy [Group Tree]
+     * @since 5.1.2
+     */
+    repeated TenantMessage tenantInfos = 3;
+}
+
+message TenantMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant UUID
+     * @since 5.1.2
+     */
+    optional string tenantId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant name
+     * @since 5.1.2
+     */
+    optional string tenantName = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The admin domain of tenant
+     * @since 5.1.2
+     */
+    optional DomainMessage adminDomain = 3;
+}
+
+message DomainMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain UUID
+     * @since 5.1.2
+     */
+    optional string domainId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name
+     * @since 5.1.2
+     */
+    optional string domainName = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The list of sub-domains
+     * @since 5.1.2
+     */
+    repeated DomainMessage subDomainInfos = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The list of switch groups
+     * @since 5.1.2
+     */
+    repeated SwitchGroupMessage switchGroupInfos = 4;
+}
+
+message SwitchGroupMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch group UUID
+     * @since 5.1.2
+     */
+    optional string switchGroupId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch group name
+     * @since 5.1.2
+     */
+    optional string switchGroupName = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The list of switch groups
+     * @since 5.1.2
+     */
+    repeated SwitchGroupMessage subSwitchGroupInfos = 3;
+}
+
+message RealtimeSwitchStatus {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial number of switch
+     * @since 5.1.2
+     */
+    optional string serialNumber = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mac address of switch
+     * @since 5.1.2
+     */
+    optional string switchMac = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain UUID
+     * @since 5.1.2
+     */
+    optional string domainId = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name
+     * @since 5.1.2
+     */
+    optional string domainName = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 identifier of switch group.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneId = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 1 group name of switch.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelOneName = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 identifier of switch group.
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoId = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Level 2 group name of switch
+     * @since 5.1.2
+     */
+    optional string switchGroupLevelTwoName = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Connection status of switch
+     * @since 5.1.2
+     */
+    optional string status = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch is operaional
+     * @since 5.2
+     */
+    optional bool operational = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch firmware is upgrading
+     * @since 5.2
+     */
+    optional bool firmwareUpgrading = 11;
+}
+
+/**
+ * @internal
+ **/
+message SupportSaveStatus {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = GROUP;
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string serialNumber = 2;
+    optional string switchId = 3;
+    optional string scpIp = 4;
+    optional int32 scpPort = 5;
+    optional string userName = 6;
+    optional string password = 7;
+    optional string pathToSave = 8;
+    optional DownloadStatus downloadStatus = 9;
+    optional string createdTime = 10;
+
+    /**
+    * @internal
+    **/
+    enum DownloadStatus{
+        DOWNLOADING = 1;
+        DONE = 2;
+        TIMEOUT = 3;
+        FAILED = 4;
+    }
+}
+
+/**
+ * @internal
+ */
+message KumoSwitch {
+  option (com.ruckuswireless.scg.protobuf.storage.category) = CONFIG;
+
+  optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+  optional string initialCli = 2;
+  optional string portConfiguration = 3;
+  optional string serialNumber = 4;
+  optional string featureConfigs = 5;
+}
+
+/**
+ * @internal
+ */
+message RelayExternalSyslogConfig {
+    option (com.ruckuswireless.scg.protobuf.storage.category) = CONFIG;
+
+    optional string id = 1 [(com.ruckuswireless.scg.protobuf.storage.id) = true];
+    optional string ip = 2;
+    optional int32 port = 3;
+    optional string protocol = 4;
+}
+
+message SwitchDetail {
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch identifier
+     * @since 5.2
+     */
+    optional string id = 1;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Hostname of switch.
+     * @since 5.2
+     */
+    optional string switchName = 2;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mac address of switch
+     * @since 5.2
+     */
+    optional string macAddress = 3;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Model of switch.
+     * @since 5.2
+     */
+    optional string model = 4;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Family of switch.
+     * @since 5.2
+     */
+    optional string family = 5;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch ip
+     * @since 5.2
+     */
+    optional string ipAddress = 6;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Registration status of switch
+     * @since 5.2
+     */
+    optional string registrationStatus = 7;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Number of switch ports.
+     * @since 5.2
+     */
+    optional int32 numOfPorts = 8;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Serial number of switch
+     * @since 5.2
+     */
+    optional string serialNumber = 9;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch group name
+     * @since 5.2
+     */
+    optional string groupName = 10;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch group id
+     * @since 5.2
+     */
+    optional string groupId = 11;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Connection status of switch
+     * @since 5.2
+     */
+    optional string status = 12;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The firmware version of switch
+     * @since 5.2
+     */
+    optional string firmwareVersion = 14;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The stack status
+     * @since 5.2
+     */
+    optional bool isStack = 15;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Number of units in the stack
+     * @since 5.2
+     */
+    optional uint64 numOfUnits = 16;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Switch is operaional
+     * @since 5.2
+     */
+    optional bool operational = 17;
+}
+
+message SwitchDetailMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The list of attached switch detail
+     * @since 5.2
+     */
+    repeated SwitchDetail switchDetail = 1;
+}

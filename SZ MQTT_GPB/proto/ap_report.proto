@@ -1,0 +1,2003 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL -
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is
+ * fully protected under copyright and trade secret laws. You may not view,
+ * use, disclose, copy, or distribute this file or any information contained
+ * herein except pursuant to a valid license from Ruckus.
+ */
+option java_package = "com.ruckuswireless.scg.protobuf";
+import "nanopb.proto";
+
+message APReportPerDnsServer {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description DNS IP address
+     * @since 5.1.1
+     */
+    optional string ipAddress = 1;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description DNS Request Counter
+     * @since 5.1.1
+     */
+    optional uint64 req_cnt = 2;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description DNS Response Counter
+     * @since 5.1.1
+     */
+    optional uint64 resp_cnt = 3;
+}
+
+message APReportDnsStats {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description DNS Server Count per wlan
+     * @since 5.1.1
+     */
+    optional uint32 server_cnt = 1;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Per DNS Server Statistics
+     * @since 5.1.1
+     */
+    repeated APReportPerDnsServer perDnsServer = 2;
+}
+
+message APReportBinWlan {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAC address of the AP
+     * @since 3.5
+     */
+	optional string ap_mac = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description First sample time in this bin. The AP samples stats every 90 seconds internally, when AP boots up. So if AP boot up at 10:08:00. Then AP gets stats at 10:09:30, 10:11:00, 10:12:30, 10:14:00, 10:15:30. So the time is 10:09:30 in Bin(10:00~10:15), and the time is 10:15:30 in Bin(10:15~10:30)
+     * @since 3.5
+     */
+	optional uint64 time = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Bin start time. The start timestamp of each Bin. For example it is 00:00:00 in Bin1(00:00~00:15), and it is 00:15:00 in Bin2(00:15~00:30)...
+     * @since 3.5
+     */
+	optional uint64 binStartTime = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio mode used by the AP
+     * @since 3.5
+     */
+	optional string radioMode = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio mode used by the AP
+     * @since 3.5
+     */
+	optional string mode = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio channel used by the AP
+     * @since 3.5
+     */
+	optional int32 channel = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SSID of the WLAN
+     * @since 3.5
+     */
+	optional string ssid = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description BSSID of the WLAN
+     * @since 3.5
+     */
+	optional string bssid = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN ID assigned by the controller
+     * @since 3.5
+     */
+	optional int32 wsgWlanId = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN interface ID
+     * @since 3.5
+     */
+	optional int32 wlanId = 10;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Highest number of clients during this sampling period
+     * @since 3.5
+     */
+	optional uint32 maxNumClients = 11;
+    /**
+     * @property snapshot
+     * @aggregation MIN
+     * @description Lowest number of clients during this sampling period
+     * @since 3.5
+     */
+	optional uint32 minNumClients = 12;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Average number of clients during this sampling period
+     * @since 3.5
+     */
+	optional int32 avgNumClients = 13;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total size of data and management packets received
+     * @since 3.5
+     */
+	optional uint64 rxBytes_r = 14;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total size of data and management packets transmitted
+     * @since 3.5
+     */
+	optional uint64 txBytes_r = 15;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total size of data and management frames received
+     * @since 3.5
+     */
+	optional uint64 rxFrames_r = 16;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total size of data and management frames transmitted
+     * @since 3.5
+     */
+	optional uint64 txFrames_r = 17;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total number of Tx errors
+     * @since 3.5
+     */
+	optional uint64 txFail_r = 18;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Rx rate
+     * @since 3.5
+     */
+	optional uint64 rxRateKbps = 19;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Tx rate
+     * @since 3.5
+     */
+	optional uint64 txRateKbps = 20;
+    /**
+     * @property delta
+     * @aggregation AVG
+     * @description Number of new client associations during this sampling period
+     * @since 3.5
+     */
+	optional uint32 newAssoc = 21;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Failed associate number in bin period
+     * @since 3.5
+     */
+	optional uint32 failedAssoc = 22;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description no space in linux buffers
+     * @since 3.5
+     */
+	optional uint32 rxFail_r = 23;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description total delta bytes in one din period for RX data and mgmt frame
+     * @since 3.5
+     */
+	optional uint64 peakRx_r = 24;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description total delta bytes in one din period for TX data and mgmt frame
+     * @since 3.5
+     */
+	optional uint64 peakTx_r = 25;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description accumulate rx packet number
+     * @since 3.5
+     */
+	optional uint64 rxDataFrames_r = 26;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description accumulate rx data bytes
+     * @since 3.5
+     */
+	optional uint64 rxDataBytes_r = 27;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description accumulate rx packet number
+     * @since 3.5
+     */
+	optional uint64 rxMgmtFrames_r = 28;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description accumulate rx mgmt bytes
+     * @since 3.5
+     */
+	optional uint64 rxMgmtBytes_r = 29;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description accumulate tx packet number
+     * @since 3.5
+     */
+	optional uint64 txDataFrames_r = 30;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description accumulate tx data bytes
+     * @since 3.5
+     */
+	optional uint64 txDataBytes_r = 31;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description accumulate tx packet number
+     * @since 3.5
+     */
+	optional uint64 txMgmtFrames_r = 32;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description accumulate tx mgmt bytes
+     * @since 3.5
+     */
+	optional uint64 txMgmtBytes_r = 33;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description broadcast packets received
+     * @since 3.5
+     */
+	optional uint64 rxBcastFrames_r = 34;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description multicast packets received
+     * @since 3.5
+     */
+	optional uint64 rxMcastFrames_r	= 35;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description received data packets that is not include bcast and multicast
+     * @since 3.5
+     */
+	optional uint64 rxUcastFrames_r	= 36;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description broadcast packets transmitted
+     * @since 3.5
+     */
+	optional uint64 txBcastFrames_r	= 37;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description multicast packets transmitted
+     * @since 3.5
+     */
+	optional uint64 txMcastFrames_r = 38;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description transmit data packets that is not include bcast and multicast
+     * @since 3.5
+     */
+	optional uint64 txUcastFrames_r = 39;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description tx data frames that are dropped or dropped by MQ
+     * @since 3.5
+     */
+	optional uint64 txDropDataFrames_r = 40;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN Group identifier.
+     * @since 3.5
+     */
+	optional string wlangroup_id = 42;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN tenant identifier.
+     * @since 3.5
+     */
+	optional string wlantenant_id = 43;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN Group name.
+     * @since 3.5
+     */
+	optional string wlangroup_name = 44;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN tenant name.
+     * @since 3.5
+     */
+	optional string wlantenant_name = 45;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN name.
+     * @since 3.5
+     */
+	optional string wlanName = 46;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description 802.11 auth failure count on wlan(delta value)
+     * @since 3.6
+     */
+	optional uint32 authFailureCount = 47;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description 802.11 auth success count on wlan(delta vlaue)
+     * @since 3.6
+     */
+	optional uint32 authSuccessCount = 48;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description 802.11 assoc failure count on wlan (delta value)
+     * @since 3.6
+     */
+	optional uint32 assocFailureCount = 49;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description 802.11 assoc success count on wlan (delta value)
+     * @since 3.6
+     */
+	optional uint32 assocSuccessCount = 50;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description eap authentication failure count on wlan(delta value)
+     * @since 3.6
+     */
+	optional uint32 eapFailureCount = 51;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description eap authentication success count on wlan(delta value)
+     * @since 3.6
+     */
+	optional uint32 eapSuccessCount = 52;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description radio failure count on wlan(delta value)
+     * @since 3.6
+     */
+	optional uint32 radiusFailureCount = 53;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description radio success count on wlan(delta value)
+     * @since 3.6
+     */
+	optional uint32 radiusSuccessCount = 54;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description DHCP faliure count on wlan(delta value)
+     * @since 3.6
+     */
+	optional uint32 dhcpFailureCount = 55;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description DHCP success count on wlan(delta value)
+     * @since 3.6
+     */
+	optional uint32 dhcpSuccessCount = 56;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total Tx data frames dropped (or dropped by MQ. In AP internal design, it has a messages queue(MQ) to queue all packets that AP plans to forward to clients. Then AP transmit packets to clients accoring the priority / scheduling/. The MQ is Ruckus propritary internal design.
+     * @since 3.5
+     */
+	optional uint64 txDropMgmtFrames_r = 57;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Client disconnect count with smart-roaming reason
+     * @since 5.1
+     */
+	optional uint32 staSmartRoamDisconCnt = 58;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Client disconnect count with idle reason
+     * @since 5.1
+     */
+	optional uint32 staIdleDisconCnt = 59;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Client disconnect count with client active leave bss reason
+     * @since 5.1
+     */
+	optional uint32 staLeaveDisconCnt = 60;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Client disconnect count with client's invalid frame contents reason
+     * @since 5.1
+     */
+	optional uint32 staInvalidDisconCnt = 61;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Client disconnect count with AP radio related reason
+     * @since 5.1
+     */
+	optional uint32 staRadioFailDisconCnt = 62;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Client disconnect count with AP active kick out reason
+     * @since 5.1
+     */
+	optional uint32 staAPKickDisconCnt = 63;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Split-tunnel total data Bytes received
+     * @since 5.1
+     */
+	optional uint64 rxDataBytesSplitTunnel = 64;
+
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Split-tunnel total data Bytes transmitted
+     * @since 5.1
+     */
+    optional uint64 txDataBytesSplitTunnel = 65;
+
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Split-tunnel total data-frames received
+     * @since 5.1
+     */
+	optional uint64 rxDataFramesSplitTunnel = 66;
+
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Split-tunnel total data-frames transmitted
+     * @since 5.1
+     */
+	optional uint64 txDataFramesSplitTunnel = 67;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description DNS statistics
+     * @since 5.1.1
+     */
+    optional APReportDnsStats dnsStats = 68;
+
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description roaming faliure count on wlan(delta value)
+     * @since 5.1.1
+     */
+	optional uint32 roamingFailureCount = 69;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description L3 auth faliure count on wlan(delta value)
+     * @since 5.1.1
+     */
+	optional uint32 L3authFailureCount = 70;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description L3 auth success count on wlan(delta value)
+     * @since 5.1.1
+     */
+	optional uint32 L3authSuccessCount = 71;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description roaming Success count on wlan(delta value)
+     * @since 5.2
+     */
+	optional uint32 roamingSuccessCount = 72;
+}
+
+message APReportBinRadio {
+    /**
+     * @property snapshot
+     * @aggregation Snapshot
+     * @description Radio ID (0: 2.4G 1: 5G)
+     * @since 3.5
+     */
+	optional uint32 radioId = 1;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Exponential average of total channel utilitization
+     * @since 3.5
+     */
+	optional uint32 airtime = 2;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Exponential average percentage of channel busy time
+     * @since 3.5
+     */
+	optional uint32 airtimeB = 3;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Exponential average of channel availability for receiving
+     * @since 3.5
+     */
+	optional uint32 airtimeRx = 4;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Exponential average of channel availability for for transmitting
+     * @since 3.5
+     */
+	optional uint32 airtimeTx = 5;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Accumulated number of Rx phy errors
+     * @since 3.5
+     */
+	optional uint32 phyError = 6;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total data bytes received on radio
+     * @since 3.5
+     */
+	optional uint64 rxBytes_r = 7;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total data bytes transmitted on radio
+     * @since 3.5
+     */
+	optional uint64 txBytes_r = 8;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total number of data frames received
+     * @since 3.5
+     */
+	optional uint64 rxFrames_r = 9;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total number of data frames transmitted
+     * @since 3.5
+     */
+	optional uint64 txFrames_r = 10;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Last recorded noise floor
+     * @since 3.5
+     */
+	optional int32  noiseFloor = 11;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Number of transmission retries
+     * @since 3.5
+     */
+	optional uint64 retry = 12;
+    /**
+     * @property Serialization
+     * @aggregation Snapshot
+     * @description Serialization data for all of wlan information
+     * @since 3.5
+     */
+	repeated APReportBinWlan binWlan = 13;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description the time taken by a packet from ethernet ingress to Radio egress or Tx complete
+     * @since 3.5
+     */
+	optional uint32 latency = 14;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description the saturated throughput estimate of a link
+     * @since 3.5
+     */
+	optional uint32 capacity = 15;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description the rate of client connection failure
+     * @since 3.5
+     */
+	optional float connectionFailure = 16;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description 802.11 auth failure count on radio(delta value)
+     * @since 3.5
+     */
+	optional uint32 connectionAuthFailureCount = 17;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description 802.11 assoc failure count on radio(delta value)
+     * @since 3.5
+     */
+	optional uint32 connectionAssocFailureCount = 18;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description total client connection on radio, include success and failure counts(delta value)
+     * @since 3.5
+     */
+	optional uint32 connectionTotalCount = 19;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description 802.11 auth success count on radio(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionAuthSuccessCount = 20;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description 802.11 assoc success count on radio(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionAssocSuccessCount = 21;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description eap authentication failure count on radio(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionEAPFailureCount = 22;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description eap authentication success count on radio(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionEAPSuccessCount = 23;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description radio failure count on radio(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionRadiusFailureCount = 24;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description radio success count on radio(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionRadiusSuccessCount = 25;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description DHCP failure count on radio(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionDHCPFailureCount = 26;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description DHCP success count on radio(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionDHCPSuccessCount = 27;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description total count for success connection(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionTotalSuccess = 28;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description total count for failure connection(delta value)
+     * @since 3.6
+     */
+	optional uint32 connectionTotalFailure = 29;
+    /**
+     * @property delta
+     * @aggregation AVG
+     * @description Radio average transmission rate
+     * @since 3.5
+     */
+	optional uint64 txRatebps = 30;
+    /**
+     * @property delta
+     * @aggregation NULL
+     * @description Client TTC histogram data count on radio
+     * @since 3.5
+     */
+	optional uint64 histogramClientTTC = 31;
+    /**
+     * @property delta
+     * @aggregation NULL
+     * @description Radio median TX MCS rate in this bin
+     * @since 5.1.1
+     */
+	optional uint32 medianTxRadioMCSRate = 32;
+   /**
+     * @property delta
+     * @aggregation NULL
+     * @description Radio median RX MCS rate in this bin
+     * @since 5.1.1
+     */
+	optional uint32 medianRxRadioMCSRate = 33;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description L3 auth failure count on radio(delta value)
+     * @since 5.1.1
+     */
+	optional uint32 connectionL3AuthFailureCount = 34;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description L3 auth success count on radio(delta value)
+     * @since 5.1.1
+     */
+	optional uint32 connectionL3AuthSuccessCount = 35;
+    /**
+     * @property delta
+     * @aggregation NULL
+     * @description radio Tx Packet Error Rate in this bin
+     * @since 5.2
+     */
+	optional uint32 TxPER = 36;
+}
+
+message APReportBinTunnel {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tunnel gateway address list
+     * @since 3.5
+     */
+	required string gw = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Current tunnel index
+     * @since 3.5
+     */
+	optional int32 index = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Current tunnel state (active or inactive)
+     * @since 3.5
+     */
+	optional int32 isActive = 3;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Number of keepalive packets sent
+     * @since 3.5
+     */
+	optional uint64 cICMP = 4;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Number of keepalive packets lost
+     * @since 3.5
+     */
+	optional uint64 cNonICMP = 5;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Number of SoftGRE sessions terminated
+     * @since 3.5
+     */
+	optional uint64 cDisconnect = 6;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total bytes received
+     * @since 3.5
+     */
+	optional uint64 rxBytes = 7;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total packets received
+     * @since 3.5
+     */
+	optional uint64 rxPkts = 8;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description No space in linux buffers (frame equal to packet). The AP received a frame completely, and AP has to allocate a memory for this frame. Then pass to next handler who interested to this frame. The AP drop the frame if it has no enough memory. The counter plus one if this case happen.
+     * @since 3.5
+     */
+	optional uint64 rxDropPkts = 9;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Number of bad packets received
+     * @since 3.5
+     */
+	optional uint64 rxErrPkts = 10;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total bytes transmitted
+     * @since 3.5
+     */
+	optional uint64 txBytes = 11;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total packets transmitted
+     * @since 3.5
+     */
+	optional uint64 txPkts = 12;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description No space available in linux. AP has to allocate a memory to store the packet that AP plans to transmit to client. The AP may drop it if AP has no enough memory. Then the counter plus one.
+     * @since 3.5
+     */
+	optional uint64 txDropPkts = 13;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Packet transmit problems. The AP plans to transmiet packet to client. But somehow AP can't transmit to client successfully, and AP drops the packets at the end. Then the counter plus one.
+     * @since 3.5
+     */
+	optional uint64 txErrPkts = 14;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total fragmented Tx packets
+     * @since 3.5
+     */
+	optional uint64 txFragPkts = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tunnel type: (0: rks_gre 1: soft_gre)
+     * @since 3.5
+     */
+	optional int32 type = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP IP address
+     * @since 3.5
+     */
+	optional string apIpAddress = 17;
+}
+
+message APReportBinIPSec {
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Session time
+     * @since 3.5
+     */
+	required uint64 ipsecSessionTime = 1;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Total packets transmitted
+     * @since 3.5
+     */
+	optional uint64 ipsecTxPkts = 2;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Total packets received
+     * @since 3.5
+     */
+	optional uint64 ipsecRxPkts = 3;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Total bytes transmitted
+     * @since 3.5
+     */
+	optional uint64 ipsecTxBytes = 4;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Total bytes received
+     * @since 3.5
+     */
+	optional uint64 ipsecRxBytes = 5;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Total Tx packets dropped
+     * @since 3.5
+     */
+	optional uint64 ipsecTxDropPkts = 6;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Total Rx packets dropped
+     * @since 3.5
+     */
+	optional uint64 ipsecRxDropPkts	= 7;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Tx idle time
+     * @since 3.5
+     */
+	optional uint64 ipsecTxIdleTime	= 8;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Rx idle time
+     * @since 3.5
+     */
+	optional uint64 ipsecRxIdleTime	= 9;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description AP IP address
+     * @since 3.5
+     */
+	optional string apIpAddress = 10;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Tunnel gateway address list
+     * @since 3.5
+     */
+	optional string gw = 11;
+}
+
+message APReportBinClient {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAC address of the AP
+     * @since 3.5
+     */
+	required string ap = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp for data sampling time
+     * @since 3.5
+     */
+	optional uint64 time = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Bin start time. The start timestamp of each Bin. For example it is 00:00:00 in Bin1(00:00~00:15), and it is 00:15:00 in Bin2(00:15~00:30)...
+     * @since 3.5
+     */
+	optional uint64 binStartTime = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio mode that is used by this client connection
+     * @since 3.5
+     */
+	optional string radioMode = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio mode used by the AP. Possible values are "b", "b/g", "b/g/n", "g","g/n", "a", "a/n", "a/n/ac", "n", "n/ac" , "ac"
+     * @since 3.5
+     */
+	optional string ap80211RadioMode = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Authorization mode used by the AP xxx what are the possible values?
+     * @since 3.5
+     */
+	optional string auth = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Encryption method used by the AP
+     * @since 3.5
+     */
+	optional string encryption = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAC address of the client
+     * @since 3.5
+     */
+	optional string clientMac = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description BSSID
+     * @since 3.5
+     */
+	optional string bssid = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SSID
+     * @since 3.5
+     */
+	optional string ssid = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description User name
+     * @since 3.5
+     */
+	optional string username = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description IP address assigned to the client
+     * @since 3.5
+     */
+	optional string clientIP = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description VLAN ID used by the client
+     * @since 3.5
+     */
+	optional uint64 clientVlan = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Operating system used by the client
+     * @since 3.5
+     */
+	optional string osType = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Host name of the client
+     * @since 3.5
+     */
+	optional string hostname = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Current radio channel
+     * @since 3.5
+     */
+	optional int32 channel = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Channel width used by the WLAN
+     * @since 3.5
+     */
+	optional uint32 channelWidth = 17;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Last recorded RSSI/SNR
+     * @since 3.5
+     */
+	optional int32 rssi = 18;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Highest RSSI ever recorded
+     * @since 3.5
+     */
+	optional int32 maxRssi = 19;
+    /**
+     * @property snapshot
+     * @aggregation MIN
+     * @description Lowest RSSI ever recorded
+     * @since 3.5
+     */
+	optional int32 minRssi = 20;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Initial RSSI recorded
+     * @since 3.5
+     */
+	optional int32 firstRssi = 21;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Last received signal strength
+     * @since 3.5
+     */
+	optional int32 receiveSignalStrength = 22;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Initial received signal strength
+     * @since 3.5
+     */
+	optional int32 firstReceiveSignalStrength = 23;
+    /**
+     * @property snapshot
+     * @aggregation MAX
+     * @description Highest received signal strength
+     * @since 3.5
+     */
+	optional int32 maxReceiveSignalStrength	= 24;
+    /**
+     * @property snapshot
+     * @aggregation MIN
+     * @description Lowest received signal strength
+     * @since 3.5
+     */
+	optional int32 minReceiveSignalStrength	= 25;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Last recorded noise floor
+     * @since 3.5
+     */
+	optional int32 noiseFloor = 26;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Location of the AP
+     * @since 3.5
+     */
+	optional string location = 27;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total bytes received
+     * @since 3.5
+     */
+	optional uint64 rxBytes_r = 28;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Total bytes transmitted
+     * @since 3.5
+     */
+	optional uint64 txBytes_r = 29;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Data frames received
+     * @since 3.5
+     */
+	optional uint64 rxFrames_r = 30;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Data frames transmitted
+     * @since 3.5
+     */
+	optional uint64 txFrames_r = 31;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description Average of non zero throughput estimate avg_throughput_estimate = sum_throughput_estimate/count_non_zero_throughput_estimate. For example AP has client's throughput_estimation 10Mbps, 9Mbps, 9Mbps, 10Mbps, 0, 0,0,0,0,0 . Then AP come out (10+9+9+10)/4 = 9.5 Mbps for throughputEst.
+     * @since 3.5
+     */
+	optional uint32 throughputEst = 32;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description First sample time in this bin. The AP samples stats every 90 seconds internally, when AP boots up. So if AP boot up at 10:08:00. Then AP gets stats at 10:09:30, 10:11:00, 10:12:30, 10:14:00, 10:15:30. So the time is 10:09:30 in Bin(10:00~10:15), and the time is 10:15:30 in Bin(10:15~10:30)
+     * @since 3.5
+     */
+	optional uint64 firstSampleTime	= 33;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total Tx management frames dropped (or dropped by MQ. In AP internal design, it has a messages queue(MQ) to queue all packets that AP plans to forward to clients. Then AP transmit packets to clients accoring the priority / scheduling/… The MQ is Ruckus propritary internal design.
+     * @since 3.5
+     */
+	optional uint64 txDropDataFrames_r = 35;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description CRC error for rx data frame. Each 802.11 frame has 4 bytes FCS  at tail. The AP recalculate the value when it received a frame completely. Then compare to the FCS in the frame. AP drops the frame if they are different. Then counter plus 1.
+     * @since 3.5
+     */
+	optional uint64 rxCRCErrFrames_r = 36;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Session ID string
+     * @since 3.5
+     */
+	optional string sessionId = 37;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Multi-sesson ID string
+     * @since 3.5
+     */
+	optional string multiSessionId = 38;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Date and time of initial connection
+     * @since 3.5
+     */
+	optional uint64 firstConnection	= 39;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Date and time of initial authorization
+     * @since 3.5
+     */
+	optional uint64 firstAuth = 40;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Date and time client IP address was assigned
+     * @since 3.5
+     */
+	optional uint64 ipAssignTime = 41;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Date and time client was disconnected
+     * @since 3.5
+     */
+	optional uint64 disconnectTime = 42;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Duration of client session
+     * @since 3.5
+     */
+	optional uint64 sessionTime = 43;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio interface identifier (0: 2.4G, 1 5G)
+     * @since 3.5
+     */
+	optional uint32 radioId = 44;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN ID assigned by the controller
+     * @since 3.5
+     */
+	optional int32 wsgWlanId = 45;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN Group identifier
+     * @since 3.5
+     */
+	optional string wlangroup_id = 46;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN Group name
+     * @since 3.5
+     */
+	optional string wlangroup_name = 47;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Reason for disconnect from the controller.
+     * @since 3.5
+     */
+	optional uint32 disconnectReason = 48;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN name
+     * @since 3.5
+     */
+	optional string wlanName = 49;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN tenant identifier
+     * @since 3.5
+     */
+	optional string wlantenant_id = 50;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN tenant name
+     * @since 3.5
+     */
+	optional string wlantenant_name = 51;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total data bytes received for this client
+     * @since 3.5
+     */
+	optional uint64 rxBytes = 52;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Total data bytes transmitted by this client
+     * @since 3.5
+     */
+	optional uint64 txBytes = 53;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Client receving data rate in bin period
+     * @since 3.5
+     */
+	optional uint64 rxRatebps = 54;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Client transmitted data rate in bin period
+     * @since 3.5
+     */
+	optional uint64 txRatebps = 55;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client radio band support capability (2.4G/5G/both)
+     * @since 3.5
+     */
+	optional int32 bandCap = 56;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client HT/VHT capability (non-HT/HT/VHT)
+     * @since 3.5
+     */
+	optional int32 vHTCap = 57;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client STBC capability
+     * @since 3.5
+     */
+	optional int32 streamCap = 58;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client BTM capability
+     * @since 3.5
+     */
+	optional int32 BTMCap = 59;
+    /**
+     * @property delta
+     * @aggregation NULL
+     * @description Client median TX MCS rate in this bin
+     * @since 5.1.1
+     */
+	optional uint32 medianTxMCSRate = 60;
+    /**
+     * @property delta
+     * @aggregation NULL
+     * @description Client median RX MCS rate in this bin
+     * @since 5.1.1
+     */
+	optional uint32 medianRxMCSRate = 61;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client auth TTC latest value in this bin
+     * @since 5.1.1
+     */
+	optional uint64 clientAuthTTC = 62;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client assoc TTC latest value in this bin
+     * @since 5.1.1
+     */
+	optional uint64 clientAssocTTC = 63;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client EAP TTC latest value in this bin
+     * @since 5.1.1
+     */
+	optional uint64 clientEapTTC = 64;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client Radius TTC latest value in this bin
+     * @since 5.1.1
+     */
+	optional uint64 clientRadiusTTC = 65;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client DHCP TTC latest value in this bin
+     * @since 5.1.1
+     */
+	optional uint64 clientDhcpTTC = 66;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description roaming faliure count for client(delta value)
+     * @since 5.2
+     */
+	optional uint32 roamingFailureCount = 67;
+    /**
+     * @property delta
+     * @aggregation SUM
+     * @description roaming success count on client(delta value)
+     * @since 5.2
+     */
+	optional uint32 roamingSuccessCount = 68;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client device type,  such as Laptop, Smartphones, Tablets etc.
+     * @since 5.2
+     */
+    optional int32 deviceType = 69;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client OSVendor type,  such as Windows, Android, Apple etc.
+     * @since 5.2
+     */
+    optional int32 osVendorType = 70;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client's device model name,  such as Windows 7, Mac OS X etc.
+     * @since 5.2
+     */
+    optional string modelName = 71;
+    /**
+     * @property delta
+     * @aggregation NULL
+     * @description Client TX Packet Error Rate in this bin
+     * @since 5.2
+     */
+	optional uint32 TxPER = 72;
+
+    	optional string authMethod = 73;
+}
+
+message HccdConnMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description the time for each message(packet) observed
+     * @since 3.6
+     */
+	optional uint64 timestamp = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description message identity for each packet
+     * @since 3.6
+     */
+	optional int32 message_id = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description message(packet) source module (like as client, AP, Cblade,...etc)
+     * @since 3.6
+     */
+	optional int32 source = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description message(packet) destination module
+     * @since 3.6
+     */
+	optional int32 destination = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description message status (success or failure)
+     * @since 3.6
+     */
+	optional int32 status_code = 5;
+}
+
+message HccdClientConnection {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description client mac for each connection
+     * @since 3.6
+     */
+	optional string client_mac = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description the time for each connection started
+     * @since 3.6
+     */
+	optional uint64 timestamp = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description this connection session status is success or failure
+     * @since 3.6
+     */
+	optional int32 connection_status = 3;
+
+	/* remove client_sm_map */
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description the failure message ID for this connection
+     * @since 3.6
+     */
+	optional int32 failed_msg_id = 5;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description serialization data for all of message ID in this client session
+     * @since 3.6
+     */
+	repeated HccdConnMessage hccdConnMessages = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description wlan_id for this client association
+     * @since 3.6
+     */
+	optional uint32 wlan_id = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description radio_id for this client association
+     * @since 3.6
+     */
+	optional uint32 radio_id = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description ssid for this client association
+     * @since 3.6
+     */
+        optional string ssid = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description wlan type are used on this wlan
+     * @since 3.6
+     */
+        optional string wlanType = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description client snr (not implemented yet)
+     * @since 3.6
+     */
+        optional float snr = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description what's category for this connection failure (auth/assoc/eap/radius/dhcp failure)
+     * @since 3.6
+     */
+        optional int32 failure_type = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description vlan ID value for this client
+     * @since 3.6
+     */
+	optional int32 vlan = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description disconnection reason code
+     * @since 3.6
+     */
+        optional int32 reason_code = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description disconnection reason
+     * @since 3.6
+     */
+        optional string info = 15;
+}
+
+message APReportBin {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Bin data number xxx. AP devides 24hours into 96 bins, ie 1 bin is 15 minutes. Bin1 time period is 00:00~00:15, Bin2 time period is 00:15~00:30 and so on. It is an number from 1~96. Then one can see the stats time period according to this value.
+     * @since 3.5
+     */
+	required int32 bin = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Uptime in one report duration Example: AP boots up at 10:08, so the uptime_r is 420 seconds (10:15 - 10:08) in Bin(10:00~10:15).  If AP keeps work well, and now is 11:02, then uptime_r is 900 seconds in Bin(10:45~11:00)
+     * @since 3.5
+     */
+	optional int32 uptime_r = 2;
+}
+
+message APFirewallProfileStats {
+
+    /**
+     * @property  snapshot
+     * @aggregation NULL
+     * @description Firewall profile identifier
+     * @since 5.2
+     */
+    optional string firewallProfileId = 1;
+
+    /**
+     * @property  snapshot
+     * @aggregation NULL
+     * @description Firewall profile name
+     * @since 5.2
+     */
+    optional string firewallProfileName = 2;
+
+    /**
+     * @property  delta
+     * @aggregation SUM
+     * @description Firewall profile hit count
+     * @since 5.2
+     */
+    optional uint64 firewallProfileHitCount = 3;
+
+    /**
+     * @property  snapshot
+     * @aggregation NULL
+     * @description L2 ACL policy identifier
+     * @since 5.2
+     */
+    optional string l2AclPolicyId = 4;
+
+    /**
+     * @property  delta
+     * @aggregation SUM
+     * @description L2 ACL policy hit count
+     * @since 5.2
+     */
+    optional uint64 l2AclPolicyHitCount = 5;
+
+    /**
+     * @property  snapshot
+     * @aggregation NULL
+     * @description L3 ACL policy identifier
+     * @since 5.2
+     */
+    optional string l3AclPolicyId = 6;
+
+    /**
+     * @property  delta
+     * @aggregation SUM
+     * @description L3 ACL policy hit count
+     * @since 5.2
+     */
+    optional uint64 l3AclPolicyHitCount = 7;
+
+    /**
+     * @property  snapshot
+     * @aggregation NULL
+     * @description Device policy identifier
+     * @since 5.2
+     */
+    optional string devicePolicyId = 8;
+
+    /**
+     * @property  delta
+     * @aggregation SUM
+     * @description Device policy hit count
+     * @since 5.2
+     */
+    optional uint64 devicePolicyHitCount = 9;
+
+    /**
+     * @property  snapshot
+     * @aggregation NULL
+     * @description AVC policy identifier
+     * @since 5.2
+     */
+    optional string avcPolicyId = 10;
+
+    /**
+     * @property  delta
+     * @aggregation SUM
+     * @description AVC policy hit count
+     * @since 5.2
+     */
+    optional uint64 avcPolicyHitCount = 11;
+
+    /**
+     * @property  snapshot
+     * @aggregation NULL
+     * @description Url filtering policy identifier
+     * @since 5.2
+     */
+    optional string urlFilteringId = 12;
+
+    /**
+     * @property  delta
+     * @aggregation SUM
+     * @description Url filtering policy hit count
+     * @since 5.2
+     */
+    optional uint64 urlFilteringHitCount = 13;
+
+}
+
+message APReportStats {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description GPB version
+     * @since 3.5
+     */
+	required uint32 version = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP MAC address
+     * @since 3.5
+     */
+	optional string ap = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp for this report
+     * @since 3.5
+     */
+	optional uint64 timestamp = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Sequence record number for AP report.
+     * @since 3.5
+     */
+	optional uint64 seqNumber = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone UUID
+     * @since 3.5
+     */
+	optional string zone_id = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Total number of bin data.
+     * @since 3.5
+     */
+	repeated APReportBin binCount = 6;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description Total number of Client bin data.
+     * @since 3.5
+     */
+	repeated APReportBinClient binClient = 7;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description The number of IPSec tunnel.
+     * @since 3.5
+     */
+	repeated APReportBinIPSec binIPSec = 8;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description The number of tunnel data.
+     * @since 3.5
+     */
+	repeated APReportBinTunnel binTunnel = 9;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description The number of radio data.
+     * @since 3.5
+     */
+	repeated APReportBinRadio binRadio = 10;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description AP devices configured by the administrator.
+     * @since 3.5
+     */
+	optional string deviceName = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP Group UUID
+     * @since 3.5
+     */
+	optional string apgroup_id = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Cluster UUID.
+     * @since 3.5
+     */
+	optional string cluster_id = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain UUID.
+     * @since 3.5
+     */
+	optional string domain_id = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP tenant UUID
+     * @since 3.5
+     */
+	optional string aptenant_id = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAP UUID
+     * @since 3.5
+     */
+	optional string map_id = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP tenant name.
+     * @since 3.5
+     */
+	optional string aptenant_name = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone name.
+     * @since 3.5
+     */
+	optional string zone_name = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP Group name
+     * @since 3.5
+     */
+	optional string apgroup_name = 19;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name
+     * @since 3.5
+     */
+	optional string domain_name = 20;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The timestamp for sampling stats data
+     * @since 3.5
+     */
+	optional uint64 sampleTime = 21;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The interval time to aggregate stats together
+     * @since 3.5
+     */
+	optional uint32 aggregationInterval = 22;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description IP address of the AP
+     * @since 3.5
+     */
+	optional string apIpAddress = 23;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description IPv6 address of the AP
+     * @since 3.5
+     */
+	optional string apIpv6Address = 24;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description Serialization data for HCCD connection data
+     * @since 3.5
+     */
+	repeated HccdClientConnection hccdClientConnections = 25[(nanopb).type = FT_POINTER];
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Average latency that is measured by heartbeat lost
+     * @since 3.5
+     */
+	optional float HeartbeatLatency = 26;
+    /**
+     * @property snapshot
+     * @aggregation AVG
+     * @description Average latency thatis measured by ping
+     * @since 3.5
+     */
+	optional float PingLatency = 27;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description count for ping lost
+     * @since 3.6
+     */
+	optional uint32 PingLossCount = 28;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description is a monitoring AP or not
+     * @since 5.1.2
+     */
+	optional bool isMonitoringEnabled = 29;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Firewall Profile Stats.
+     * @since 5.2
+     */
+	repeated APFirewallProfileStats firewallProfileStats = 30;
+}

@@ -1,0 +1,242 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL -
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is
+ * fully protected under copyright and trade secret laws. You may not view,
+ * use, disclose, copy, or distribute this file or any information contained
+ * herein except pursuant to a valid license from Ruckus.
+ */
+option java_package = "com.ruckuswireless.scg.protobuf.sci";
+
+message ConfigurationMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description GPB version
+     * @since 3.5
+     */
+    required uint32 version = 1;
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 3.5
+     */
+    optional ClusterMessage clusterInfo = 2;
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 3.5
+     */
+    optional uint64 timestamp = 3;
+}
+
+message ClusterMessage {
+    /* Cluster Informations */
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Cluster UUID
+     * @since 3.5
+     */
+    optional string clusterUuid = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Cluster name
+     * @since 3.5
+     */
+    optional string clusterName = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of control node information
+     * @since 3.5
+     */
+    optional string controlBlades = 3; // (/wsg/api/scg/planes/control and /wsg/api/sci/cbs)
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of system resource utilization
+     * @since 3.5
+     */
+    optional string controllerUtilizations = 4; // (/wsg/api/sci/cbutils)
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of system summary
+     * @since 3.5
+     */
+    optional string systemSummary = 5; // (/wsg/api/scg/planes/systemSummary)
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of domain list
+     * @since 3.5
+     */
+    optional string domains = 100; // (/wsg/api/scg/session/currentUser/domainList) 
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of zone list
+     * @since 3.5
+     */
+    optional string zones = 101; // (/wsg/api/scg/zones/byDomain/$domain)
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of AP group list
+     * @since 3.5
+     */
+    optional string apGroups = 102; // (/wsg/api/scg/apgroup/byZone/$zone)
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of wlan group list
+     * @since 3.5
+     */
+    optional string wlanGroups = 103; // (/wsg/api/scg/wlangroup/byZone/$zone)
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of WLAN list
+     * @since 3.5
+     */
+    optional string wlans = 104; // (/wsg/api/scg/wlans/byZone/$zone)
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description JSON string of AP list
+     * @since 3.5
+     */
+    optional string aps = 105; // (/wsg/api/sci/aps)
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description System Hierarchy [Group Tree]
+     * @since 3.5
+     */
+    repeated TenantMessage tenantInfos = 200;
+}
+
+message TenantMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant UUID
+     * @since 3.5
+     */
+    optional string tenantId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Tenant name
+     * @since 3.5
+     */
+    optional string tenantName = 2;
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 3.5
+     */
+    optional DomainMessage adminDomain = 3;
+}
+
+message DomainMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain UUID
+     * @since 3.5
+     */
+    optional string domainId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name
+     * @since 3.5
+     */
+    optional string domainName = 2;
+    /**
+     * @property 
+     * @aggregation 
+     * @description 
+     * @since 3.5
+     */
+    repeated ZoneMessage zoneInfos = 3;
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 3.5
+     */
+    repeated DomainMessage subDomainInfos = 4;
+}
+
+message ZoneMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone UUID
+     * @since 3.5
+     */
+    optional string zoneId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone name
+     * @since 3.5
+     */
+    optional string zoneName = 2;
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 3.5
+     */
+    repeated ApGroupMessage apGroupInfos = 3;
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 3.5
+     */
+    repeated WlanGroupMessage wlanGroupInfos = 4;
+}
+
+message ApGroupMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP Group UUID
+     * @since 3.5
+     */
+    optional string apGroupId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP Group name
+     * @since 3.5
+     */
+    optional string apGroupName = 2;
+}
+
+message WlanGroupMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN Group UUID
+     * @since 3.5
+     */
+    optional string wlanGroupId = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN Group name
+     * @since 3.5
+     */
+    optional string wlanGroupName = 2;
+}

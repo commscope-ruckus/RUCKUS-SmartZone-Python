@@ -1,0 +1,24 @@
+syntax = "proto2";
+option java_package = "com.ruckuswireless.scg.protobuf.sci";
+
+import "ap_rogue.proto";
+
+/**
+ * @internal
+ **/
+message SciRogueMessage {
+    optional RogueAPStats apRogue = 1;
+    repeated RoguePolicyMessage roguePolicies = 2;
+}
+ 
+ 
+/**
+ * @internal
+ **/
+message RoguePolicyMessage {
+    optional string rogueMac = 1;
+    optional string policyName = 2;
+    optional string ruleName = 3;
+    optional string type = 4;
+}
+

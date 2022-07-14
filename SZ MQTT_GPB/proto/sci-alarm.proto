@@ -1,0 +1,215 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ *
+ * 2016/07/01 Created By Frankie Chao
+ * JsonMessage GPB format is used to transfer the JSON messages accros 
+ * applications which includes the version, message content and message 
+ * content type attributes.
+ */
+option java_package = "com.ruckuswireless.scg.protobuf.sci";
+
+message AlarmMessage {
+	enum AlarmState {
+        /**
+         * @description OUTSTANDING
+         * @since 3.5.1
+         */
+        OUTSTANDING = 0;
+        /**
+         * @description CLEARED
+         * @since 3.5.1
+         */
+        CLEARED = 1;
+    }
+    /**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description GPB version
+	 * @since 3.5.1
+	 */
+	optional uint32 version = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Alarm UUID
+	 * @since 3.5.1
+	 */
+	optional string alarmUuid = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Alarm Code defined by AlarmEnum
+	 * @since 3.5.1
+	 */
+	optional uint32 alarmCode = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Alarm severity defined by AlarmEnum
+	 * @since 3.5.1
+	 */
+	optional string alarmSeverity = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Alarm main categorty defined by AlarmCategory
+	 * @since 3.5.1
+	 */
+	optional string mainCategory = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Alarm type description defined by AlarmEnum represented with String.
+	 * @since 3.5.1
+	 */
+	optional string alarmType = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The triggerring event code number for this alarm.
+	 * @since 3.5.1
+	 */
+	optional uint32 initEventCode = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The timestamp of this alarm's creation.
+	 * @since 3.5.1
+	 */
+	optional uint64 timestamp = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The AlarmState of current triggering alarm which contains (OUTSTANDING/CLEARED).
+	 * @since 3.5.1
+	 */
+	optional AlarmState alarmState = 9;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description The AlarmMessageEntry contains additional attribute values required by outer service.
+	 * @since 3.5.1
+	 */
+	repeated AlarmMessageEntry attributes = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Domain UUID.
+	 * @since 3.5.1
+	 */
+	optional string domainId = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Zone UUID. Unique zone ID assigned by SZ controller.
+	 * @since 3.5.1
+	 */
+	optional string zoneId = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP Group identifier.
+	 * @since 3.5.1
+	 */
+	optional string apGroupId = 13;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Access Point  MAC address.
+	 * @since 3.5.1
+	 */
+	optional string apMac = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description UE/Client MAC address if the events are related to client.
+	 * @since 3.5.1
+	 */
+	optional string clientMac = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Reason for the alarm to occur.
+	 * @since 3.5.1
+	 */
+	optional string reason = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Domain name.
+	 * @since 3.5.1
+	 */
+	optional string domainName = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Zone name assigned by the controller. The admin configures the Zone name via the contoller's user interface.
+	 * @since 3.5.1
+	 */
+	optional string zoneName = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP Group name.
+	 * @since 3.5.1
+	 */
+	optional string apGroupName = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPv4 address of the AP.
+	 * @since 3.5.1
+	 */
+	optional string apIpAddress = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPv6 address of the AP.
+	 * @since 3.5.1
+	 */
+	optional string apIpv6Address = 21;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Description of the alarm represented by string.
+	 * @since 3.5.1
+	 */
+	optional string description = 22;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Sub category of the alarm.
+	 * @since 3.5.1
+	 */
+	optional string subCategory = 23;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Blade ID information from which node alarm created.
+	 * @since 3.5.1
+	 */
+	optional string bladeId = 24;
+}
+
+message AlarmMessageEntry {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Alarm message entry key.
+	 * @since 3.5.1
+	 */
+	optional string key = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Alarm message entry value.
+	 * @since 3.5.1
+	 */
+	optional string value = 2;
+}

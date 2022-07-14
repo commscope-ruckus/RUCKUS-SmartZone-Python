@@ -1,0 +1,294 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ */
+option java_package = "com.ruckuswireless.scg.protobuf";
+
+message ReportType {
+
+	enum RogueType {
+	           /**
+	             * @description Rogue type possible value
+	             * @since 3.5
+	             */
+                DISCOVERY = 0;
+				/**
+	             * @description Rogue type possible value
+	             * @since 3.5
+	             */
+                UPDATE = 1;
+				/**
+	             * @description Rogue type possible value
+	             * @since 3.5
+	             */
+                DISAPPEAR = 2;
+        }
+
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Mac address of rogue AP.
+	 * @since 3.5
+	 */
+	optional string rogueMac = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description peer node rssi value
+	 * @since 3.5
+	 */
+	optional uint32 rssi = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description is encryption or not (encrypted or open)
+	 * @since 3.5
+	 */
+	optional string encryption = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description peer node radio type
+	 * @since 3.5
+	 */
+	optional string radio = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description peer node channel used
+	 * @since 3.5
+	 */
+	optional uint32 channel = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description last detected time for this peer node
+	 * @since 3.5
+	 */
+	optional uint64 timeStamp = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description peer node ssid
+	 * @since 3.5
+	 */
+	optional string ssid = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description peer node wlanId
+	 * @since 3.5
+	 */
+	optional int32 wlanId = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description peer node mac address
+	 * @since 3.5
+	 */
+	optional string rogueAPMac = 9;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description is event send out for this peer node
+	 * @since 3.5
+	 */
+	optional int32 isSendEvent = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description current rouge type for this peer node
+	 * @since 3.5
+	 */
+	optional string type = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description previous channel is used by peer node
+	 * @since 3.5
+	 */
+	optional uint32 prevReportChannel = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description previous rogue type for this peer node
+	 * @since 3.5
+	 */
+	optional string prevReportType = 13;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description this peer node rogue type status(discover, update, disappear)
+	 * @since 3.5
+	 */
+	optional RogueType rogueType = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description current rouge type for this peer node
+	 * @since 3.5
+	 */
+	optional uint32 rogueTypeInfo = 15;
+}
+
+message RogueAPStats {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description version number for this stats report
+	 * @since 3.5
+	 */
+	required uint32 version = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description ap mac address
+	 * @since 3.5
+	 */
+	optional string apMac = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description ap name
+	 * @since 3.5
+	 */
+	optional string apName = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description zone UUID
+	 * @since 3.5
+	 */
+	optional string zone_id = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description is malicious protected or not
+	 * @since 3.5
+	 */
+	optional string protect = 5;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description Serialization data for all of rouge entry
+     * @since 3.5
+     */
+	repeated ReportType apRogueUpdate = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP group UUID
+     * @since 3.5
+     */
+	optional string apgroup_id = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Cluster UUID
+     * @since 3.5
+     */
+	optional string cluster_id = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain UUID
+     * @since 3.5
+     */
+	optional string domain_id = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP tenant UUID
+     * @since 3.5
+     */
+	optional string aptenant_id = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAP uuid
+     * @since 3.5
+     */
+	optional string map_id = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP tenant name
+     * @since 3.5
+     */
+	optional string aptenant_name = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone name
+     * @since 3.5
+     */
+	optional string zone_name = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP group name
+     * @since 3.5
+     */
+	optional string apgroup_name = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name
+     * @since 3.5
+     */
+	optional string domain_name = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description An indication to flush all rouge stats when first report
+     * @since 3.5
+     */
+	optional int32  controllerShouldFlush = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp for generating this stats report
+     * @since 3.5
+     */
+	optional uint64 sampleTime = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Interval time for aggregating data
+     * @since 3.5
+     */
+	optional uint32 aggregationInterval = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp for generating this stats report
+     * @since 3.5
+     */
+	optional uint64 timestamp = 19;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 1: new rogue ap report, 2: full rogue ap listing report, 3: new rogue client report, 4: full rogue client listing report
+     * @since 5.1
+     */
+	optional uint32 operation_type = 20;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Timestamp for generating this stats report
+     * @since 5.2
+     */
+	optional uint64 totPpduDur = 21;
+    /**
+     * @property snapshot
+     * @aggregation SUM
+     * @description Timestamp for generating this stats report
+     * @since 5.2
+     */
+	optional uint64 totScanTime = 22;
+}

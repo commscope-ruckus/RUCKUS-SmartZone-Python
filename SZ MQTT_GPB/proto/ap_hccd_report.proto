@@ -1,0 +1,276 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL -
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is
+ * fully protected under copyright and trade secret laws. You may not view,
+ * use, disclose, copy, or distribute this file or any information contained
+ * herein except pursuant to a valid license from Ruckus.
+ */
+option java_package = "com.ruckuswireless.scg.protobuf";
+import "nanopb.proto";
+
+message ApHccdClientReportConnection {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client MAC address
+     * @since 3.6
+     */
+    optional string client_mac = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp for starting to record this client session
+     * @since 3.6
+     */
+    optional uint64 timestamp = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client session connection status (success or failure)
+     * @since 3.6
+     */
+    optional int32 connection_status = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Message ID to indicate what failures step in whole connection
+     * @since 3.6
+     */
+    optional int32 failed_msg_id = 4;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description A sequence of message ID are recorded for this client session
+     * @since 3.6
+     */
+    repeated int32 message_ids = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN Id that is connected by client
+     * @since 3.6
+     */
+    optional uint32 wlan_id = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Radio Id that is connected by client
+     * @since 3.6
+     */
+    optional uint32 radio_id = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SSID that is connected by client
+     * @since 3.6
+     */
+    optional string ssid = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Wlan type (open, WPA, etc) - not used now
+     * @since 3.6
+     */
+    optional string wlanType = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client lastest frame SNR value - not used now
+     * @since 3.6
+     */
+    optional float snr = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Classify this failure client session belong to which failure case(auth, assoc, eap, radio, dhcp)
+     * @since 3.6
+     */
+    optional int32 failure_type = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Vlan ID is used by client
+     * @since 3.6
+     */
+    optional int32 vlan = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Reason code for deauth/disassoc frame
+     * @since 3.6
+     */
+    optional int32 reason_code = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Client session disconnection description
+     * @since 3.6
+     */
+    optional string info = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description the time is spent for this failure connection
+     * @since 5.1.1
+     */
+     optional uint64 TTF= 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description a flag to indicate this connection session is roaming or new join
+     * @since 5.1.1
+     */
+    optional int32 isRoaming = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description CCD packet capture file name
+     * @since 5.2
+     */
+    optional string pktCapName = 17;
+}
+
+message ApHccdReportMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP HCCD version
+     * @since 3.6
+     */
+    optional uint32 version = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP MAC address
+     * @since 3.6
+     */
+    optional string ap_mac = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp to generate this stats report
+     * @since 3.6
+     */
+    optional uint64 timestamp = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Sequence number to identify this stats report
+     * @since 3.6
+     */
+    optional uint64 seqNumber = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone UUID
+     * @since 3.6
+     */
+    optional string zone_id = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description  AP gorup UUID
+     * @since 3.6
+     */
+    optional string apgroup_id = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Cluster UUID
+     * @since 3.6
+     */
+    optional string cluster_id = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain UUID
+     * @since 3.6
+     */
+    optional string domain_id = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP tenant UUID
+     * @since 3.6
+     */
+    optional string aptenant_id = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAP UUID
+     * @since 3.6
+     */
+    optional string map_id = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP device name
+     * @since 3.6
+     */
+    optional string deviceName = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP tenant name
+     * @since 3.6
+     */
+    optional string aptenant_name = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone name
+     * @since 3.6
+     */
+    optional string zone_name = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP group name
+     * @since 3.6
+     */
+    optional string apgroup_name = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name
+     * @since 3.6
+     */
+    optional string domain_name = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp for generating this report
+     * @since 3.6
+     */
+    optional uint64 sampleTime = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Interval time for aggregrating stats data
+     * @since 3.6
+     */
+    optional uint32 aggregationInterval = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP IPv4 address
+     * @since 3.6
+     */
+    optional string apIpAddress = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP IPv6 address
+     * @since 3.6
+     */
+    optional string apIpv6Address = 19;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description serialization data for failure client session record
+     * @since 3.6
+     */
+    repeated ApHccdClientReportConnection apHccdClients = 20 [(nanopb).type = FT_POINTER];
+}

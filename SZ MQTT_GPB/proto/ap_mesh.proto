@@ -1,0 +1,311 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ */
+option java_package = "com.ruckuswireless.scg.protobuf";
+
+message APMeshDownlink {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description MAC address of the mesh downlink AP
+	 * @since 3.5
+	 */
+	required string	downMac = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Link status of the mesh downlink AP
+	 * @since 3.5
+	 */
+	optional uint32	type = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation AVG
+	 * @description RSSI of the mesh downlink AP
+	 * @since 3.5
+	 */
+	optional int32 rssi = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total size of data and management packets transmitted since the last AP restart
+	 * @since 3.5
+	 */
+	optional uint64	txBytes = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total number of data and management packets transmitted since the last AP restart
+	 * @since 3.5
+	 */
+	optional uint64	txFrames = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total size of data and management packets received since the last AP restart
+	 * @since 3.5
+	 */
+	optional uint64	rxBytes = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total number of data and management packets received since the last AP restart
+	 * @since 3.5
+	 */
+	optional uint64	rxFrames = 7;
+}
+
+message APMeshUplink {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description MAC address of the mesh uplink AP
+	 * @since 3.5
+	 */
+	required string	upMac = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Link status of the mesh uplink AP
+	 * @since 3.5
+	 */
+	optional uint32 type = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation AVG
+	 * @description RSSI of the mesh uplink AP
+	 * @since 3.5
+	 */
+	optional int32 rssi = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total size of data and management packets transmitted since the last AP restart
+	 * @since 3.5
+	 */
+	optional uint64	txBytes = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total number of data and management packets transmitted since the last AP restart
+	 * @since 3.5
+	 */
+	optional uint64	txFrames = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total size of data and management packets received  since the last AP restart
+	 * @since 3.5
+	 */
+	optional uint64	rxBytes = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation SUM
+	 * @description Total number of data and management packets received since the last AP restart
+	 * @since 3.5
+	 */
+	optional uint64	rxFrames = 7;
+}
+
+message APMeshNeighbor {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description MAC address of the neigboring AP
+	 * @since 3.5
+	 */
+	required string	mac = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description RSSI of the neighboring AP
+	 * @since 3.5
+	 */
+	optional int32 rssi = 2;
+}
+
+message APMeshStats {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Mesh stats version
+     * @since 3.5
+     */
+	required uint32 version = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description MAC address of the AP
+	 * @since 3.5
+	 */
+	required string	ap = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Date and time these statistics were generated
+	 * @since 3.5
+	 */
+	optional uint64	timestamp = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Counter for generating mesh statistics. The count increases by one whenever the AP generates mesh statistics. When the AP restarts, the counter also resets to zero (0).
+	 * @since 3.5
+	 */
+	optional uint64	seqNumber = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Unique zone ID (for example, b381206b-2e5d-43dc-b249-e36ffae9855c) assigned by the controller
+	 * @since 3.5
+	 */
+	optional string	zone_id = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Role of the AP on the mesh network (if mesh networking is enabled). Possible values include: (0:MESH_DISABLED, 1: MESH_RAP, 2:MESH_MAP, 3:MESH_EAP, 4:MESH_DOWN, 5: MESH_UNDEFINED)
+	 * @since 3.5
+	 */
+	optional int32	meshRole = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description SSID of the mesh network
+	 * @since 3.5
+	 */
+	optional string	meshSSID = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Passphrase required for the AP to join the mesh network
+	 * @since 3.5
+	 */
+	optional string	meshPassphraseMD5 = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Depth or number of hops between this AP and its parent root AP
+	 * @since 3.5
+	 */
+	optional int32	hops = 9;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description Serialization neighbors data
+     * @since 3.5
+     */
+	repeated APMeshNeighbor neighbor = 10;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description Serialization mesh uplink data
+     * @since 3.5
+     */
+	repeated APMeshUplink uplink = 11;
+    /**
+     * @property Serialization
+     * @aggregation NULL
+     * @description serialization mesh downlink data
+     * @since 3.5
+     */
+	repeated APMeshDownlink downlink = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP group UUID 
+     * @since 3.5
+     */
+	optional string apgroup_id = 13;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Cluster UUID
+     * @since 3.5
+     */
+	optional string cluster_id = 14;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain UUID
+     * @since 3.5
+     */
+	optional string domain_id = 15;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP tenant UUID
+     * @since 3.5
+     */
+	optional string aptenant_id = 16;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description MAP UUID
+     * @since 3.5
+     */
+	optional string map_id = 17;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP tenant name
+     * @since 3.5
+     */
+	optional string aptenant_name = 18;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone name
+     * @since 3.5
+     */
+	optional string zone_name = 19;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description AP group name
+     * @since 3.5
+     */
+	optional string apgroup_name = 20;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain name
+     * @since 3.5
+     */
+	optional string domain_name = 21;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Timestamp for generating this stats report
+     * @since 3.5
+     */
+	optional uint64 sampleTime = 22;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Interval time to aggregate data
+     * @since 3.5
+     */
+	optional uint32 aggregationInterval = 23;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description An indicate for mesh status
+     * @since 3.5
+     */
+	optional bool isMeshEnable = 24;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The serial number in AP borad data
+     * @since 5.1.1
+     */
+    optional string serialNumber = 25;
+}
+
+

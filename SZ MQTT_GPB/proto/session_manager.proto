@@ -1,0 +1,26 @@
+/**
+ * Copyright 2018 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ */
+option java_package = "com.ruckuswireless.scg.protobuf.client";
+
+import "ScgSessMgrPubIpc.proto";
+
+message SessionManagerClientData {
+    optional ScgSessMgrPubIpc.GBP_SESSMGR_PUBS_STATS_AP_CLIENT_STAT_T sessionMgrClientStat = 1;
+    optional ExtraSessClientDataAttributes extraAttributes = 2;
+}
+
+message ExtraSessClientDataAttributes {
+    optional string serialNumber = 1;
+    optional string domainName = 2;
+    optional string zoneName = 3;
+    optional string apGroupId = 4;
+    optional string apGroupName = 5;
+    optional string wlanName = 6;
+}

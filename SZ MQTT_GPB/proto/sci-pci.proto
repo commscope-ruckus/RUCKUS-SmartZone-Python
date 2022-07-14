@@ -1,0 +1,282 @@
+/**
+ * Copyright 2017 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ *
+ */
+option java_package = "com.ruckuswireless.scg.protobuf.sci";
+
+message PciReportMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description GPB version
+     * @since 5.0
+     */
+    optional uint32 version = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description PCI report UUID
+     * @since 5.0
+     */
+    optional string pciReportUuid = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Default password of SZ is changed or not
+     * @since 5.0
+     */
+    optional bool changedPassword = 3 [default = true];
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 5.0
+     */
+    repeated ControllerSummaryMessage controllerSummary = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SSL of SZ web is enabled or not
+     * @since 5.0
+     */
+    optional bool enabledSSL = 5 [default = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Telnet of SZ is blocked or not
+     * @since 5.0
+     */
+    optional bool blockedTelnet = 6 [default = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Authentication mechanism is enabled on each user of SZ or not
+     * @since 5.0
+     */
+    optional bool enabledPasswordAuthentication = 7 [default = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Credentials of SZ are encrypted or not
+     * @since 5.0
+     */
+    optional bool encryptedCredential = 8 [default = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Password standards of SZ are enabled or not
+     * @since 5.0
+     */
+    optional bool enabledPasswordStandard= 9 [default = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Unique password of SZ is enabled or not
+     * @since 5.0
+     */
+    optional bool enabledUniquePassword= 10 [default = false];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Generic accounts of SZ are disabled or not
+     * @since 5.0
+     */
+    optional bool disabledGenericAccount = 11 [default = false];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Time of SZ is synchronized to NTP or not
+     * @since 5.0
+     */
+    optional bool synchronizeNTP = 12 [default = true];
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Configuration change alert of SZ is enabled or not
+     * @since 5.0
+     */
+    optional bool alertConfigurationChange = 13 [default = true];
+    /**
+     * @property
+     * @aggregation
+     * @description
+     * @since 5.0
+     */
+    repeated AccountSecurityMessage accountSecurity = 14;
+    /**
+     * @property 
+     * @aggregation
+     * @description
+     * @since 5.0
+     */
+    repeated WlanInformationMessage wlanInformation = 15;
+}
+
+message AccountSecurityMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description User UUID
+     * @since 5.0
+     */
+    optional string userUuid = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description User name
+     * @since 5.0
+     */
+    optional string userName = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Account security UUID
+     * @since 5.0
+     */
+    optional string accountSecurityUuid = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Account security name
+     * @since 5.0
+     */
+    optional string accountSecurityName = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Account security description
+     * @since 5.0
+     */
+    optional string description = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Domain ID
+     * @since 5.0
+     */
+    optional string domainId = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Failed authentication attempts before account lockout
+     * @since 5.0
+     */
+    optional uint32 accountLockout = 7;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description The duration for which the account is automatically locked without administrative intervention
+     * @since 5.0
+     */
+    optional uint32 lockoutDuration = 8;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Time of password expiration
+     * @since 5.0
+     */
+    optional uint32 passwordExpiration = 9;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Password reuse setting
+     * @since 5.0
+     */
+    optional uint32 passwordReuse = 10;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Session idle timeout
+     * @since 5.0
+     */
+    optional uint32 sessionIdle = 11;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Two-Factor authentication is enabled or not
+     * @since 5.0
+     */
+    optional bool twoFactorAuthEnabled = 12;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Time of disabling inactive account
+     * @since 5.0
+     */
+    optional uint32 disableInactiveAccounts = 13;
+}
+
+message ControllerSummaryMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Controller summary UUID
+     * @since 5.0
+     */
+    optional string controllerSummaryUuid = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Model name
+     * @since 5.0
+     */
+    optional string modelName = 2;
+}
+
+message WlanInformationMessage {
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN ID
+     * @since 5.0
+     */
+    optional string id = 1;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Zone UUID
+     * @since 5.0
+     */
+    optional string zoneId = 2;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN name
+     * @since 5.0
+     */
+    optional string wlanName = 3;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description SSID
+     * @since 5.0
+     */
+    optional string ssid = 4;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description Vlan ID
+     * @since 5.0
+     */
+    optional string vlanId = 5;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WLAN security method
+     * @since 5.0
+     */
+    optional string securityMethod = 6;
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description WPA version
+     * @since 5.0
+     */
+    optional string wpaVersion = 7;
+}

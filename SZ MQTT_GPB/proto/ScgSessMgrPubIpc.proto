@@ -1,0 +1,825 @@
+package ScgSessMgrPubIpc;
+
+option java_package = "com.ruckuswireless.scg.protobuf.sessmgr";
+option java_outer_classname = "ScgSessMgrPubIpc";
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_STATS_UE_PMIP_SESS_STAT
+{
+    optional string   relay_mac = 1;
+    optional string   mn_mac = 2;
+    optional string   hoa_addr = 3;
+    optional string   magControlIp = 4; //Not a manditory parameter.
+    optional string   ap_mac = 5;
+    optional string   relay_netaddr = 6;
+    optional string   lma_addr = 7;
+    optional string   mvno_id = 8;
+    optional string   cause = 9;
+    optional uint64   start_time = 10;
+};
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_OBS_LMA_SIG_STATS
+{
+       optional string dbladeId = 1;
+       optional string lmaIp    = 2;
+       optional string mvnoId   = 3;
+       optional uint32 pbuPkts  = 4;
+       optional uint32 pbaPkts  = 5;
+       optional uint32 pbuLifetime0Pkts = 6;
+       optional uint32 pbaLifetime0Pkts = 7;
+       optional uint32 briPkts  = 8;
+       optional uint32 braPkts  = 9;
+       optional uint32 totalPkts = 10;
+       optional uint64 recordCreationTime = 11;
+       optional uint64 recordUpdateTime   = 12;
+};
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_OBS_LMA_CON_STATS
+{
+      optional string dbladeId = 1;
+      optional string mvnoId   = 2;
+      optional string primaryLMAIp = 3;
+      optional string secondaryLMAIp = 4;
+      optional string activeLMAIp   = 5;
+      optional uint32 primaryLMADuration = 6;
+      optional uint32 secondaryLMADutation = 7;
+      optional uint32 numOfFailOverPrimaryToSecondary = 8;
+      optional uint32 numOfFailOverSecondaryToPrimary = 9;
+      optional uint32 lastFailOverTime = 10;
+      optional uint32 recordCreationTime = 11;
+      optional uint32 recordUpdateTime  = 12;
+}; 
+
+message GBP_SESSMGR_PUBS_STATS_AP_CLIENT_STAT_T
+{
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string apMac = 1;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string apIP = 2;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string clientMac = 3;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string ipAddress = 4;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string apName = 5;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string rssi = 6;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string signal = 7;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string txRSSI = 8;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string mobilityZone = 9;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string wlanId = 10;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string vlan = 11;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string mode = 12;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string ssid = 13;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string channel = 14;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string radio = 15;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint32 status = 16;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string zoneId = 17;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string thirdPWlanID = 18;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string encryptMethod = 19;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string authmethod = 20;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string user = 21;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string bssid = 22;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string fwdPolicy = 23;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint64 connectSince = 24;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint32 txRetry = 25;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint64 rxFrames = 26;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint64 txFrames = 27;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint64 rxBytes = 28;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint64 txBytes = 29;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint32 location = 30;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint32 termCause = 31;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint32 ttlVal = 32;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string hostname = 33;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string dvcinfo = 34;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional bytes  dvcType = 35;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string ifname = 36;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint32 sessStartTime = 37;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint64 rxDrops = 38;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint64 txDrops = 39;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string mvnoId  = 40;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string ueIpAddr_ipv6 = 41; 
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint32 sessEndTime = 42;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string domainId = 43;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    enum UE_TYPE
+    {
+       WIRELESS = 0;
+       WIRED    = 1;
+    }
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional UE_TYPE ueType = 44 [default = WIRELESS];
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional uint32 ethProfId = 45;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional bool isThirdParty = 46;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional bool isTTG = 47;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional string model_name = 48;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional bytes  device_type_id = 49;
+
+    /**
+     * @property snapshot
+     * @aggregation NULL
+     * @description 
+     * @since 5.2
+     */
+    optional bytes  os_vendor_id = 50;
+};
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_STATS_UE_PER_SESS_STATS
+{
+    optional string ueMac = 1;
+    optional uint64 ueIpAddr = 2; 
+    optional string ueImsi = 3;
+    optional string ueCui = 4;
+    optional uint64 ueSessStartTime = 5;
+    optional uint64 ueSessEndTime = 6;
+    optional uint64 ueSessType = 7;
+    optional uint64 ueSessState = 8;
+    optional uint64 ueChargType = 9;
+    optional uint64 chargSerIp = 10;
+    optional string termCause = 11;
+    optional uint64 authSerIp = 12;
+    optional uint64 authType = 13;
+    optional string ueRealm = 14;
+    optional string cBladeId = 15;
+    optional uint64 ueMnc = 16;   
+    optional uint64 ueMcc = 17; 
+    optional string mvnoId = 18;
+    optional uint64 wlanId = 19;
+    optional string zoneId = 20;
+    optional string thirdPartyApZoneId = 21;
+    optional string ssId = 22;
+    optional string apMac = 23;
+    optional uint64 chrgSrvrType = 24;
+    optional string chrgSrvcName = 25;
+    optional uint64 authSrvrType = 26;
+    optional string  authSrvcName = 27;
+    optional uint32 ttlVal = 28;
+    optional string ueIpAddr_ipv6 = 29; 
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_STATS_TTG_INFO_SESS_STATS
+{
+    optional string ueMac = 1;
+    optional uint64 ueIpAddr = 2;    
+    optional uint64 ueSessStartTime = 3;
+    optional string ueApn = 4;
+    optional uint64 ggsnIp = 5;  
+    optional uint64 uePdpIp = 6; 
+    optional string cBladeId = 7;
+    optional uint64 recCreateTime = 8;
+    optional uint32 ttlVal = 9;
+    optional string ueIpAddr_ipv6 = 10; 
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_STATS_PDP_CTXT_INFO_SESS_STATS
+{
+    optional string ueMac = 1;
+    optional uint64 ueIpAddr = 2; 
+    optional uint64 ueSessStartTime = 3; 
+    optional uint64 gtpCIp = 4;   
+    optional uint64 gtpDIp = 5; 
+    optional uint64 gtpCUpTeid = 6; 
+    optional uint64 gtpCDownTeid = 7;
+    optional uint64 gtpUUpTeid = 8; 
+    optional uint64 gtpUDownTeid = 9; 
+    optional string cBladeId = 10;
+    optional string gtpQos = 11;
+    optional uint64 recCreateTime = 12;
+    optional uint64 pdpStatus = 13;
+    optional uint64 ggsnUIp = 14;
+    optional uint32 ttlVal = 15;
+    optional string ueIpAddr_ipv6 = 16; 
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_STATS_THIRDPAR_AP_STATS
+{
+    optional string cBladeId  = 1;
+    optional string mvnoId = 2;
+    optional string apMac  = 3;
+    optional string  apZone = 4; 
+    optional uint64 apIpAddr = 5;
+    optional uint64 numClnts = 6;
+    optional uint64 lastSeenTime = 7;
+    optional uint64 recCrtTime = 8;
+    optional uint64 recUpdTime = 9; 
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_STATS_THIRDPAR_CLIENT_STATS
+{
+    optional string cBladeId = 1;
+    optional string mvnoId = 2;
+    optional string apMac = 3; 
+    optional uint64 apIpAddr = 4;
+    optional string clientMac = 5;
+    optional uint64 clientIpAddr = 6;
+    optional string ssid = 7;
+    optional uint64 authMethod = 8;
+    optional string  apZone = 9;
+    optional string  userName = 10;
+    optional uint64 recCrtTime = 11;
+    optional uint64 recUpdTime = 12;
+    optional uint32 ttlVal = 13; 
+    optional bytes  sessStatus = 14;
+}
+
+/**
+ * @internal
+ **/
+enum GBP_SESSMGR_DPSK_OP_TYPE
+{
+   GBP_SESSMGR_DPSK_OP_TYPE_ADD = 1;
+   GBP_SESSMGR_DPSK_OP_TYPE_MOD = 2; 
+   GBP_SESSMGR_DPSK_OP_TYPE_DEL = 3;
+   GBP_SESSMGR_DPSK_OP_TYPE_DEL_SHM = 4;
+}
+
+/**
+ * @internal
+ **/
+enum GBP_SESSMGR_PUBS_DPSK_EXPIRATION_START_POINT 
+{ 
+    FROM_CREATION = 1; 
+    FROM_FIRST_USE = 2; 
+} 
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_DPSK_ENTRY
+{
+   optional GBP_SESSMGR_DPSK_OP_TYPE opType = 1;
+   optional string key = 2; // uuid
+   optional uint64 ueMac = 3;
+   optional string dpsk = 4;
+   optional string prevDpsk = 5;
+   optional uint32 bounded = 6;
+   optional uint32 vlanId = 7;
+   optional uint32 wlanId = 8;
+   optional string zoneId = 9;
+   optional string tenantId = 10;
+   optional string userRoleId = 11; 
+   optional string utpId = 12;
+   optional string userName = 13;
+   optional GBP_SESSMGR_PUBS_DPSK_EXPIRATION_START_POINT expirationStartPoint = 14; 
+   optional uint64 expirationStartTime = 15; // Creation time or first use time of this DPSK entry. epoch time in millisec. When FROM_FIRST_USE, filled in by SessManager. 
+   optional uint64 ttl = 16; // Unit: Minutes; 0 means Never Expired. 
+   optional uint32 maxDevice = 17; // For unbound case that one DPSK can be shared by multiple device.
+   optional uint32 deviceCounting = 18; // For unbound case; indicate how many device is using this DPSK
+   optional string pmk = 19;
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_MULTIPLE_DPSK_ENTRIES 
+{ 
+   repeated GBP_SESSMGR_PUBS_DPSK_ENTRY dpsks = 1; 
+} 
+
+/**
+ * @internal
+ **/
+enum GBP_IDM_DPSK_OP_TYPE
+{
+   GBP_IDM_DPSK_OP_TYPE_ADD = 1;
+   GBP_IDM_DPSK_OP_TYPE_MOD = 2; 
+   GBP_IDM_DPSK_OP_TYPE_DEL = 3;
+}
+
+/**
+ * @internal
+ **/
+message GBP_IDM_PUBS_DPSK_ENTRY
+{
+   optional GBP_IDM_DPSK_OP_TYPE opType = 1;
+   optional string key = 2; // uuid
+   optional uint64 ueMac = 3;
+   optional string dpsk = 4;
+   optional string prevDpsk = 5;
+   optional uint32 vlanId = 6;
+   optional uint32 wlanId = 7;
+   optional string zoneId = 8;
+   optional string tenantId = 9;
+   optional string userRoleId = 10; 
+   optional uint32 utpId = 11;  // 0~63 UTP ID
+   optional string userName = 12;
+   /**
+    * @internal
+    **/
+   enum GBP_IDM_DPSK_EXPIRATION_START_POINT
+   { 
+       FROM_CREATION = 1; 
+       FROM_FIRST_USE = 2; 
+   } 
+   optional GBP_IDM_DPSK_EXPIRATION_START_POINT expirationStartPoint = 13; 
+   optional uint64 expirationStartTime = 14; // Creation time or first use time of this DPSK entry. epoch time in millisec. When FROM_FIRST_USE, filled in by SessManager. 
+   optional uint64 ttl = 15; // Unit: Minutes; 0 means Never Expired. 
+   optional string pmk = 16;
+   optional bool   isGroup = 17; // for Group DPSK 
+}
+
+/**
+ * @internal
+ **/
+message GBP_IDM_PUBS_MULTIPLE_DPSK_ENTRIES 
+{ 
+   optional GBP_IDM_DPSK_OP_TYPE opType = 1;
+   repeated GBP_IDM_PUBS_DPSK_ENTRY dpsks = 2;
+} 
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_EVT_UE_JOIN
+{
+    optional uint64 ueMac = 1;
+    optional uint64 apMac = 2;
+    optional bytes  apBssId = 3;
+    optional uint32 wlanId = 4;
+    optional uint32 dpIP = 5;
+    optional uint32 cpIP = 6;    
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_EVT_UE_ROAM
+{
+    optional uint64 ueMac = 1;
+    optional uint64 apMac = 2;
+    optional bytes  apBssId = 3;
+    optional uint32 wlanId = 4;
+    optional uint64 oldapMac = 5;
+    optional uint32 dpIP = 6;
+    optional uint32 cpIP = 7;    
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_EVT_UE_AUTHD
+{
+    optional uint64 ueMac = 1;
+    optional uint64 apMac = 2;
+    optional bytes  apBssId = 3;
+    optional uint32 wlanId = 4;
+    optional uint32 authType = 5;
+    optional uint32 authMethod = 6;
+    optional uint32 dpIP = 7;
+    optional uint32 cpIP = 8;    
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_EVT_UE_UNAUTHD
+{
+    optional uint64 ueMac = 1;
+    optional uint64 apMac = 2;
+    optional bytes  apBssId = 3;
+    optional uint32 wlanId = 4;
+    optional uint32 authType = 5;
+    optional uint32 authMethod = 6;
+    optional uint32 dpIP = 7;
+    optional uint32 cpIP = 8;    
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_EVT_UE_LEAVE
+{
+    optional uint64 ueMac = 1;
+    optional uint64 apMac = 2;
+    optional bytes  apBssId = 3;
+    optional uint32 wlanId = 4;
+    optional uint32 dpIP = 5;
+    optional uint32 cpIP = 6;    
+    optional uint32 termCause =7;
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUBS_OBR_LOG_LEVEL
+{
+    optional uint32 logLevel = 1;
+}
+
+/**
+ * @internal
+ **/
+enum GBP_SESSMGR_PUBS_MSG_TYPE
+{
+    GBP_SESSMGR_PUBS_MSG_TYPE_PMIP_SESS_STATS = 1;
+    GBP_SESSMGR_PUBS_MSG_TYPE_AP_CLIENTS_STATS = 2;
+    GBP_SESSMGR_PUBS_MSG_TYPE_UE_PER_SESS_STATS = 3;
+    GBP_SESSMGR_PUBS_MSG_TYPE_TTG_INFO_STATS = 4;
+    GBP_SESSMGR_PUBS_MSG_TYPE_PDP_CTXT_STATS = 5;
+    GBP_SESSMGR_PUBS_MSG_TYPE_3P_STATS = 6;
+    GBP_SESSMGR_PUBS_MSG_TYPE_3P_CLIENTS_STATS = 7;
+    GBP_SESSMGR_PUBS_MSG_TYPE_DPSK_ENTRY=8;
+    GBP_SESSMGR_PUBS_MSG_TYPE_BULK_DPSK_ENTRY=9;
+    SESSMGR_PUBS_MSG_TYPE_PMIPV6_LMA_SIGNAL_ENTRY = 10;
+    SESSMGR_PUBS_MSG_TYPE_PMIPV6_LMA_CONNECTIVITY_ENTRY = 11;
+    GBP_IDM_PUBS_MSG_TYPE_DPSK_ENTRY = 12;
+    GBP_IDM_PUBS_MSG_TYPE_BULK_DPSK_ENTRY = 13;
+    GBP_SESSMGR_PUBS_EVT_TYPE_UE_JOIN = 14;
+    GBP_SESSMGR_PUBS_EVT_TYPE_UE_ROAM = 15;
+    GBP_SESSMGR_PUBS_EVT_TYPE_UE_AUTHD = 16;
+    GBP_SESSMGR_PUBS_EVT_TYPE_UE_UNAUTHD = 17;
+    GBP_SESSMGR_PUBS_EVT_TYPE_UE_LEAVE = 18;
+    GBP_SESSMGR_PUBS_MSG_TYPE_OBR_LOG_LEVEL = 19;
+}
+
+/**
+ * @internal
+ **/
+message GBP_SESSMGR_PUB_MSG
+{
+    required GBP_SESSMGR_PUBS_MSG_TYPE pubMsgType = 1;
+    optional GBP_SESSMGR_PUBS_STATS_THIRDPAR_CLIENT_STATS pub3PApClientsStats = 2;
+    optional GBP_SESSMGR_PUBS_STATS_PDP_CTXT_INFO_SESS_STATS pubPdpCtxtStats = 3;
+    optional GBP_SESSMGR_PUBS_STATS_THIRDPAR_AP_STATS   pub3PApStats = 4;
+    optional GBP_SESSMGR_PUBS_STATS_TTG_INFO_SESS_STATS pubTtgInfoStats = 5;
+    optional GBP_SESSMGR_PUBS_STATS_UE_PER_SESS_STATS   pubUePerSessStats = 6;
+    optional GBP_SESSMGR_PUBS_STATS_AP_CLIENT_STAT_T    pubApClientsStats = 7;
+    optional GBP_SESSMGR_PUBS_STATS_UE_PMIP_SESS_STAT   pubPmipSessStats = 8;
+    optional GBP_SESSMGR_PUBS_DPSK_ENTRY                pubDpskEntry=9;
+    optional GBP_SESSMGR_PUBS_MULTIPLE_DPSK_ENTRIES     pubDpskBulkEntry=10;
+    optional GBP_SESSMGR_OBS_LMA_SIG_STATS              pubPmipLmaSigStats = 11;
+    optional GBP_SESSMGR_OBS_LMA_CON_STATS              pubPmipConSigStats = 12;
+    optional GBP_IDM_PUBS_DPSK_ENTRY                    pubIdmDpskEntry = 13;
+    optional GBP_IDM_PUBS_MULTIPLE_DPSK_ENTRIES         pubIdmDpskBulkEntry = 14;
+    optional GBP_SESSMGR_PUBS_EVT_UE_JOIN               pubevtUeJoin = 15;
+    optional GBP_SESSMGR_PUBS_EVT_UE_ROAM               pubevtUeRoam = 16;
+    optional GBP_SESSMGR_PUBS_EVT_UE_AUTHD              pubevtUeAuthd = 17;
+    optional GBP_SESSMGR_PUBS_EVT_UE_UNAUTHD            pubevtUeUnauthd = 18;
+    optional GBP_SESSMGR_PUBS_EVT_UE_LEAVE              pubevtUeLeave = 19;    
+    optional GBP_SESSMGR_PUBS_OBR_LOG_LEVEL             pubObrLogLevel = 20;    
+}

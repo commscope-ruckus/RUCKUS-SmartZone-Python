@@ -1,0 +1,182 @@
+/**
+ * Copyright 2013 Ruckus Wireless, Inc. All rights reserved.
+ *
+ * RUCKUS WIRELESS, INC. CONFIDENTIAL - 
+ * This is an unpublished, proprietary work of Ruckus Wireless, Inc., and is 
+ * fully protected under copyright and trade secret laws. You may not view, 
+ * use, disclose, copy, or distribute this file or any information contained 
+ * herein except pursuant to a valid license from Ruckus. 
+ *
+ * 2016/07/01 Created By Frankie Chao
+ * JsonMessage GPB format is used to transfer the JSON messages accros 
+ * applications which includes the version, message content and message 
+ * content type attributes.
+ */
+option java_package = "com.ruckuswireless.scg.protobuf.sci";
+
+message EventMessage {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description GPB version
+	 * @since 3.5
+	 */
+	required uint32 version = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Event code
+	 * @since 3.5
+	 */
+	optional uint32 eventCode = 2;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Event type
+	 * @since 3.5
+	 */
+	optional string eventType = 3;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Event main category
+	 * @since 3.5
+	 */
+	optional string mainCategory = 4;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Event sub category
+	 * @since 3.5
+	 */
+	optional string subCategory = 5;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Domain UUID
+	 * @since 3.5
+	 */
+	optional string domainId = 6;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Zone UUID. Unique zone ID (for example, b381206b-2e5d-43dc-b249-e36ffae9855c) assigned by the controller.
+	 * @since 3.5
+	 */
+	optional string zoneId = 7;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP Group identifier
+	 * @since 3.5
+	 */
+	optional string apGroupId = 8;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Access Point  MAC address
+	 * @since 3.5
+	 */
+	optional string apMac = 9;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description UE/Client MAC address if the events are related to client
+	 * @since 3.5
+	 */
+	optional string clientMac = 10;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Event timestamp (UTC time)
+	 * @since 3.5
+	 */
+	optional uint64 timestamp = 11;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Additional event attributes.
+	 * @since 3.5
+	 */
+	repeated MessageEntry attributes = 12;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Event severity
+	 * @since 3.5
+	 */
+	optional string severity = 13;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Reason for the event to occur.
+	 * @since 3.5
+	 */
+	optional string reason = 14;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Domain name.
+	 * @since 3.5
+	 */
+	optional string domainName = 15;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Zone name. Zone name assigned by the controller . The admin configures the Zone name via the contoller's user interface. The controller passes it to the AP.  AP retains the zone name.
+	 * @since 3.5
+	 */
+	optional string zoneName = 16;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description AP Group name
+	 * @since 3.5
+	 */
+	optional string apGroupName = 17;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPv4 address of the AP
+	 * @since 3.5
+	 */
+	optional string apIpAddress = 18;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description IPv6 address of the AP
+	 * @since 3.5
+	 */
+	optional string apIpv6Address = 19;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description description of the event
+	 * @since 3.5
+	 */
+	optional string description = 20;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description disconnectReason of the event
+	 * @since 3.5
+	 */
+	optional string disconnectReason = 21;
+}
+
+message MessageEntry {
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Message key
+	 * @since 3.5
+	 */
+	optional string key = 1;
+	/**
+	 * @property snapshot
+	 * @aggregation NULL
+	 * @description Message content
+	 * @since 3.5
+	 */
+	optional string value = 2;
+}
