@@ -9,7 +9,7 @@ class vSZ_calls:
 		token = r.json()['serviceTicket']
 		return token
 
-	# Get domains
+	# Get domains (uses pagination)
 	def getDomains(self, host, token):
 		listSize = 1000
 		index = 0
@@ -24,7 +24,49 @@ class vSZ_calls:
 			index = index + listSize
 		return domainList
 
-	# Get domainID
+	# Get zones (uses pagination)
+	def getZones(self, host, token):
+		listSize = 1000
+		index = 0
+		hasMore = True
+		zoneList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
+			r = requests.get(url, verify=False).json()
+			zoneList = zoneList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			index = index + listSize
+		return zoneList
+
+	# Get wlans (uses pagination)
+	def getWlans(self, host, zoneID, token):
+		listSize = 1000
+		index = 0
+		hasMore = True
+		wlanList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlans?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
+			r = requests.get(url, verify=False).json()
+			wlanList = wlanList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			index = index + listSize
+		return wlanList
+
+	# Get wlan configuration
+	def getWlanConfig(self, host, zoneId, wlanId, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneId + "/wlans/" + wlanId + "?serviceTicket=" + token
+		r = requests.get(url, verify=False)	
+		return r.json()
+
+	# Get domain by name
+	def getDomainByName(self, host, domainName, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/domains/byName/" + domainName + "?serviceTicket=" + token
+		r = requests.get(url, verify=False).json()
+		return r
+
+	# Get domainID (uses pagination)
 	def getDomainID(self, host, domain, token):
 		listSize = 1000
 		index = 0
@@ -43,7 +85,7 @@ class vSZ_calls:
 				parentDomainID = item['parentDomainId']
 				return (domainID, parentDomainID)
 
-	# Get zoneID
+	# Get zoneID (uses pagination)
 	def getZoneID(self, host, zone, token):
 		listSize = 1000
 		index = 0
@@ -91,6 +133,62 @@ class vSZ_calls:
 		r = requests.post(url, json = body, verify=False)
 		return r.json()
 
+	# Query APs (uses pagination)
+	def queryAPs(self, host, filter, ID, limit, token):
+		page = 1
+		hasMore = True
+		apList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/ap?serviceTicket=" + token
+			body = {
+					"filters": [
+						{
+						"type": filter,
+						"value": ID
+						}
+					],
+					"sortInfo": {
+					"sortColumn": "apMac",
+					"dir": "ASC"
+					},
+					"page": page,
+					"limit": limit
+					}
+			r = requests.post(url, json = body, verify=False).json()
+			apList = apList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			page = page + 1
+		return apList
+
+	# Query WLANs (uses pagination)
+	def queryWlans(self, host, filter, ID, limit, token):
+		page = 1
+		hasMore = True
+		wlanList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/wlan?serviceTicket=" + token
+			body = {
+					"filters": [
+						{
+						"type": filter,
+						"value": ID
+						}
+					],
+					"sortInfo": {
+					"sortColumn": "name",
+					"dir": "ASC"
+					},
+					"page": page,
+					"limit": limit
+					}
+			r = requests.post(url, json = body, verify=False).json()
+			wlanList = wlanList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			page = page + 1
+		return wlanList
+
 	# Query zone
 	def queryZone(self, host, zoneID, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "?serviceTicket=" + token
@@ -104,12 +202,23 @@ class vSZ_calls:
 		r = requests.post(url, json = body, verify=False)	
 		return r
 
+	# Move AP to zone
+	def moveAPtoZone(self, host, APmac, zoneId, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps/move?serviceTicket=" + token
+		body = {
+    			"targetZoneId": zoneId,
+    			"apMacs": APmac
+				}	
+		r = requests.post(url, json = body, verify=False)	
+		return r
+
 	# Release authentication token
 	def deleteToken(self, host, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/serviceTicket?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return
 
+	# Get WlanGroupID
 	def getWlanGroupID(self, host, zoneID, wlanGroupName,  token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups?listSize=500&serviceTicket=" + token
 		r = requests.get(url, verify=False)	
@@ -118,6 +227,7 @@ class vSZ_calls:
 				wlanGroupID = item['id']
 				return wlanGroupID
 
+	# Create WlanGroup
 	def createWlanGroup(self, host, zoneID, wlanGroupName, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups?serviceTicket=" + token
 		body = {"name": wlanGroupName, "description": ""}
@@ -125,6 +235,7 @@ class vSZ_calls:
 		wlanGroupID = r.json()['id']
 		return wlanGroupID
 
+	# Create Wlan
 	def createWlan(self, host, zoneID, wlanName, ssid, passphrase, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlans?serviceTicket=" + token
 		body = { "name": wlanName, "ssid": ssid, "encryption": { "method": "WPA2", "algorithm": "AES", "passphrase": passphrase } }
@@ -132,17 +243,20 @@ class vSZ_calls:
 		wlanID = r.json()['id']
 		return wlanID
 
+	# Add member to WlanGroup
 	def addMemberToWlanGroup(self, host, zoneID, wlanGroupID, wlanID, vlanID, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups/" + wlanGroupID + "/members" + "?serviceTicket=" + token
 		body = { "id": wlanID, "accessVlan": vlanID }
 		r = requests.post(url, json = body, verify=False)
 		return r
 
+	# Remove member from WlanGroup
 	def removeMemberFromWlanGroup(self, host, zoneID, wlanGroupID, wlanID, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups/" + wlanGroupID + "/members/" + wlanID + "?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return r
 
+	# Get WlanID
 	def getWlanID(self, host, zoneID, wlanName, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlans?listSize=500&serviceTicket=" + token
 		r = requests.get(url, verify=False)
@@ -151,13 +265,222 @@ class vSZ_calls:
 				wlanID = item['id']
 				return wlanID
 
+	# Delete WlanGroup
 	def deleteWlanGroup(self, host, zoneID, WLANgroupID, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups/" + WLANgroupID + "?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return r
 
+	# Delete Wlan
 	def deleteWlan(self, host, zoneID, wlanID, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlans/" + wlanID + "?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return r
 
+	# Create access point
+	def createAP(self, host, mac, zoneId, name, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps?serviceTicket=" + token
+		body = {
+				"mac": mac,
+				"zoneId": zoneId,
+				"name": name
+				}
+		r = requests.post(url, json = body, verify=False)	
+		return r
+
+	# Delete access point
+	def deleteAP(self, host, mac, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps/" + mac + "?serviceTicket=" + token
+		r = requests.delete(url, verify=False)	
+		return r
+
+	# Get access point configuration
+	def getAP(self, host, mac, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps/" + mac + "?serviceTicket=" + token
+		r = requests.get(url, verify=False)	
+		return r.json()
+
+	# Create client traffic by Wlan (uses pagination)
+	def getTrafficByWlan(self, host, zoneId, wlanName, limit, token):
+		page = 1
+		hasMore = True
+		clientList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/clients/byWlanName/" + wlanName + "?serviceTicket=" + token
+			body = {
+					"filters": [
+						{
+						"type": "ZONE",
+						"value": zoneId
+						}
+					],
+					"page": page,
+					"limit": limit
+					}
+			r = requests.post(url, json = body, verify=False).json()
+			clientList = clientList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			page = page + 1
+		return clientList
+
+	# Create zone
+	def createZone(self, host, name, domainId, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones?serviceTicket=" + token
+		body = {
+  				"domainId": domainId,
+  				"name": name,
+  				"description": "",
+  				"countryCode": "US",
+				"timezone": {
+					"customizedTimezone": {
+				    "abbreviation": "TPE",
+				    "gmtOffset": 0,
+				    "gmtOffsetMinute": 0
+				    }
+				},
+				"login": {
+				    "apLoginName": "admin",
+				    "apLoginPassword": "password123!"
+				},
+				"apHccdEnabled": True
+			}
+		r = requests.post(url, json = body, verify=False).json()
+		return r
+
+	# Delete zone
+	def deleteZone(self, host, zoneId, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneId + "?serviceTicket=" + token
+		r = requests.delete(url, verify=False)
+		return r
+
+	# Get DPSKs
+	def getDPSKs(self, host, zoneId, wlanId, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneId + "/wlans/" + wlanId + "/dpsk?serviceTicket=" + token
+		r = requests.get(url, verify=False)	
+		return r.json()
+
+	# Get Wireless clients (uses pagination)
+	def getClients(self, host, zoneId, limit, token):
+		page = 1
+		hasMore = True
+		clientList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/client?serviceTicket=" + token
+			body = {
+					"filters": [
+						{
+						"type": "ZONE",
+						"value": zoneId
+						}
+					],
+					"page": page,
+					"limit": limit
+					}
+			r = requests.post(url, json = body, verify=False).json()
+			clientList = clientList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			page = page + 1
+		return clientList
+
+class vSZ_calls_pre_50:
+	# Open session
+	def getSession(self, session, host, username, password):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/session"
+		body = {'username': username,'password': password}
+		r = session.post(url, json = body, verify=False)
+		return r
+
+	# Get domains (uses pagination)
+	def getDomains(self, session, host):
+		listSize = 1000
+		index = 0
+		hasMore = True
+		domainList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/domains?listSize=" + str(listSize) + "&index=" + str(index)
+			r = session.get(url, verify=False).json()
+			domainList = domainList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			index = index + listSize
+		return domainList
+
+	# Get zones (uses pagination)
+	def getZones(self, session, host):
+		listSize = 1000
+		index = 0
+		hasMore = True
+		zoneList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones?listSize=" + str(listSize) + "&index=" + str(index)
+			r = session.get(url, verify=False).json()
+			zoneList = zoneList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			index = index + listSize
+		return zoneList
+
+	# Query WLANs (uses pagination)
+	def queryWlans(self, session, host, filter, ID, limit):
+		page = 1
+		hasMore = True
+		wlanList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/wlan"
+			body = {
+					"filters": [
+						{
+						"type": filter,
+						"value": ID
+						}
+					],
+					"sortInfo": {
+					"sortColumn": "name",
+					"dir": "ASC"
+					},
+					"page": page,
+					"limit": limit
+					}
+			r = session.post(url, json = body, verify=False).json()
+			wlanList = wlanList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			page = page + 1
+		return wlanList
+
+	# Query APs (uses pagination)
+	def queryAPs(self, session, host, filter, ID, limit):
+		page = 1
+		hasMore = True
+		apList = []
+		while hasMore == True:
+			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/ap"
+			body = {
+					"filters": [
+						{
+						"type": filter,
+						"value": ID
+						}
+					],
+					"sortInfo": {
+					"sortColumn": "apMac",
+					"dir": "ASC"
+					},
+					"page": page,
+					"limit": limit
+					}
+			r = session.post(url, json = body, verify=False).json()
+			apList = apList + r['list']
+			if r['hasMore'] ==  False:
+				hasMore = False
+			page = page + 1
+		return apList
+
+	# Close session
+	def deleteSession(self, session, host):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/session"
+		r = session.delete(url, verify=False)
+		return r
+	
