@@ -10,7 +10,7 @@ from vSZ_calls_Q322 import vSZ_calls
 HOST = "SmartZone IP address or FQDN"
 USERNAME = "admin"
 PASSWORD = "password"
-csvFileName = 'fileName' + str(datetime.now().strftime("%m%d%Y%H:%M")) + '.csv'
+csvFileName = 'fileName' + str(datetime.now().strftime("%m%d%Y%H%M")) + '.csv'
 
 def main():
 	# Initialize class and get serviceTicket
