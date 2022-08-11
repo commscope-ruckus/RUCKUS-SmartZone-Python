@@ -3,7 +3,7 @@ import requests
 class vSZ_calls:
 	# Get authentication token
 	def getToken(self, host, username, password):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/serviceTicket"
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/serviceTicket"
 		body = {'username': username,'password': password}
 		r = requests.post(url, json = body, verify=False)
 		token = r.json()['serviceTicket']
@@ -11,13 +11,13 @@ class vSZ_calls:
 
 	# Release authentication token
 	def deleteToken(self, host, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/serviceTicket?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/serviceTicket?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return
 
 	# Get cluster state
 	def getClusterState(self, host, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/cluster/state?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/cluster/state?serviceTicket=" + token
 		r = requests.get(url, verify=False)	
 		return r.json()
 
@@ -28,7 +28,7 @@ class vSZ_calls:
 		hasMore = True
 		domainList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/domains?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/domains?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
 			r = requests.get(url, verify=False).json()
 			domainList = domainList + r['list']
 			if r['hasMore'] ==  False:
@@ -43,7 +43,7 @@ class vSZ_calls:
 		hasMore = True
 		domainList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/domains?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/domains?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
 			r = requests.get(url, verify=False).json()
 			domainList = domainList + r['list']
 			if r['hasMore'] ==  False:
@@ -57,7 +57,7 @@ class vSZ_calls:
 
 	# Get domain by name
 	def getDomainByName(self, host, domainName, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/domains/byName/" + domainName + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/domains/byName/" + domainName + "?serviceTicket=" + token
 		r = requests.get(url, verify=False).json()
 		return r
 
@@ -68,7 +68,7 @@ class vSZ_calls:
 		hasMore = True
 		zoneList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
 			r = requests.get(url, verify=False).json()
 			zoneList = zoneList + r['list']
 			if r['hasMore'] ==  False:
@@ -83,7 +83,7 @@ class vSZ_calls:
 		hasMore = True
 		zoneList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
 			r = requests.get(url, verify=False).json()
 			zoneList = zoneList + r['list']
 			if r['hasMore'] ==  False:
@@ -96,14 +96,14 @@ class vSZ_calls:
 
 	# Query zone
 	def queryZone(self, host, zoneID, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "?serviceTicket=" + token
 		r = requests.get(url, verify=False)
 		print (r)
 		return r.json()
 
 	# Create zone
 	def createZone(self, host, name, domainId, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones?serviceTicket=" + token
 		body = {
   				"domainId": domainId,
   				"name": name,
@@ -127,7 +127,7 @@ class vSZ_calls:
 
 	# Delete zone
 	def deleteZone(self, host, zoneId, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneId + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneId + "?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return r
 
@@ -138,7 +138,7 @@ class vSZ_calls:
 		hasMore = True
 		wlanList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlans?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlans?listSize=" + str(listSize) + "&index=" + str(index) + "&serviceTicket=" + token
 			r = requests.get(url, verify=False).json()
 			wlanList = wlanList + r['list']
 			if r['hasMore'] ==  False:
@@ -148,7 +148,7 @@ class vSZ_calls:
 
 	# Get wlan configuration
 	def getWlanConfig(self, host, zoneId, wlanId, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneId + "/wlans/" + wlanId + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneId + "/wlans/" + wlanId + "?serviceTicket=" + token
 		r = requests.get(url, verify=False)	
 		return r.json()
 
@@ -158,7 +158,7 @@ class vSZ_calls:
 		hasMore = True
 		wlanList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/wlan?serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/query/wlan?serviceTicket=" + token
 			body = {
 					"filters": [
 						{
@@ -182,7 +182,7 @@ class vSZ_calls:
 
 	# Get WlanGroupID
 	def getWlanGroupID(self, host, zoneID, wlanGroupName,  token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups?listSize=500&serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlangroups?listSize=500&serviceTicket=" + token
 		r = requests.get(url, verify=False)	
 		for item in r.json()['list']:
 			if item['name'] == wlanGroupName:
@@ -191,7 +191,7 @@ class vSZ_calls:
 
 	# Create WlanGroup
 	def createWlanGroup(self, host, zoneID, wlanGroupName, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlangroups?serviceTicket=" + token
 		body = {"name": wlanGroupName, "description": ""}
 		r = requests.post(url, json = body, verify=False)
 		wlanGroupID = r.json()['id']
@@ -199,7 +199,7 @@ class vSZ_calls:
 
 	# Create Wlan
 	def createWlan(self, host, zoneID, wlanName, ssid, passphrase, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlans?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlans?serviceTicket=" + token
 		body = { "name": wlanName, "ssid": ssid, "encryption": { "method": "WPA2", "algorithm": "AES", "passphrase": passphrase } }
 		r = requests.post(url, json = body, verify=False)
 		wlanID = r.json()['id']
@@ -207,20 +207,20 @@ class vSZ_calls:
 
 	# Add member to WlanGroup
 	def addMemberToWlanGroup(self, host, zoneID, wlanGroupID, wlanID, vlanID, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups/" + wlanGroupID + "/members" + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlangroups/" + wlanGroupID + "/members" + "?serviceTicket=" + token
 		body = { "id": wlanID, "accessVlan": vlanID }
 		r = requests.post(url, json = body, verify=False)
 		return r
 
 	# Remove member from WlanGroup
 	def removeMemberFromWlanGroup(self, host, zoneID, wlanGroupID, wlanID, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups/" + wlanGroupID + "/members/" + wlanID + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlangroups/" + wlanGroupID + "/members/" + wlanID + "?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return r
 
 	# Get WlanID
 	def getWlanID(self, host, zoneID, wlanName, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlans?listSize=500&serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlans?listSize=500&serviceTicket=" + token
 		r = requests.get(url, verify=False)
 		for item in r.json()['list']:
 			if item['name'] == wlanName:
@@ -229,19 +229,19 @@ class vSZ_calls:
 
 	# Delete WlanGroup
 	def deleteWlanGroup(self, host, zoneID, WLANgroupID, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlangroups/" + WLANgroupID + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlangroups/" + WLANgroupID + "?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return r
 
 	# Delete Wlan
 	def deleteWlan(self, host, zoneID, wlanID, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneID + "/wlans/" + wlanID + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "/wlans/" + wlanID + "?serviceTicket=" + token
 		r = requests.delete(url, verify=False)
 		return r
 
 	# Query Online APs
 	def queryOnlineAPs(self, host, filter, domainID, limit, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/ap?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/query/ap?serviceTicket=" + token
 		body = {
 				"filters": [
 					{
@@ -269,7 +269,7 @@ class vSZ_calls:
 		hasMore = True
 		apList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/ap?serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/query/ap?serviceTicket=" + token
 			body = {
 					"filters": [
 						{
@@ -293,14 +293,14 @@ class vSZ_calls:
 
 	# Move AP to new cluster
 	def moveAPtoNewCluster(self, host, newCluster, apList, deleteRecord, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps/switchoverCluster?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/aps/switchoverCluster?serviceTicket=" + token
 		body = {"ipOrFqdn":newCluster,"apMacList":apList,"deleteRecord":deleteRecord}
 		r = requests.post(url, json = body, verify=False)	
 		return r
 
 	# Move AP to zone
 	def moveAPtoZone(self, host, APmac, zoneId, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps/move?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/aps/move?serviceTicket=" + token
 		body = {
     			"targetZoneId": zoneId,
     			"apMacs": APmac
@@ -310,7 +310,7 @@ class vSZ_calls:
 
 	# Create access point
 	def createAP(self, host, mac, zoneId, name, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/aps?serviceTicket=" + token
 		body = {
 				"mac": mac,
 				"zoneId": zoneId,
@@ -321,13 +321,13 @@ class vSZ_calls:
 
 	# Delete access point
 	def deleteAP(self, host, mac, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps/" + mac + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/aps/" + mac + "?serviceTicket=" + token
 		r = requests.delete(url, verify=False)	
 		return r
 
 	# Get access point configuration
 	def getAP(self, host, mac, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/aps/" + mac + "?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/aps/" + mac + "?serviceTicket=" + token
 		r = requests.get(url, verify=False)	
 		return r.json()
 
@@ -337,7 +337,7 @@ class vSZ_calls:
 		hasMore = True
 		clientList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/clients/byWlanName/" + wlanName + "?serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/clients/byWlanName/" + wlanName + "?serviceTicket=" + token
 			body = {
 					"filters": [
 						{
@@ -361,7 +361,7 @@ class vSZ_calls:
 		hasMore = True
 		clientList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/client?serviceTicket=" + token
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/query/client?serviceTicket=" + token
 			body = {
 					"filters": [
 						{
@@ -381,21 +381,21 @@ class vSZ_calls:
 
 	# Get DPSKs
 	def getDPSKs(self, host, zoneId, wlanId, token):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones/" + zoneId + "/wlans/" + wlanId + "/dpsk?serviceTicket=" + token
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneId + "/wlans/" + wlanId + "/dpsk?serviceTicket=" + token
 		r = requests.get(url, verify=False)	
 		return r.json()
 
 class vSZ_calls_pre_50:
 	# Open session
 	def getSession(self, session, host, username, password):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/session"
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/session"
 		body = {'username': username,'password': password}
 		r = session.post(url, json = body, verify=False)
 		return r
 
 	# Close session
 	def deleteSession(self, session, host):
-		url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/session"
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/session"
 		r = session.delete(url, verify=False)
 		return r
 
@@ -406,7 +406,7 @@ class vSZ_calls_pre_50:
 		hasMore = True
 		domainList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/domains?listSize=" + str(listSize) + "&index=" + str(index)
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/domains?listSize=" + str(listSize) + "&index=" + str(index)
 			r = session.get(url, verify=False).json()
 			domainList = domainList + r['list']
 			if r['hasMore'] ==  False:
@@ -421,7 +421,7 @@ class vSZ_calls_pre_50:
 		hasMore = True
 		zoneList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/rkszones?listSize=" + str(listSize) + "&index=" + str(index)
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones?listSize=" + str(listSize) + "&index=" + str(index)
 			r = session.get(url, verify=False).json()
 			zoneList = zoneList + r['list']
 			if r['hasMore'] ==  False:
@@ -435,7 +435,7 @@ class vSZ_calls_pre_50:
 		hasMore = True
 		wlanList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/wlan"
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/query/wlan"
 			body = {
 					"filters": [
 						{
@@ -463,7 +463,7 @@ class vSZ_calls_pre_50:
 		hasMore = True
 		apList = []
 		while hasMore == True:
-			url = "https://" + host + ":8443" + "/wsg/api/public/v11_0/query/ap"
+			url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/query/ap"
 			body = {
 					"filters": [
 						{
