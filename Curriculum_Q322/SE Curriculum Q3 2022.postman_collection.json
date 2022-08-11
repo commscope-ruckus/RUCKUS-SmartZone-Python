@@ -44,7 +44,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/session",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/session",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -54,7 +54,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"session"
 							]
 						}
@@ -99,7 +99,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v9_0/session",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/session",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -109,7 +109,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v9_0",
+								"v9_1",
 								"session"
 							]
 						}
@@ -151,7 +151,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/session",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/session",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -161,7 +161,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"session"
 							]
 						}
@@ -187,7 +187,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/domains",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/domains",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -197,7 +197,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"domains"
 							]
 						}
@@ -222,7 +222,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones?listSize=1000",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones?listSize=1000",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -232,7 +232,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones"
 							],
 							"query": [
@@ -272,7 +272,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/query/wlan",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/query/wlan",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -282,7 +282,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"query",
 								"wlan"
 							]
@@ -317,7 +317,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/query/ap",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/query/ap",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -327,7 +327,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"query",
 								"ap"
 							]
@@ -376,7 +376,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/serviceTicket",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/serviceTicket",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -386,7 +386,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"serviceTicket"
 							]
 						}
@@ -428,7 +428,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/serviceTicket?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/serviceTicket?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -438,7 +438,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"serviceTicket"
 							],
 							"query": [
@@ -486,7 +486,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/controller?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/controller?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -496,7 +496,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"controller"
 							],
 							"query": [
@@ -528,7 +528,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/cluster/state?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/cluster/state?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -538,7 +538,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"cluster",
 								"state"
 							],
@@ -580,7 +580,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/domains?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/domains?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -590,7 +590,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"domains"
 							],
 							"query": [
@@ -622,7 +622,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/domains?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/domains?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -632,7 +632,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"domains"
 							],
 							"query": [
@@ -664,7 +664,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/domains/{{domainID}}/subdomain?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/domains/{{domainID}}/subdomain?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -674,7 +674,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"domains",
 								"{{domainID}}",
 								"subdomain"
@@ -715,7 +715,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/domains/byName/{{domainName}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/domains/byName/{{domainName}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -725,7 +725,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"domains",
 								"byName",
 								"{{domainName}}"
@@ -759,7 +759,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/domains/{{domainID}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/domains/{{domainID}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -769,7 +769,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"domains",
 								"{{domainID}}"
 							],
@@ -800,7 +800,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/domains/{{domainID}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/domains/{{domainID}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -810,7 +810,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"domains",
 								"{{domainID}}"
 							],
@@ -851,7 +851,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v9_0/rkszones?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -861,7 +861,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v9_0",
+								"v9_1",
 								"rkszones"
 							],
 							"query": [
@@ -892,7 +892,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones?listSize=1000&serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones?listSize=1000&serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -902,7 +902,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones"
 							],
 							"query": [
@@ -936,7 +936,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -946,7 +946,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}"
 							],
@@ -1000,7 +1000,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1010,7 +1010,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}"
 							],
@@ -1051,7 +1051,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlans?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlans?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1061,7 +1061,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlans"
@@ -1095,7 +1095,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlans?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlans?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1105,7 +1105,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlans"
@@ -1137,7 +1137,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlans/{{wlanID}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlans/{{wlanID}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1147,7 +1147,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlans",
@@ -1190,7 +1190,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/query/wlan?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/query/wlan?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1200,7 +1200,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"query",
 								"wlan"
 							],
@@ -1281,7 +1281,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlans/{{wlanID}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlans/{{wlanID}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1291,7 +1291,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlans",
@@ -1334,7 +1334,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlangroups?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlangroups?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1344,7 +1344,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlangroups"
@@ -1399,7 +1399,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlangroups?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlangroups?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1409,7 +1409,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlangroups"
@@ -1439,7 +1439,7 @@
 							"raw": "{\n    \"id\": \"{{wlanID}}\",\n    \"accessVlan\": 1\n}"
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlangroups/{{wgID}}/members?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlangroups/{{wgID}}/members?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1449,7 +1449,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlangroups",
@@ -1482,7 +1482,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlangroups/{{wgID}}/members/{{wlanID}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlangroups/{{wgID}}/members/{{wlanID}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1492,7 +1492,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlangroups",
@@ -1537,7 +1537,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlangroups/{{wgID}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlangroups/{{wgID}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1547,7 +1547,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlangroups",
@@ -1589,7 +1589,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/aps?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/aps?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1599,7 +1599,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"aps"
 							],
 							"query": [
@@ -1636,7 +1636,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/aps/{{apMAC}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/aps/{{apMAC}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1646,7 +1646,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"aps",
 								"{{apMAC}}"
 							],
@@ -1687,7 +1687,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/query/ap?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/query/ap?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1697,7 +1697,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"query",
 								"ap"
 							],
@@ -1737,7 +1737,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/aps/move?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/aps/move?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1747,7 +1747,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"aps",
 								"move"
 							],
@@ -1776,7 +1776,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/aps/switchoverCluster?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/aps/switchoverCluster?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1786,7 +1786,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"aps",
 								"switchoverCluster"
 							],
@@ -1821,7 +1821,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/aps/{{apMAC}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/aps/{{apMAC}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1831,7 +1831,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"aps",
 								"{{apMAC}}"
 							],
@@ -1871,7 +1871,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/clients/byWlanName/{{wlanName}}?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/clients/byWlanName/{{wlanName}}?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1881,7 +1881,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"clients",
 								"byWlanName",
 								"{{wlanName}}"
@@ -1911,7 +1911,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/query/client?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/query/client?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1921,7 +1921,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"query",
 								"client"
 							],
@@ -1962,7 +1962,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/query/dpsk?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/query/dpsk?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -1972,7 +1972,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"query",
 								"dpsk"
 							],
@@ -2004,7 +2004,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/dpsk?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/dpsk?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -2014,7 +2014,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"dpsk"
@@ -2047,7 +2047,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:8443/wsg/api/public/v11_0/rkszones/{{zoneID}}/wlans/{{wlanID}}/dpsk?serviceTicket={{serviceTicket}}",
+							"raw": "https://{{host}}:8443/wsg/api/public/v9_1/rkszones/{{zoneID}}/wlans/{{wlanID}}/dpsk?serviceTicket={{serviceTicket}}",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -2057,7 +2057,7 @@
 								"wsg",
 								"api",
 								"public",
-								"v11_0",
+								"v9_1",
 								"rkszones",
 								"{{zoneID}}",
 								"wlans",
