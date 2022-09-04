@@ -61,6 +61,13 @@ class vSZ_calls:
 		r = requests.get(url, verify=False).json()
 		return r
 
+	# Query domain
+	def queryDomain(self, host, domainID, token):
+		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/domains/" + domainID + "?serviceTicket=" + token
+		r = requests.get(url, verify=False)
+		#print (r)
+		return r.json()
+		
 	# Get zones (uses pagination)
 	def getZones(self, host, token):
 		listSize = 1000
@@ -98,7 +105,7 @@ class vSZ_calls:
 	def queryZone(self, host, zoneID, token):
 		url = "https://" + host + ":8443" + "/wsg/api/public/v9_1/rkszones/" + zoneID + "?serviceTicket=" + token
 		r = requests.get(url, verify=False)
-		print (r)
+		#print (r)
 		return r.json()
 
 	# Create zone
