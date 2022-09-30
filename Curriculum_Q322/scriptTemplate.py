@@ -19,7 +19,7 @@ def main():
 	print (token)
 
 	# Open the csv file for writing
-	csv_file = open(csvFileName, mode='w', encoding='UTF8') 
+	csv_file = open(csvFileName, 'w', newline='', encoding='UTF8') 
 	fieldnames = ['column1', 'column2', 'column3', 'columnX']
 	writer = csv.writer(csv_file)
 	writer.writerow(fieldnames)
