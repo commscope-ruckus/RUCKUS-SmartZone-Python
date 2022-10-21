@@ -1,1 +1,13 @@
+Create a file named .env with the following information:
 
+HOST = 'SZ controller FQDN or ip address'
+USERNAME = 'admin'
+PASSWORD = 'my_password'
+WLANPSK = 'my_psk'
+
+Save the file in the same folder as the script.
+
+mspGUI.py - uses a GUI to create a PSK WLAN
+mspCLI.py - uses the CLI to create a PSK WLAN
+mspPreConfigured.py - the user input is included in the script
+calls_WLPC.py - library used for the scripts above
