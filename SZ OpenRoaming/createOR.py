@@ -335,28 +335,3 @@ createHS20wlan(host, zoneID, wlanName, ssid, HS20zoneProfileID, token)
 #deleteteTrustCaCertificate(host, trustCaCertID, token)
 #deleteZone(host, zoneID, token)
 #deleteDomain(host, domainID, token)
-
-
-# create 50 zones with 25 WPA wlans each
-#getToken(host, username, password)
-#getDomainID(host, domain, token) #retrieves domainID and parentDomainID
-#for i in range (0, 49):
-#	zone = "test" + str(i)
-#	createZone(host, domainID, zone, token)
-#	for j in range (0, 24):
-#		wlanName = "test" + str(j)
-#		ssid = wlanName
-#		createWPAwlan(host, zoneID, wlanName, ssid, passphrase, token)
-
-# delete the 50 zones with 25 wlans each
-#getToken(host, username, password)
-#for i in range (0, 49):
-#	zone = "test" + str(i)
-#	getZoneID(host, zone, token)
-#	for j in range (0, 24):
-#		wlanName = "test" + str(j)
-#		getWLANid(host, zoneID, wlanName, token)
-#		deleteWLAN(host, zoneID, wlanID, token)
-#	deleteZone(host, zoneID, token)
-
-
